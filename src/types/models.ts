@@ -17,6 +17,7 @@ interface IPost {
     imageUrl: string;
     description: string;
     user: IUser;
+    isLiked: boolean;
     numberOfComments: number;
     numberOfLikes: number;
     comments: IComment[];

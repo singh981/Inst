@@ -1,5 +1,13 @@
-import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    Pressable,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import {size, weight} from '../../theme/fonts';
@@ -22,9 +30,13 @@ const convertDate = (date: string) => {
 };
 
 const FeedPost = ({post}: {post: IPost}) => {
+    const [numberOfLinesToDisplay, setNumberOfLinesToDisplay] =
+        useState<number>(3);
+
+    const [isLiked, setIsLiked] = useState<boolean>(post.isLiked);
+
     // extract each field from the Post object
     const {
-        id,
         createdAt,
         imageUrl,
         description,
@@ -33,6 +45,20 @@ const FeedPost = ({post}: {post: IPost}) => {
         numberOfLikes,
         comments,
     } = post;
+
+    const timer = useRef<NodeJS.Timeout | null>(null);
+
+    const handleImageDoublePress = () => {
+        if (timer.current) {
+            clearTimeout(timer.current);
+            timer.current = null;
+            setIsLiked(!isLiked);
+        } else {
+            timer.current = setTimeout(() => {
+                timer.current = null;
+            }, 300); // 300ms delay for double press
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -53,20 +79,32 @@ const FeedPost = ({post}: {post: IPost}) => {
             </View>
 
             {/* Image - rectangle */}
-            <View style={styles.postImage}>
-                <Image
-                    source={{
-                        uri: imageUrl,
-                    }}
-                    style={{width: '100%', aspectRatio: 1}}
-                />
-            </View>
+            <TouchableWithoutFeedback onPress={handleImageDoublePress}>
+                <View style={styles.postImage}>
+                    <Image
+                        source={{
+                            uri: imageUrl,
+                        }}
+                        style={{width: '100%', aspectRatio: 1}}
+                    />
+                </View>
+            </TouchableWithoutFeedback>
 
             {/* BottomIcons - heart, comments, share, save */}
             <View style={styles.bottomContainer}>
                 <View style={styles.bottomIconContainer}>
                     <View style={styles.leftBottomIconContainer}>
-                        <AntDesign name="hearto" size={27} />
+                        <TouchableOpacity
+                            activeOpacity={1}
+                            onPress={() => {
+                                setIsLiked(!isLiked);
+                            }}>
+                            <AntDesign
+                                name={isLiked ? 'heart' : 'hearto'}
+                                size={27}
+                                color={isLiked ? 'red' : 'black'}
+                            />
+                        </TouchableOpacity>
                         <AntDesign name="message1" size={27} />
                         <Feather name="send" size={27} />
                     </View>
@@ -86,20 +124,22 @@ const FeedPost = ({post}: {post: IPost}) => {
                 </Text>
 
                 {/* name - username and description */}
-                <View style={styles.descriptionContainer}>
+                <Pressable
+                    style={styles.descriptionContainer}
+                    onPress={() => setNumberOfLinesToDisplay(0)}>
                     <Text
                         style={{
                             fontWeight: weight.medium,
                             lineHeight: 20,
                             fontSize: size.md,
                         }}
-                        numberOfLines={0}>
+                        numberOfLines={numberOfLinesToDisplay}>
                         <Text style={{fontWeight: weight.bold}}>
                             {user.username}{' '}
                         </Text>
                         {description}
                     </Text>
-                </View>
+                </Pressable>
 
                 {/* Text - View x comments */}
                 <Text style={styles.viewAllCommentsText}>
