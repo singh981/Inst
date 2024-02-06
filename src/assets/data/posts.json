@@ -7,6 +7,7 @@
             "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
             "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg"
         ],
+        "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
         "description": "Breathtaking view of the majestic mountains shrouded in mist. The tranquility of nature envelops the soul, offering a moment of serenity amidst the chaos of life. Captured this serene scene during an early morning hike, where every step brought new wonders and every breath filled the lungs with crisp mountain air. A reminder that beauty exists in the simplest moments.",
         "user": {
             "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
@@ -135,7 +136,8 @@
         "imageUrls": [
             "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
             "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
-            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg"
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg"
         ],
         "description": "A serene lakeside retreat bathed in the soft glow of dawn. The tranquil waters mirror the pastel hues of the sky, creating a picturesque scene that invites contemplation and reflection. A perfect spot to escape the hustle and bustle of everyday life and reconnect with nature's beauty.",
         "user": {

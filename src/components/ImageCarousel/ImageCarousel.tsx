@@ -66,6 +66,7 @@ const ImageCarousel = ({imageUrls, setIsLiked}: IImageCarousel) => {
             style={{
                 position: 'relative',
                 width,
+                // backgroundColor: 'black',
             }}>
             <FlatList
                 data={imageUrls}

@@ -14,6 +14,11 @@ import {size, weight} from '../../theme/fonts';
 import {IPost} from '../../types/models';
 import Comment from '../Comment';
 import ImageCarousel from '../ImageCarousel';
+import VideoPlayer from '../VideoPlayer';
+
+interface IFeedPost {
+    post: IPost;
+}
 
 const convertDate = (date: string) => {
     const dateObj = new Date(date);
@@ -30,7 +35,7 @@ const convertDate = (date: string) => {
     });
 };
 
-const FeedPost = ({post}: {post: IPost}) => {
+const FeedPost = ({post}: IFeedPost) => {
     const [numberOfLinesToDisplay, setNumberOfLinesToDisplay] =
         useState<number>(3);
 
@@ -40,6 +45,7 @@ const FeedPost = ({post}: {post: IPost}) => {
     const {
         createdAt,
         imageUrls,
+        videoUrl,
         description,
         user,
         numberOfComments,
@@ -65,8 +71,17 @@ const FeedPost = ({post}: {post: IPost}) => {
                 />
             </View>
 
-            {/* Image - rectangle */}
-            <ImageCarousel imageUrls={imageUrls} setIsLiked={setIsLiked} />
+            {/* Image/Video - rectangle */}
+            {videoUrl ? (
+                <VideoPlayer videoUrl={videoUrl} />
+            ) : (
+                imageUrls && (
+                    <ImageCarousel
+                        imageUrls={imageUrls as string[]}
+                        setIsLiked={setIsLiked}
+                    />
+                )
+            )}
 
             {/* BottomIcons - heart, comments, share, save */}
             <View style={styles.bottomContainer}>

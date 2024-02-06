@@ -14,7 +14,8 @@ interface IUser {
 interface IPost {
     id: string;
     createdAt: string;
-    imageUrls: string[];
+    imageUrls?: string[];
+    videoUrl?: string;
     description: string;
     user: IUser;
     isLiked: boolean;
