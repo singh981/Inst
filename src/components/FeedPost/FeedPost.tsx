@@ -3,19 +3,48 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import {size, weight} from '../../theme/fonts';
+import {IPost} from '../../types/models';
+import Comment from '../Comment';
 
-const FeedPost = () => {
+const convertDate = (date: string) => {
+    const dateObj = new Date(date);
+    const currentDate = new Date();
+    const diff = currentDate.getTime() - dateObj.getTime();
+    const hours = Math.floor(diff / 1000 / 60 / 60);
+    if (hours < 24) {
+        return `${hours} hours ago`;
+    }
+    return dateObj.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+};
+
+const FeedPost = ({post}: {post: IPost}) => {
+    // extract each field from the Post object
+    const {
+        id,
+        createdAt,
+        imageUrl,
+        description,
+        user,
+        numberOfComments,
+        numberOfLikes,
+        comments,
+    } = post;
+
     return (
         <View style={styles.container}>
             {/* Header - round_icon, name, 3 dots */}
             <View style={styles.headerContainer}>
                 <Image
                     source={{
-                        uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg',
+                        uri: user.avatarUrl,
                     }}
                     style={styles.avatar}
                 />
-                <Text style={styles.avatarName}>Username</Text>
+                <Text style={styles.avatarName}>{user.username}</Text>
                 <AntDesign
                     style={{marginLeft: 'auto', marginHorizontal: 10}}
                     name="ellipsis1"
@@ -27,7 +56,7 @@ const FeedPost = () => {
             <View style={styles.postImage}>
                 <Image
                     source={{
-                        uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
+                        uri: imageUrl,
                     }}
                     style={{width: '100%', aspectRatio: 1}}
                 />
@@ -46,8 +75,14 @@ const FeedPost = () => {
 
                 {/* Liked by abc and 46 others */}
                 <Text style={styles.likedByText}>
-                    Liked by <Text style={{fontWeight: weight.bold}}>abc</Text>{' '}
-                    and <Text style={{fontWeight: weight.bold}}>46 others</Text>
+                    Liked by{' '}
+                    <Text style={{fontWeight: weight.bold}}>
+                        {user.username}
+                    </Text>{' '}
+                    and{' '}
+                    <Text style={{fontWeight: weight.bold}}>
+                        {numberOfLikes} others
+                    </Text>
                 </Text>
 
                 {/* name - username and description */}
@@ -59,34 +94,29 @@ const FeedPost = () => {
                             fontSize: size.md,
                         }}
                         numberOfLines={0}>
-                        <Text style={{fontWeight: weight.bold}}>Username </Text>
-                        is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard
-                        dummy text ever since the 1500s.
+                        <Text style={{fontWeight: weight.bold}}>
+                            {user.username}{' '}
+                        </Text>
+                        {description}
                     </Text>
                 </View>
 
-                {/* Text - View 11 comments */}
-                <Text style={styles.viewAllCommentsText}>View 11 comments</Text>
+                {/* Text - View x comments */}
+                <Text style={styles.viewAllCommentsText}>
+                    View {numberOfComments} comments
+                </Text>
 
                 {/* Comments list  */}
                 <View style={styles.commentsContainer}>
-                    <Text style={styles.commentText}>
-                        Username{' '}
-                        <Text style={{fontWeight: weight.medium}}>
-                            is simply dummy text of the printing and typesetting
-                        </Text>
-                    </Text>
-                    <AntDesign
-                        name="hearto"
-                        size={15}
-                        style={{
-                            paddingTop: 3,
-                        }}
-                    />
+                    {comments.map(comment => (
+                        <Comment key={comment.id} comment={comment} />
+                    ))}
                 </View>
+
                 {/* Post date */}
-                <Text style={styles.postedDateText}>2 hours ago</Text>
+                <Text style={styles.postedDateText}>
+                    {convertDate(createdAt)}
+                </Text>
             </View>
         </View>
     );
@@ -150,16 +180,7 @@ const styles = StyleSheet.create({
         fontSize: size.md,
     },
     commentsContainer: {
-        flexDirection: 'row',
-        // alignItems: '',
-        justifyContent: 'space-between',
-        // backgroundColor: 'red',
-    },
-    commentText: {
-        fontWeight: weight.bold,
-        fontSize: size.md,
-        // backgroundColor: 'yellow',
-        marginRight: 0,
+        gap: 7,
     },
     postedDateText: {
         color: 'grey',

@@ -1,0 +1,142 @@
+[
+    {
+        "id": "1",
+        "createdAt": "2024-02-05T12:00:00Z",
+        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+        "description": "Breathtaking view of the majestic mountains shrouded in mist. The tranquility of nature envelops the soul, offering a moment of serenity amidst the chaos of life. Captured this serene scene during an early morning hike, where every step brought new wonders and every breath filled the lungs with crisp mountain air. A reminder that beauty exists in the simplest moments.",
+        "user": {
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+            "username": "Vdalmire"
+        },
+        "numberOfComments": 2,
+        "numberOfLikes": 10,
+        "comments": [
+            {
+                "id": "1",
+                "comment": "This is absolutely stunning! Nature's beauty at its finest.",
+                "user": {
+                    "username": "naturelover123"
+                }
+            },
+            {
+                "id": "2",
+                "comment": "I can almost feel the tranquility through this image. Such a peaceful scene.",
+                "user": {
+                    "username": "serenityseeker"
+                }
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "createdAt": "2024-02-04T15:30:00Z",
+        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+        "description": "An adorable golden retriever puppy frolicking in a field of wildflowers. The vibrant hues of the flowers contrast beautifully with the puppy's golden fur, creating a scene straight out of a fairytale. Watching this playful pup brings joy to the heart and a smile to the face, reminding us to embrace the simple pleasures in life.",
+        "user": {
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/2.jpg",
+            "username": "puppylover88"
+        },
+        "numberOfComments": 2,
+        "numberOfLikes": 20,
+        "comments": [
+            {
+                "id": "3",
+                "comment": "Oh my goodness, this is the cutest thing I've ever seen! 😍",
+                "user": {
+                    "username": "puppylover88"
+                }
+            },
+            {
+                "id": "4",
+                "comment": "I can't handle the level of cuteness in this picture! It's too much!",
+                "user": {
+                    "username": "adorableoverload"
+                }
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "createdAt": "2024-02-1T08:45:00Z",
+        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+        "description": "Sunset painting the sky with vibrant colors, casting a warm glow over the city skyline. The hustle and bustle of the urban landscape fades into the background as the day comes to a close, offering a moment of peace and reflection.",
+        "user": {
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/3.jpg",
+            "username": "CityExplorer"
+        },
+        "numberOfComments": 2,
+        "numberOfLikes": 30,
+        "comments": [
+            {
+                "id": "5",
+                "comment": "Wow, what a stunning view! The colors are mesmerizing.",
+                "user": {
+                    "username": "artlover456"
+                }
+            },
+            {
+                "id": "6",
+                "comment": "I love how the cityscape transforms during sunset. Beautiful!",
+                "user": {
+                    "username": "cityscapefanatic"
+                }
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "createdAt": "2024-02-5T14:20:00Z",
+        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+        "description": "A cozy reading nook nestled in the corner of a sunlit room, beckoning bookworms to escape into the world of literature. Surrounded by shelves filled with beloved stories, this corner offers solace and inspiration to all who seek it.",
+        "user": {
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/4.jpg",
+            "username": "BookwormAdventures"
+        },
+        "numberOfComments": 2,
+        "numberOfLikes": 25,
+        "comments": [
+            {
+                "id": "10",
+                "comment": "I would love to curl up with a book in that cozy nook!",
+                "user": {
+                    "username": "cozybooklover"
+                }
+            },
+            {
+                "id": "11",
+                "comment": "Reading in such a serene environment would be a dream come true!",
+                "user": {
+                    "username": "serenityreader"
+                }
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "createdAt": "2024-01-20T11:10:00Z",
+        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+        "description": "A serene lakeside retreat bathed in the soft glow of dawn. The tranquil waters mirror the pastel hues of the sky, creating a picturesque scene that invites contemplation and reflection. A perfect spot to escape the hustle and bustle of everyday life and reconnect with nature's beauty.",
+        "user": {
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/5.jpg",
+            "username": "LakesideDreamer"
+        },
+        "numberOfComments": 2,
+        "numberOfLikes": 15,
+        "comments": [
+            {
+                "id": "18",
+                "comment": "This is so peaceful. I can almost hear the gentle lapping of the water against the shore.",
+                "user": {
+                    "username": "peacefulwaters"
+                }
+            },
+            {
+                "id": "19",
+                "comment": "The colors are so calming. I wish I could be there right now.",
+                "user": {
+                    "username": "calmcolorsfan"
+                }
+            }
+        ]
+    }
+]
