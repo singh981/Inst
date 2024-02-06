@@ -14,7 +14,7 @@ interface IUser {
 interface IPost {
     id: string;
     createdAt: string;
-    imageUrl: string;
+    imageUrls: string[];
     description: string;
     user: IUser;
     isLiked: boolean;
@@ -23,4 +23,4 @@ interface IPost {
     comments: IComment[];
 }
 
-export type {IPost , IUser, IComment};
+export type {IPost, IUser, IComment};

@@ -2,7 +2,11 @@
     {
         "id": "1",
         "createdAt": "2024-02-05T12:00:00Z",
-        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+        "imageUrls": [
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg"
+        ],
         "description": "Breathtaking view of the majestic mountains shrouded in mist. The tranquility of nature envelops the soul, offering a moment of serenity amidst the chaos of life. Captured this serene scene during an early morning hike, where every step brought new wonders and every breath filled the lungs with crisp mountain air. A reminder that beauty exists in the simplest moments.",
         "user": {
             "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
@@ -31,7 +35,9 @@
     {
         "id": "2",
         "createdAt": "2024-02-04T15:30:00Z",
-        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+        "imageUrls": [
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg"
+        ],
         "description": "An adorable golden retriever puppy frolicking in a field of wildflowers. The vibrant hues of the flowers contrast beautifully with the puppy's golden fur, creating a scene straight out of a fairytale. Watching this playful pup brings joy to the heart and a smile to the face, reminding us to embrace the simple pleasures in life.",
         "user": {
             "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/2.jpg",
@@ -60,7 +66,11 @@
     {
         "id": "3",
         "createdAt": "2024-02-1T08:45:00Z",
-        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+        "imageUrls": [
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg"
+        ],
         "description": "Sunset painting the sky with vibrant colors, casting a warm glow over the city skyline. The hustle and bustle of the urban landscape fades into the background as the day comes to a close, offering a moment of peace and reflection.",
         "user": {
             "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/3.jpg",
@@ -89,7 +99,11 @@
     {
         "id": "4",
         "createdAt": "2024-02-5T14:20:00Z",
-        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+        "imageUrls": [
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg"
+        ],
         "description": "A cozy reading nook nestled in the corner of a sunlit room, beckoning bookworms to escape into the world of literature. Surrounded by shelves filled with beloved stories, this corner offers solace and inspiration to all who seek it.",
         "user": {
             "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/4.jpg",
@@ -118,7 +132,11 @@
     {
         "id": "5",
         "createdAt": "2024-01-20T11:10:00Z",
-        "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+        "imageUrls": [
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+            "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg"
+        ],
         "description": "A serene lakeside retreat bathed in the soft glow of dawn. The tranquil waters mirror the pastel hues of the sky, creating a picturesque scene that invites contemplation and reflection. A perfect spot to escape the hustle and bustle of everyday life and reconnect with nature's beauty.",
         "user": {
             "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/5.jpg",

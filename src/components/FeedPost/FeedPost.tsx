@@ -13,6 +13,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import {size, weight} from '../../theme/fonts';
 import {IPost} from '../../types/models';
 import Comment from '../Comment';
+import ImageCarousel from '../ImageCarousel';
 
 const convertDate = (date: string) => {
     const dateObj = new Date(date);
@@ -38,27 +39,13 @@ const FeedPost = ({post}: {post: IPost}) => {
     // extract each field from the Post object
     const {
         createdAt,
-        imageUrl,
+        imageUrls,
         description,
         user,
         numberOfComments,
         numberOfLikes,
         comments,
     } = post;
-
-    const timer = useRef<NodeJS.Timeout | null>(null);
-
-    const handleImageDoublePress = () => {
-        if (timer.current) {
-            clearTimeout(timer.current);
-            timer.current = null;
-            setIsLiked(!isLiked);
-        } else {
-            timer.current = setTimeout(() => {
-                timer.current = null;
-            }, 300); // 300ms delay for double press
-        }
-    };
 
     return (
         <View style={styles.container}>
@@ -79,16 +66,7 @@ const FeedPost = ({post}: {post: IPost}) => {
             </View>
 
             {/* Image - rectangle */}
-            <TouchableWithoutFeedback onPress={handleImageDoublePress}>
-                <View style={styles.postImage}>
-                    <Image
-                        source={{
-                            uri: imageUrl,
-                        }}
-                        style={{width: '100%', aspectRatio: 1}}
-                    />
-                </View>
-            </TouchableWithoutFeedback>
+            <ImageCarousel imageUrls={imageUrls} setIsLiked={setIsLiked} />
 
             {/* BottomIcons - heart, comments, share, save */}
             <View style={styles.bottomContainer}>
@@ -166,6 +144,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         // justifyContent: 'center',
+        gap: 10,
         alignItems: 'center',
     },
     headerContainer: {
