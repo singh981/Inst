@@ -1,28 +1,12 @@
 import React from 'react';
-import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
-import FeedPost from './src/components/FeedPost';
-import posts from './src/assets/posts.json';
+import {StyleSheet, SafeAreaView} from 'react-native';
+import HomeScreen from './src/screens/HomeScreen';
+import posts from './src/assets/data/posts.json';
 
 const App = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView
-                horizontal={false}
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{
-                    gap: 20,
-                }}
-                style={{
-                    maxWidth: '100%',
-                }}>
-                {
-                    // render all the posts in posts.json
-                    posts.map(post => (
-                        <FeedPost key={post.id} post={post} />
-                    ))
-                }
-            </ScrollView>
+            <HomeScreen posts={posts} />
         </SafeAreaView>
     );
 };
