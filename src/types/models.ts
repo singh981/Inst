@@ -1,7 +1,11 @@
 interface IComment {
     id: string;
-    comment: string;
+    comment: string;  
+    createdAt?: string;
+    numberOfLikes?: number; 
     user: {
+        id?: string;
+        avatarUrl?: string;
         username: string;
     };
 }
