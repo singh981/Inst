@@ -6,7 +6,6 @@ import {
     Image,
     Pressable,
     TouchableOpacity,
-    TouchableWithoutFeedback,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
@@ -18,6 +17,8 @@ import VideoPlayer from '../VideoPlayer';
 
 interface IFeedPost {
     post: IPost;
+    isVisible: boolean;
+    activePostId: string | null;
 }
 
 const convertDate = (date: string) => {
@@ -35,14 +36,10 @@ const convertDate = (date: string) => {
     });
 };
 
-const FeedPost = ({post}: IFeedPost) => {
-    const [numberOfLinesToDisplay, setNumberOfLinesToDisplay] =
-        useState<number>(3);
-
-    const [isLiked, setIsLiked] = useState<boolean>(post.isLiked);
-
+const FeedPost = ({post, isVisible}: IFeedPost) => {
     // extract each field from the Post object
     const {
+        id,
         createdAt,
         imageUrls,
         videoUrl,
@@ -52,6 +49,11 @@ const FeedPost = ({post}: IFeedPost) => {
         numberOfLikes,
         comments,
     } = post;
+
+    const [numberOfLinesToDisplay, setNumberOfLinesToDisplay] =
+        useState<number>(3);
+
+    const [isLiked, setIsLiked] = useState<boolean>(post.isLiked);
 
     return (
         <View style={styles.container}>
@@ -73,7 +75,10 @@ const FeedPost = ({post}: IFeedPost) => {
 
             {/* Image/Video - rectangle */}
             {videoUrl ? (
-                <VideoPlayer videoUrl={videoUrl} />
+                <VideoPlayer
+                    videoUrl={videoUrl}
+                    isPlaying={isVisible}
+                />
             ) : (
                 imageUrls && (
                     <ImageCarousel
