@@ -1,8 +1,8 @@
-interface IComment {
+export interface IComment {
     id: string;
-    comment: string;  
+    comment: string;
     createdAt?: string;
-    numberOfLikes?: number; 
+    numberOfLikes?: number;
     user: {
         id?: string;
         avatarUrl?: string;
@@ -10,22 +10,43 @@ interface IComment {
     };
 }
 
-interface IUser {
-    avatarUrl: string;
-    username: string;
+export type IProfileUserPost =
+    | IProfileUserPostSingleImage
+    | IProfileUserPostMultipleImages;
+
+export interface IProfileUserPostSingleImage {
+    id: string;
+    imageUrl: string;
+    createdAt: string;
+    description: string;
 }
 
-interface IPost {
+export interface IProfileUserPostMultipleImages {
+    id: string;
+    imageUrls: string[];
+    createdAt: string;
+    description: string;
+}
+
+export interface IProfileUser {
+    name: string;
+    username: string;
+    bio: string;
+    avatarUrl: string;
+    numberOfFollowers: number;
+    numberOfFollowing: number;
+    posts: IProfileUserPost[];
+}
+
+export interface IPost {
     id: string;
     createdAt: string;
     imageUrls?: string[];
     videoUrl?: string;
     description: string;
-    user: IUser;
+    user: IProfileUser;
     isLiked: boolean;
     numberOfComments: number;
     numberOfLikes: number;
     comments: IComment[];
 }
-
-export type {IPost, IUser, IComment};

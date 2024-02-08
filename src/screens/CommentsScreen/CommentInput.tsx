@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: 'space-between',
         alignItems: 'center',
+        borderTopWidth: 1,
+        borderTopColor: 'lightgrey',
         // backgroundColor: 'yellow',
     },
     leftContainer: {
