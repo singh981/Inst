@@ -9,6 +9,23 @@ export interface IComment {
         username: string;
     };
 }
+export interface IFeedPost {
+    id: string;
+    createdAt: string;
+    imageUrls?: string[];
+    videoUrl?: string;
+    description: string;
+    user: {
+        avatarUrl: string;
+        username: string;
+    };
+    isLiked: boolean;
+    numberOfComments: number;
+    numberOfLikes: number;
+    comments: IComment[];
+}
+
+// Profile
 
 export type IProfileUserPost =
     | IProfileUserPostSingleImage
@@ -36,17 +53,4 @@ export interface IProfileUser {
     numberOfFollowers: number;
     numberOfFollowing: number;
     posts: IProfileUserPost[];
-}
-
-export interface IPost {
-    id: string;
-    createdAt: string;
-    imageUrls?: string[];
-    videoUrl?: string;
-    description: string;
-    user: IProfileUser;
-    isLiked: boolean;
-    numberOfComments: number;
-    numberOfLikes: number;
-    comments: IComment[];
 }

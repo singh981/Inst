@@ -10,13 +10,13 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import {size, weight} from '../../theme/fonts';
-import {IPost} from '../../types/models';
+import {IFeedPost} from '../../types/models';
 import Comment from '../Comment';
 import ImageCarousel from '../ImageCarousel';
 import VideoPlayer from '../VideoPlayer';
 
-interface IFeedPost {
-    post: IPost;
+interface IFeedPostProps {
+    post: IFeedPost;
     isVisible: boolean;
     activePostId: string | null;
 }
@@ -36,7 +36,7 @@ const convertDate = (date: string) => {
     });
 };
 
-const FeedPost = ({post, isVisible}: IFeedPost) => {
+const FeedPost = ({post, isVisible}: IFeedPostProps) => {
     // extract each field from the Post object
     const {
         id,
@@ -75,10 +75,7 @@ const FeedPost = ({post, isVisible}: IFeedPost) => {
 
             {/* Image/Video - rectangle */}
             {videoUrl ? (
-                <VideoPlayer
-                    videoUrl={videoUrl}
-                    isPlaying={isVisible}
-                />
+                <VideoPlayer videoUrl={videoUrl} isPlaying={isVisible} />
             ) : (
                 imageUrls && (
                     <ImageCarousel
