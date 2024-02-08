@@ -11,8 +11,8 @@ const App = () => {
         <SafeAreaView style={styles.container}>
             {/* <HomeScreen posts={posts} /> */}
             {/* <CommentsScreen /> */}
-            <ProfileScreen />
-            {/* <EditProfileScreen /> */}
+            {/* <ProfileScreen /> */}
+            <EditProfileScreen />
         </SafeAreaView>
     );
 };
@@ -20,10 +20,9 @@ const App = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',
-        // backgroundColor: 'yellow',
+        // backgroundColor: 'green',
     },
 });
 
