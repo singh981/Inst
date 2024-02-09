@@ -9,12 +9,12 @@ import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useRef, useState} from 'react';
 
-interface IVideoPlayer {
+interface IVideoPlayerProps {
     videoUrl: string;
     isPlaying: boolean;
 }
 
-const VideoPlayer = ({videoUrl, isPlaying}: IVideoPlayer) => {
+const VideoPlayer = ({videoUrl, isPlaying}: IVideoPlayerProps) => {
     const [paused, setPaused] = useState<boolean>(false);
     const [muted, setMuted] = useState<boolean>(true);
 

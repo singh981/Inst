@@ -9,12 +9,12 @@ import {
     View,
 } from 'react-native';
 
-interface IImageCarousel {
+interface IImageCarouselProps {
     imageUrls: string[];
     setIsLiked: Function;
 }
 
-const ImageCarousel = ({imageUrls, setIsLiked}: IImageCarousel) => {
+const ImageCarousel = ({imageUrls, setIsLiked}: IImageCarouselProps) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
 
     // Timer logic

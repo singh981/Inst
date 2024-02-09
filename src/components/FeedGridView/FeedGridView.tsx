@@ -6,11 +6,11 @@ import {
     IProfileUserPostSingleImage,
 } from '../../types/models';
 
-interface IFeedGridView {
+interface IFeedGridViewProps {
     posts: IProfileUserPost[];
 }
 
-const FeedGridView = ({posts}: IFeedGridView) => (
+const FeedGridView = ({posts}: IFeedGridViewProps) => (
     <View style={styles.postsContainer}>
         <FlatList
             data={posts}

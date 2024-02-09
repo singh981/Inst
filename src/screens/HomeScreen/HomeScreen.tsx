@@ -3,7 +3,11 @@ import {FlatList, FlatListProps} from 'react-native';
 import FeedPost from '../../components/FeedPost';
 import {IFeedPost} from '../../types/models';
 
-const HomeScreen = ({posts}: {posts: IFeedPost[]}) => {
+interface HomeScreenProps {
+    posts: IFeedPost[];
+}
+
+const HomeScreen = ({posts}: HomeScreenProps) => {
     const [activePostId, setActivePostId] = useState<string | null>(null);
 
     const onViewableItemsChangedRef = useRef<

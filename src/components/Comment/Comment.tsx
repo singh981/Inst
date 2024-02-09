@@ -21,13 +21,12 @@ const getDaysOld = (createdAt: string) => {
     return `${diffInDays}d`;
 };
 
-const Comment = ({
-    comment,
-    showDetailComment = false,
-}: {
+interface ICommentProps {
     comment: IComment;
     showDetailComment?: boolean;
-}) => {
+}
+
+const Comment = ({comment, showDetailComment = false}: ICommentProps) => {
     const [isLiked, setIsLiked] = useState<boolean>(false);
 
     const {id, user, comment: commentText, createdAt, numberOfLikes} = comment;
