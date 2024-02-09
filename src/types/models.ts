@@ -48,6 +48,7 @@ export interface IProfileUserPostMultipleImages {
 export interface IProfileUser {
     name: string;
     username: string;
+    website?: string;
     bio: string;
     avatarUrl: string;
     numberOfFollowers: number;
