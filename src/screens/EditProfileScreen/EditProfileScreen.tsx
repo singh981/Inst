@@ -8,11 +8,20 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import user from '../../assets/data/user.json';
+import {useForm, Controller, Control} from 'react-hook-form';
+import {
+    launchImageLibrary,
+    ImageLibraryOptions,
+    ImagePickerResponse,
+    Asset,
+} from 'react-native-image-picker';
+
 import {IProfileUser} from '../../types/models';
 import {size, weight} from '../../theme/fonts';
-import {useForm, Controller, Control} from 'react-hook-form';
 import colors from '../../theme/color';
+
+import user from '../../assets/data/user.json';
+import {useEffect, useState} from 'react';
 
 const WEBSITE_REGEX =
     /^(https?:\/\/)?(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)$/i;
@@ -83,6 +92,9 @@ const CustomInput = ({
 
 const EditProfileScreen = () => {
     const {name, username, bio, avatarUrl}: IProfileUser = user;
+    const [selectedImageUrl, setSelectedImageUrl] = useState<
+        undefined | string
+    >(avatarUrl);
 
     const {
         control,
@@ -97,29 +109,61 @@ const EditProfileScreen = () => {
         },
     });
 
-    const onSubmit = (data: IEditableUser) =>
+    const onSubmit = (data: IEditableUser) => {
+        // TBD
         console.log('Form Submitted : ', data);
+    };
 
     // console.log('errors', errors);
+    const openImagePicker = () => {
+        const options: ImageLibraryOptions = {
+            mediaType: 'photo',
+            includeBase64: false,
+            maxHeight: 2000,
+            maxWidth: 2000,
+        };
+
+        launchImageLibrary(
+            options,
+            ({
+                didCancel,
+                errorCode,
+                errorMessage,
+                assets,
+            }: ImagePickerResponse) => {
+                if (assets) {
+                    setSelectedImageUrl(assets[0].uri);
+                } else if (didCancel) {
+                    console.log('User cancelled image picker');
+                } else if (errorCode) {
+                    console.log('erroCode', errorCode);
+                } else if (errorMessage) {
+                    console.log('errorMessage', errorMessage);
+                }
+            },
+        );
+    };
 
     return (
         <View style={styles.container}>
             {/* Profile Photo */}
             <Image
                 source={{
-                    uri: avatarUrl,
+                    uri: selectedImageUrl,
                 }}
                 style={styles.profilePhoto}
             />
 
             {/* Change Profile Photo Button */}
-            <TouchableOpacity
-                onPress={() => {}}
-                style={styles.changeProfilePhotoButtonContainer}>
-                <Text style={styles.changeProfilePhotoButtonText}>
-                    Change Profile Photo
-                </Text>
-            </TouchableOpacity>
+            <View>
+                <TouchableOpacity
+                    onPress={openImagePicker}
+                    style={{...styles.changeProfilePhotoButtonContainer}}>
+                    <Text style={styles.changeProfilePhotoButtonText}>
+                        Change Profile Photo
+                    </Text>
+                </TouchableOpacity>
+            </View>
 
             {/* Form */}
             <View style={styles.formContainer}>
@@ -194,6 +238,8 @@ const EditProfileScreen = () => {
                     multiline
                 />
             </View>
+
+            {/* Save */}
             <Button
                 title="Save"
                 onPress={handleSubmit(onSubmit)}
