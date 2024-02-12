@@ -10,12 +10,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-camera-roll/camera-roll": "^7.4.1",
     "react": "18.2.0",
     "react-hook-form": "^7.50.1",
     "react-native": "0.73.3",
     "react-native-image-picker": "^7.1.0",
     "react-native-vector-icons": "^10.0.3",
-    "react-native-video": "^5.2.1"
+    "react-native-video": "^5.2.1",
+    "react-native-vision-camera": "^3.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
