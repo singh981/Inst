@@ -11,6 +11,7 @@ import {
     Modal,
     TouchableWithoutFeedback,
     TouchableHighlight,
+    SafeAreaView,
 } from 'react-native';
 import {
     useCameraPermission,
@@ -114,7 +115,7 @@ const PostUploadScreen = () => {
             first: 1,
             assetType: 'All',
         });
-        console.log('fetchLastMedia', asset.edges[0].node);
+        // console.log('fetchLastMedia', asset.edges[0].node);
         setLastPhotoUri(asset.edges[0].node.image.uri);
     };
     useEffect(() => {
@@ -127,148 +128,159 @@ const PostUploadScreen = () => {
     const isVideo = (uri: string) => {
         const videoExtensions = ['mp4', 'mov', 'm4v', '3gp'];
         const extension = uri?.split('.').pop();
-        console.log('uri', uri);
-        console.log('extension', extension);
+        // console.log('uri', uri);
+        // console.log('extension', extension);
         return true;
         return videoExtensions.includes(extension as string);
     };
 
     if (hasPermissions) {
         return (
-            <View style={styles.container}>
-                {/* Upper Icons Container */}
-                <View style={styles.upperIconsContainer}>
-                    <AntDesign name="close" size={35} color="white" />
-                    <TouchableOpacity
-                        onPress={() => setFlash(flash == 'on' ? 'off' : 'on')}>
-                        <MaterialCommunityIcons
-                            name={flash == 'on' ? 'flash-off' : 'flash'}
-                            size={35}
-                            color="white"
-                        />
-                    </TouchableOpacity>
-                    <AntDesign name="setting" size={35} color="white" />
-                </View>
-
-                {/* Camera Feed Container */}
-                <View style={styles.cameraFeedContainer}>
-                    <Camera
-                        ref={camera}
-                        photo={true}
-                        video={true}
-                        style={StyleSheet.absoluteFill}
-                        device={
-                            (cameraPosition === 'back'
-                                ? backCamera
-                                : frontCamera) as CameraDevice
-                        }
-                        isActive={true}
-                        torch={flash}
-                        orientation="portrait"
-                    />
-                </View>
-
-                {/* lower container - this container contains a photo gallery icon ,  record/click button, switch camera  icon */}
-                <View style={styles.lowerIconsContainer}>
-                    {lastPhotoUri ? (
+            <SafeAreaView style={styles.safeAreaViewContainer}>
+                <View style={styles.container}>
+                    {/* Upper Icons Container */}
+                    <View style={styles.upperIconsContainer}>
+                        <AntDesign name="close" size={35} color="white" />
                         <TouchableOpacity
-                            onPress={() => setModalVisible(true)}
-                            style={{
-                                position: 'absolute',
-                                left: 35,
-                                borderRadius: 7,
-                                overflow: 'hidden',
-                            }}>
-                            <Image
-                                source={{uri: lastPhotoUri}}
-                                style={{
-                                    width: 55,
-                                    aspectRatio: 1,
-                                }}
+                            onPress={() =>
+                                setFlash(flash == 'on' ? 'off' : 'on')
+                            }>
+                            <MaterialCommunityIcons
+                                name={flash == 'on' ? 'flash-off' : 'flash'}
+                                size={35}
+                                color="white"
                             />
                         </TouchableOpacity>
-                    ) : (
-                        <MaterialIcons
-                            name="photo-library"
-                            size={30}
-                            color="white"
-                            style={{position: 'absolute', left: 15}}
-                        />
-                    )}
-                    <Pressable
-                        style={{
-                            width: isRecording ? '25%' : '20%',
-                            aspectRatio: 1,
-                            borderRadius: 100,
-                            borderWidth: 2,
-                            borderColor: 'white',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            padding: 2, // This will create the space between the border and the inner button
-                            // backgroundColor: 'red', // This wil
-                        }}
-                        onPress={capturePhoto}
-                        onLongPress={startRecording}
-                        onPressOut={() => stopRecording()}>
-                        <View
-                            style={[
-                                styles.captureButton,
-                                isRecording && {backgroundColor: 'red'},
-                            ]}
-                        />
-                    </Pressable>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            setCameraPosition(
-                                cameraPosition === 'back' ? 'front' : 'back',
-                            )
-                        }
-                        style={{position: 'absolute', right: 35}}>
-                        <MaterialIcons
-                            name="flip-camera-ios"
-                            size={40}
-                            color="white"
-                        />
-                    </TouchableOpacity>
-                </View>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    style={{top: 50}}
-                    onRequestClose={() => {
-                        setModalVisible(!modalVisible);
-                    }}>
-                    {/* TBD - Video not be displayed*/}
-                    {false ? (
-                        <Video
-                            source={{uri: lastPhotoUri as string}}
-                            style={{width: '100%', height: '100%'}}
-                            resizeMode="cover"
-                            controls={true}
-                            repeat={true}
-                            paused={false}
-                            playWhenInactive={true}
-                        />
-                    ) : (
-                        // <View>
-                        //     <Text>Photo</Text>
-                        // </View>
-                        <Image
-                            src={lastPhotoUri as string}
-                            style={{width: '100%', height: '100%'}}
-                        />
-                    )}
-                    <View style={{position: 'absolute', top: 55, right: 25}}>
-                        <TouchableHighlight
-                            underlayColor="transparent"
-                            onPress={() => setModalVisible(false)}>
-                            <AntDesign name="close" size={35} color="black" />
-                        </TouchableHighlight>
+                        <AntDesign name="setting" size={35} color="white" />
                     </View>
-                </Modal>
-            </View>
+
+                    {/* Camera Feed Container */}
+                    <View style={styles.cameraFeedContainer}>
+                        <Camera
+                            ref={camera}
+                            photo={true}
+                            video={true}
+                            style={StyleSheet.absoluteFill}
+                            device={
+                                (cameraPosition === 'back'
+                                    ? backCamera
+                                    : frontCamera) as CameraDevice
+                            }
+                            isActive={true}
+                            torch={flash}
+                            orientation="portrait"
+                        />
+                    </View>
+
+                    {/* lower container - this container contains a photo gallery icon ,  record/click button, switch camera  icon */}
+                    <View style={styles.lowerIconsContainer}>
+                        {lastPhotoUri ? (
+                            <TouchableOpacity
+                                onPress={() => setModalVisible(true)}
+                                style={{
+                                    position: 'absolute',
+                                    left: 35,
+                                    borderRadius: 7,
+                                    overflow: 'hidden',
+                                }}>
+                                <Image
+                                    source={{uri: lastPhotoUri}}
+                                    style={{
+                                        width: 55,
+                                        aspectRatio: 1,
+                                    }}
+                                />
+                            </TouchableOpacity>
+                        ) : (
+                            <MaterialIcons
+                                name="photo-library"
+                                size={30}
+                                color="white"
+                                style={{position: 'absolute', left: 15}}
+                            />
+                        )}
+                        <Pressable
+                            style={{
+                                width: isRecording ? '25%' : '20%',
+                                aspectRatio: 1,
+                                borderRadius: 100,
+                                borderWidth: 2,
+                                borderColor: 'white',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                padding: 2, // This will create the space between the border and the inner button
+                                // backgroundColor: 'red', // This wil
+                            }}
+                            onPress={capturePhoto}
+                            onLongPress={startRecording}
+                            onPressOut={() => stopRecording()}>
+                            <View
+                                style={[
+                                    styles.captureButton,
+                                    isRecording && {backgroundColor: 'red'},
+                                ]}
+                            />
+                        </Pressable>
+
+                        <TouchableOpacity
+                            onPress={() =>
+                                setCameraPosition(
+                                    cameraPosition === 'back'
+                                        ? 'front'
+                                        : 'back',
+                                )
+                            }
+                            style={{position: 'absolute', right: 35}}>
+                            <MaterialIcons
+                                name="flip-camera-ios"
+                                size={40}
+                                color="white"
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        style={{top: 50}}
+                        onRequestClose={() => {
+                            setModalVisible(!modalVisible);
+                        }}>
+                        {/* TBD - Video not be displayed*/}
+                        {false ? (
+                            <Video
+                                source={{uri: lastPhotoUri as string}}
+                                style={{width: '100%', height: '100%'}}
+                                resizeMode="cover"
+                                controls={true}
+                                repeat={true}
+                                paused={false}
+                                playWhenInactive={true}
+                            />
+                        ) : (
+                            // <View>
+                            //     <Text>Photo</Text>
+                            // </View>
+                            <Image
+                                src={lastPhotoUri as string}
+                                style={{width: '100%', height: '100%'}}
+                            />
+                        )}
+                        <View
+                            style={{position: 'absolute', top: 55, right: 25}}>
+                            <TouchableHighlight
+                                underlayColor="transparent"
+                                onPress={() => setModalVisible(false)}>
+                                <AntDesign
+                                    name="close"
+                                    size={35}
+                                    color="black"
+                                />
+                            </TouchableHighlight>
+                        </View>
+                    </Modal>
+                </View>
+            </SafeAreaView>
         );
     }
 
@@ -276,6 +288,12 @@ const PostUploadScreen = () => {
 };
 
 const styles = StyleSheet.create({
+    safeAreaViewContainer: {
+        flex: 1,
+        alignItems: 'center',
+        overflow: 'hidden',
+        // backgroundColor: 'green',
+    },
     container: {
         flexGrow: 0.7,
         width: Dimensions.get('window').width,

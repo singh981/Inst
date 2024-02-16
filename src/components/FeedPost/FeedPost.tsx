@@ -14,12 +14,18 @@ import {IFeedPost} from '../../types/models';
 import Comment from '../Comment';
 import ImageCarousel from '../ImageCarousel';
 import VideoPlayer from '../VideoPlayer';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {useNavigation} from '@react-navigation/native';
 
 interface IFeedPostProps {
     post: IFeedPost;
     isVisible: boolean;
     activePostId: string | null;
 }
+
+export type RootStackParamList = {
+    Profile: {username: string} | undefined;
+};
 
 const convertDate = (date: string) => {
     const dateObj = new Date(date);
@@ -50,6 +56,8 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
         comments,
     } = post;
 
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
     const [numberOfLinesToDisplay, setNumberOfLinesToDisplay] =
         useState<number>(3);
 
@@ -59,13 +67,24 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
         <View style={styles.container}>
             {/* Header - round_icon, name, 3 dots */}
             <View style={styles.headerContainer}>
-                <Image
-                    source={{
-                        uri: user.avatarUrl,
+                <Pressable
+                    style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
                     }}
-                    style={styles.avatar}
-                />
-                <Text style={styles.avatarName}>{user.username}</Text>
+                    // activeOpacity={0.8}
+                    onPress={() =>
+                        // NOTE: We send the username as a route param to the ProfileScreen
+                        navigation.navigate('Profile', {username: user.username})
+                    }>
+                    <Image
+                        source={{
+                            uri: user.avatarUrl,
+                        }}
+                        style={styles.avatar}
+                    />
+                    <Text style={styles.avatarName}>{user.username}</Text>
+                </Pressable>
                 <AntDesign
                     style={{marginLeft: 'auto', marginHorizontal: 10}}
                     name="ellipsis1"

@@ -2,6 +2,7 @@ import {
     Button,
     Dimensions,
     Image,
+    SafeAreaView,
     StyleSheet,
     Text,
     TextInput,
@@ -20,7 +21,7 @@ import {IProfileUser} from '../../types/models';
 import {size, weight} from '../../theme/fonts';
 import colors from '../../theme/color';
 
-import user from '../../assets/data/user.json';
+import users from '../../assets/data/users.json';
 import {useEffect, useState} from 'react';
 
 const WEBSITE_REGEX =
@@ -91,7 +92,8 @@ const CustomInput = ({
 };
 
 const EditProfileScreen = () => {
-    const {name, username, bio, avatarUrl}: IProfileUser = user;
+    const {name, username, bio, avatarUrl}: IProfileUser =
+        users[0] as IProfileUser;
     const [selectedImageUrl, setSelectedImageUrl] = useState<
         undefined | string
     >(avatarUrl);
@@ -145,111 +147,122 @@ const EditProfileScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
-            {/* Profile Photo */}
-            <Image
-                source={{
-                    uri: selectedImageUrl,
-                }}
-                style={styles.profilePhoto}
-            />
+        <SafeAreaView style={styles.safeAreaViewContainer}>
+            <View style={styles.container}>
+                {/* Profile Photo */}
+                <Image
+                    source={{
+                        uri: selectedImageUrl,
+                    }}
+                    style={styles.profilePhoto}
+                />
 
-            {/* Change Profile Photo Button */}
-            <View>
-                <TouchableOpacity
-                    onPress={openImagePicker}
-                    style={{...styles.changeProfilePhotoButtonContainer}}>
-                    <Text style={styles.changeProfilePhotoButtonText}>
-                        Change Profile Photo
-                    </Text>
-                </TouchableOpacity>
+                {/* Change Profile Photo Button */}
+                <View>
+                    <TouchableOpacity
+                        onPress={openImagePicker}
+                        style={{...styles.changeProfilePhotoButtonContainer}}>
+                        <Text style={styles.changeProfilePhotoButtonText}>
+                            Change Profile Photo
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Form */}
+                <View style={styles.formContainer}>
+                    {/* Name */}
+                    <CustomInput
+                        name="name"
+                        control={control}
+                        placeholder="name"
+                        label="Name"
+                        rules={{
+                            required: {
+                                value: true,
+                                message: 'Name is required',
+                            },
+                            minLength: {
+                                value: 3,
+                                message: 'Atleast 3 characters long',
+                            },
+                        }}
+                        // value={value}
+                    />
+
+                    {/* Username */}
+                    <CustomInput
+                        name="username"
+                        label="Username"
+                        control={control}
+                        placeholder="username"
+                        rules={{
+                            required: {
+                                value: true,
+                                message: 'Username is required',
+                            },
+                            minLength: {
+                                value: 3,
+                                message: 'Atleast 3 characters long',
+                            },
+                        }}
+                    />
+
+                    {/* Website  */}
+                    <CustomInput
+                        name="website"
+                        label="Website"
+                        control={control}
+                        rules={{
+                            pattern: {
+                                value: WEBSITE_REGEX,
+                                message: 'Invalid website',
+                            },
+                        }}
+                        placeholder="website"
+                    />
+
+                    {/* Bio */}
+                    <CustomInput
+                        name="bio"
+                        label="Bio"
+                        control={control}
+                        placeholder="bio"
+                        rules={{
+                            required: {
+                                value: true,
+                                message: 'Bio is required',
+                            },
+                            minLength: {
+                                value: 20,
+                                message: 'Atleast 20 characters long',
+                            },
+                            maxLength: {
+                                value: 150,
+                                message: 'Max 150 characters',
+                            },
+                        }}
+                        multiline
+                    />
+                </View>
+
+                {/* Save */}
+                <Button
+                    title="Save"
+                    onPress={handleSubmit(onSubmit)}
+                    color={colors.blue}
+                />
             </View>
-
-            {/* Form */}
-            <View style={styles.formContainer}>
-                {/* Name */}
-                <CustomInput
-                    name="name"
-                    control={control}
-                    placeholder="name"
-                    label="Name"
-                    rules={{
-                        required: {value: true, message: 'Name is required'},
-                        minLength: {
-                            value: 3,
-                            message: 'Atleast 3 characters long',
-                        },
-                    }}
-                    // value={value}
-                />
-
-                {/* Username */}
-                <CustomInput
-                    name="username"
-                    label="Username"
-                    control={control}
-                    placeholder="username"
-                    rules={{
-                        required: {
-                            value: true,
-                            message: 'Username is required',
-                        },
-                        minLength: {
-                            value: 3,
-                            message: 'Atleast 3 characters long',
-                        },
-                    }}
-                />
-
-                {/* Website  */}
-                <CustomInput
-                    name="website"
-                    label="Website"
-                    control={control}
-                    rules={{
-                        pattern: {
-                            value: WEBSITE_REGEX,
-                            message: 'Invalid website',
-                        },
-                    }}
-                    placeholder="website"
-                />
-
-                {/* Bio */}
-                <CustomInput
-                    name="bio"
-                    label="Bio"
-                    control={control}
-                    placeholder="bio"
-                    rules={{
-                        required: {
-                            value: true,
-                            message: 'Bio is required',
-                        },
-                        minLength: {
-                            value: 20,
-                            message: 'Atleast 20 characters long',
-                        },
-                        maxLength: {
-                            value: 150,
-                            message: 'Max 150 characters',
-                        },
-                    }}
-                    multiline
-                />
-            </View>
-
-            {/* Save */}
-            <Button
-                title="Save"
-                onPress={handleSubmit(onSubmit)}
-                color={colors.blue}
-            />
-        </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
+    safeAreaViewContainer: {
+        flex: 1,
+        alignItems: 'center',
+        overflow: 'hidden',
+        // backgroundColor: 'green',
+    },
     container: {
         flex: 1,
         flexDirection: 'column',

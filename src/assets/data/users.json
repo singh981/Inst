@@ -1,0 +1,837 @@
+    [
+        {
+            "name": "Vladmire",
+            "username": "Vladmire",
+            "bio": "Travel enthusiast, nature lover, and photography enthusiast. Capturing the beauty of the world, one photo at a time.",
+            "numberOfFollowers": 100,
+            "numberOfFollowing": 50,
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+            "posts": [
+                {
+                    "id": "1",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-05-03T09:00:00Z",
+                    "description": "Beautiful sunset over the horizon, painting the sky with vibrant hues of orange and pink."
+                },
+                {
+                    "id": "2",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg"
+                    ],
+                    "createdAt": "2024-05-02T13:30:00Z",
+                    "description": "A tranquil lake nestled amidst lush greenery, offering a serene escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "3",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-05-01T10:45:00Z",
+                    "description": "Majestic mountains towering over the landscape, cloaked in a blanket of mist, creating an ethereal atmosphere."
+                },
+                {
+                    "id": "4",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-30T08:15:00Z",
+                    "description": "A cozy cabin nestled amidst snow-capped peaks, offering the perfect retreat for a winter getaway."
+                },
+                {
+                    "id": "5",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg"
+                    ],
+                    "createdAt": "2024-04-29T14:20:00Z",
+                    "description": "Vivid blooms adorning a countryside garden, adding a pop of color to the serene landscape."
+                },
+                {
+                    "id": "6",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-28T11:10:00Z",
+                    "description": "An enchanting forest bathed in golden sunlight, casting dappled shadows on the forest floor."
+                },
+                {
+                    "id": "7",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-27T15:55:00Z",
+                    "description": "A quaint village nestled in a valley, surrounded by rolling hills and picturesque countryside."
+                },
+                {
+                    "id": "8",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-26T12:25:00Z",
+                    "description": "Sunrise over the ocean, casting a warm glow over the sandy shores and tranquil waters."
+                },
+                {
+                    "id": "9",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-25T09:40:00Z",
+                    "description": "A breathtaking waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                },
+                {
+                    "id": "10",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-24T14:50:00Z",
+                    "description": "A charming cobblestone street lined with colorful buildings, exuding old-world charm and character."
+                },
+                {
+                    "id": "11",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-23T16:30:00Z",
+                    "description": "A magical forest glen bathed in moonlight, with fireflies dancing among the trees."
+                },
+                {
+                    "id": "111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-22T11:20:00Z",
+                    "description": "A tranquil lake nestled amidst majestic mountains, reflecting the azure sky above."
+                },
+                {
+                    "id": "112",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                    "createdAt": "2024-04-21T13:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "113",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-20T10:30:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "114",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-19T08:50:00Z",
+                    "description": "An adorable golden retriever puppy frolicking in a field of wildflowers, spreading joy wherever it goes."
+                },
+                {
+                    "id": "115",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-18T14:15:00Z",
+                    "description": "A charming coastal town bathed in sunlight, with colorful boats bobbing in the harbor."
+                },
+                {
+                    "id": "116",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-17T16:20:00Z",
+                    "description": "A rustic mountain cabin nestled among towering pines, offering a cozy retreat amidst nature's splendor."
+                },
+                {
+                    "id": "117",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-16T09:35:00Z",
+                    "description": "A misty forest shrouded in fog, with towering trees reaching towards the sky and dew-kissed leaves glistening in the sunlight."
+                },
+                {
+                    "id": "118",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-15T12:55:00Z",
+                    "description": "A charming cobblestone street lined with quaint cafes and shops, bustling with life and activity."
+                },
+                {
+                    "id": "119",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-14T14:10:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "1110",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-13T08:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "1111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-12T11:05:00Z",
+                    "description": "A tranquil lakeside retreat, with cozy cabins nestled among towering trees and serene waters."
+                },
+                {
+                    "id": "1129",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-11T15:20:00Z",
+                    "description": "A majestic waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                }
+            ]
+        },
+        {
+            "name": "Puppylover88",
+            "username": "puppylover88",
+            "bio": "Travel enthusiast, nature lover, and photography enthusiast. Capturing the beauty of the world, one photo at a time.",
+            "numberOfFollowers": 100,
+            "numberOfFollowing": 50,
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+            "posts": [
+                {
+                    "id": "1",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-05-03T09:00:00Z",
+                    "description": "Beautiful sunset over the horizon, painting the sky with vibrant hues of orange and pink."
+                },
+                {
+                    "id": "2",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg"
+                    ],
+                    "createdAt": "2024-05-02T13:30:00Z",
+                    "description": "A tranquil lake nestled amidst lush greenery, offering a serene escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "3",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-05-01T10:45:00Z",
+                    "description": "Majestic mountains towering over the landscape, cloaked in a blanket of mist, creating an ethereal atmosphere."
+                },
+                {
+                    "id": "4",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-30T08:15:00Z",
+                    "description": "A cozy cabin nestled amidst snow-capped peaks, offering the perfect retreat for a winter getaway."
+                },
+                {
+                    "id": "5",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg"
+                    ],
+                    "createdAt": "2024-04-29T14:20:00Z",
+                    "description": "Vivid blooms adorning a countryside garden, adding a pop of color to the serene landscape."
+                },
+                {
+                    "id": "6",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-28T11:10:00Z",
+                    "description": "An enchanting forest bathed in golden sunlight, casting dappled shadows on the forest floor."
+                },
+                {
+                    "id": "7",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-27T15:55:00Z",
+                    "description": "A quaint village nestled in a valley, surrounded by rolling hills and picturesque countryside."
+                },
+                {
+                    "id": "8",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-26T12:25:00Z",
+                    "description": "Sunrise over the ocean, casting a warm glow over the sandy shores and tranquil waters."
+                },
+                {
+                    "id": "9",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-25T09:40:00Z",
+                    "description": "A breathtaking waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                },
+                {
+                    "id": "10",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-24T14:50:00Z",
+                    "description": "A charming cobblestone street lined with colorful buildings, exuding old-world charm and character."
+                },
+                {
+                    "id": "11",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-23T16:30:00Z",
+                    "description": "A magical forest glen bathed in moonlight, with fireflies dancing among the trees."
+                },
+                {
+                    "id": "111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-22T11:20:00Z",
+                    "description": "A tranquil lake nestled amidst majestic mountains, reflecting the azure sky above."
+                },
+                {
+                    "id": "112",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                    "createdAt": "2024-04-21T13:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "113",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-20T10:30:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "114",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-19T08:50:00Z",
+                    "description": "An adorable golden retriever puppy frolicking in a field of wildflowers, spreading joy wherever it goes."
+                },
+                {
+                    "id": "115",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-18T14:15:00Z",
+                    "description": "A charming coastal town bathed in sunlight, with colorful boats bobbing in the harbor."
+                },
+                {
+                    "id": "116",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-17T16:20:00Z",
+                    "description": "A rustic mountain cabin nestled among towering pines, offering a cozy retreat amidst nature's splendor."
+                },
+                {
+                    "id": "117",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-16T09:35:00Z",
+                    "description": "A misty forest shrouded in fog, with towering trees reaching towards the sky and dew-kissed leaves glistening in the sunlight."
+                },
+                {
+                    "id": "118",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-15T12:55:00Z",
+                    "description": "A charming cobblestone street lined with quaint cafes and shops, bustling with life and activity."
+                },
+                {
+                    "id": "119",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-14T14:10:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "1110",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-13T08:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "1111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-12T11:05:00Z",
+                    "description": "A tranquil lakeside retreat, with cozy cabins nestled among towering trees and serene waters."
+                },
+                {
+                    "id": "1129",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-11T15:20:00Z",
+                    "description": "A majestic waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                }
+            ]
+        },
+        {
+            "name": "City Explorer",
+            "username": "CityExplorer",
+            "bio": "Travel enthusiast, nature lover, and photography enthusiast. Capturing the beauty of the world, one photo at a time.",
+            "numberOfFollowers": 100,
+            "numberOfFollowing": 50,
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+            "posts": [
+                {
+                    "id": "1",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-05-03T09:00:00Z",
+                    "description": "Beautiful sunset over the horizon, painting the sky with vibrant hues of orange and pink."
+                },
+                {
+                    "id": "2",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg"
+                    ],
+                    "createdAt": "2024-05-02T13:30:00Z",
+                    "description": "A tranquil lake nestled amidst lush greenery, offering a serene escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "3",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-05-01T10:45:00Z",
+                    "description": "Majestic mountains towering over the landscape, cloaked in a blanket of mist, creating an ethereal atmosphere."
+                },
+                {
+                    "id": "4",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-30T08:15:00Z",
+                    "description": "A cozy cabin nestled amidst snow-capped peaks, offering the perfect retreat for a winter getaway."
+                },
+                {
+                    "id": "5",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg"
+                    ],
+                    "createdAt": "2024-04-29T14:20:00Z",
+                    "description": "Vivid blooms adorning a countryside garden, adding a pop of color to the serene landscape."
+                },
+                {
+                    "id": "6",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-28T11:10:00Z",
+                    "description": "An enchanting forest bathed in golden sunlight, casting dappled shadows on the forest floor."
+                },
+                {
+                    "id": "7",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-27T15:55:00Z",
+                    "description": "A quaint village nestled in a valley, surrounded by rolling hills and picturesque countryside."
+                },
+                {
+                    "id": "8",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-26T12:25:00Z",
+                    "description": "Sunrise over the ocean, casting a warm glow over the sandy shores and tranquil waters."
+                },
+                {
+                    "id": "9",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-25T09:40:00Z",
+                    "description": "A breathtaking waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                },
+                {
+                    "id": "10",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-24T14:50:00Z",
+                    "description": "A charming cobblestone street lined with colorful buildings, exuding old-world charm and character."
+                },
+                {
+                    "id": "11",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-23T16:30:00Z",
+                    "description": "A magical forest glen bathed in moonlight, with fireflies dancing among the trees."
+                },
+                {
+                    "id": "111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-22T11:20:00Z",
+                    "description": "A tranquil lake nestled amidst majestic mountains, reflecting the azure sky above."
+                },
+                {
+                    "id": "112",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                    "createdAt": "2024-04-21T13:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "113",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-20T10:30:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "114",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-19T08:50:00Z",
+                    "description": "An adorable golden retriever puppy frolicking in a field of wildflowers, spreading joy wherever it goes."
+                },
+                {
+                    "id": "115",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-18T14:15:00Z",
+                    "description": "A charming coastal town bathed in sunlight, with colorful boats bobbing in the harbor."
+                },
+                {
+                    "id": "116",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-17T16:20:00Z",
+                    "description": "A rustic mountain cabin nestled among towering pines, offering a cozy retreat amidst nature's splendor."
+                },
+                {
+                    "id": "117",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-16T09:35:00Z",
+                    "description": "A misty forest shrouded in fog, with towering trees reaching towards the sky and dew-kissed leaves glistening in the sunlight."
+                },
+                {
+                    "id": "118",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-15T12:55:00Z",
+                    "description": "A charming cobblestone street lined with quaint cafes and shops, bustling with life and activity."
+                },
+                {
+                    "id": "119",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-14T14:10:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "1110",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-13T08:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "1111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-12T11:05:00Z",
+                    "description": "A tranquil lakeside retreat, with cozy cabins nestled among towering trees and serene waters."
+                },
+                {
+                    "id": "1129",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-11T15:20:00Z",
+                    "description": "A majestic waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                }
+            ]
+        },
+        {
+            "name": "Bookworm Adventures",
+            "username": "BookwormAdventures",
+            "bio": "Travel enthusiast, nature lover, and photography enthusiast. Capturing the beauty of the world, one photo at a time.",
+            "numberOfFollowers": 100,
+            "numberOfFollowing": 50,
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+            "posts": [
+                {
+                    "id": "1",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-05-03T09:00:00Z",
+                    "description": "Beautiful sunset over the horizon, painting the sky with vibrant hues of orange and pink."
+                },
+                {
+                    "id": "2",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg"
+                    ],
+                    "createdAt": "2024-05-02T13:30:00Z",
+                    "description": "A tranquil lake nestled amidst lush greenery, offering a serene escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "3",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-05-01T10:45:00Z",
+                    "description": "Majestic mountains towering over the landscape, cloaked in a blanket of mist, creating an ethereal atmosphere."
+                },
+                {
+                    "id": "4",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-30T08:15:00Z",
+                    "description": "A cozy cabin nestled amidst snow-capped peaks, offering the perfect retreat for a winter getaway."
+                },
+                {
+                    "id": "5",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg"
+                    ],
+                    "createdAt": "2024-04-29T14:20:00Z",
+                    "description": "Vivid blooms adorning a countryside garden, adding a pop of color to the serene landscape."
+                },
+                {
+                    "id": "6",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-28T11:10:00Z",
+                    "description": "An enchanting forest bathed in golden sunlight, casting dappled shadows on the forest floor."
+                },
+                {
+                    "id": "7",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-27T15:55:00Z",
+                    "description": "A quaint village nestled in a valley, surrounded by rolling hills and picturesque countryside."
+                },
+                {
+                    "id": "8",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-26T12:25:00Z",
+                    "description": "Sunrise over the ocean, casting a warm glow over the sandy shores and tranquil waters."
+                },
+                {
+                    "id": "9",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-25T09:40:00Z",
+                    "description": "A breathtaking waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                },
+                {
+                    "id": "10",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-24T14:50:00Z",
+                    "description": "A charming cobblestone street lined with colorful buildings, exuding old-world charm and character."
+                },
+                {
+                    "id": "11",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-23T16:30:00Z",
+                    "description": "A magical forest glen bathed in moonlight, with fireflies dancing among the trees."
+                },
+                {
+                    "id": "111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-22T11:20:00Z",
+                    "description": "A tranquil lake nestled amidst majestic mountains, reflecting the azure sky above."
+                },
+                {
+                    "id": "112",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                    "createdAt": "2024-04-21T13:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "113",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-20T10:30:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "114",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-19T08:50:00Z",
+                    "description": "An adorable golden retriever puppy frolicking in a field of wildflowers, spreading joy wherever it goes."
+                },
+                {
+                    "id": "115",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-18T14:15:00Z",
+                    "description": "A charming coastal town bathed in sunlight, with colorful boats bobbing in the harbor."
+                },
+                {
+                    "id": "116",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-17T16:20:00Z",
+                    "description": "A rustic mountain cabin nestled among towering pines, offering a cozy retreat amidst nature's splendor."
+                },
+                {
+                    "id": "117",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-16T09:35:00Z",
+                    "description": "A misty forest shrouded in fog, with towering trees reaching towards the sky and dew-kissed leaves glistening in the sunlight."
+                },
+                {
+                    "id": "118",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-15T12:55:00Z",
+                    "description": "A charming cobblestone street lined with quaint cafes and shops, bustling with life and activity."
+                },
+                {
+                    "id": "119",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-14T14:10:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "1110",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-13T08:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "1111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-12T11:05:00Z",
+                    "description": "A tranquil lakeside retreat, with cozy cabins nestled among towering trees and serene waters."
+                },
+                {
+                    "id": "1129",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-11T15:20:00Z",
+                    "description": "A majestic waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                }
+            ]
+        },
+        {
+            "name": "Lakeside Dreamer",
+            "username": "LakesideDreamer",
+            "bio": "Travel enthusiast, nature lover, and photography enthusiast. Capturing the beauty of the world, one photo at a time.",
+            "numberOfFollowers": 100,
+            "numberOfFollowing": 50,
+            "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+            "posts": [
+                {
+                    "id": "1",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-05-03T09:00:00Z",
+                    "description": "Beautiful sunset over the horizon, painting the sky with vibrant hues of orange and pink."
+                },
+                {
+                    "id": "2",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg"
+                    ],
+                    "createdAt": "2024-05-02T13:30:00Z",
+                    "description": "A tranquil lake nestled amidst lush greenery, offering a serene escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "3",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-05-01T10:45:00Z",
+                    "description": "Majestic mountains towering over the landscape, cloaked in a blanket of mist, creating an ethereal atmosphere."
+                },
+                {
+                    "id": "4",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-30T08:15:00Z",
+                    "description": "A cozy cabin nestled amidst snow-capped peaks, offering the perfect retreat for a winter getaway."
+                },
+                {
+                    "id": "5",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg"
+                    ],
+                    "createdAt": "2024-04-29T14:20:00Z",
+                    "description": "Vivid blooms adorning a countryside garden, adding a pop of color to the serene landscape."
+                },
+                {
+                    "id": "6",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-28T11:10:00Z",
+                    "description": "An enchanting forest bathed in golden sunlight, casting dappled shadows on the forest floor."
+                },
+                {
+                    "id": "7",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-27T15:55:00Z",
+                    "description": "A quaint village nestled in a valley, surrounded by rolling hills and picturesque countryside."
+                },
+                {
+                    "id": "8",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-26T12:25:00Z",
+                    "description": "Sunrise over the ocean, casting a warm glow over the sandy shores and tranquil waters."
+                },
+                {
+                    "id": "9",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-25T09:40:00Z",
+                    "description": "A breathtaking waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                },
+                {
+                    "id": "10",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-24T14:50:00Z",
+                    "description": "A charming cobblestone street lined with colorful buildings, exuding old-world charm and character."
+                },
+                {
+                    "id": "11",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-23T16:30:00Z",
+                    "description": "A magical forest glen bathed in moonlight, with fireflies dancing among the trees."
+                },
+                {
+                    "id": "111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-22T11:20:00Z",
+                    "description": "A tranquil lake nestled amidst majestic mountains, reflecting the azure sky above."
+                },
+                {
+                    "id": "112",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                    "createdAt": "2024-04-21T13:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "113",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-20T10:30:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "114",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-19T08:50:00Z",
+                    "description": "An adorable golden retriever puppy frolicking in a field of wildflowers, spreading joy wherever it goes."
+                },
+                {
+                    "id": "115",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-18T14:15:00Z",
+                    "description": "A charming coastal town bathed in sunlight, with colorful boats bobbing in the harbor."
+                },
+                {
+                    "id": "116",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-17T16:20:00Z",
+                    "description": "A rustic mountain cabin nestled among towering pines, offering a cozy retreat amidst nature's splendor."
+                },
+                {
+                    "id": "117",
+                    "imageUrls": [
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg"
+                    ],
+                    "createdAt": "2024-04-16T09:35:00Z",
+                    "description": "A misty forest shrouded in fog, with towering trees reaching towards the sky and dew-kissed leaves glistening in the sunlight."
+                },
+                {
+                    "id": "118",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-15T12:55:00Z",
+                    "description": "A charming cobblestone street lined with quaint cafes and shops, bustling with life and activity."
+                },
+                {
+                    "id": "119",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-14T14:10:00Z",
+                    "description": "A serene countryside landscape, with rolling hills and meandering streams, offering a peaceful escape from the hustle and bustle of city life."
+                },
+                {
+                    "id": "1110",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg",
+                    "createdAt": "2024-04-13T08:45:00Z",
+                    "description": "A quaint village square bustling with activity, with locals and tourists alike exploring the charming shops and cafes."
+                },
+                {
+                    "id": "1111",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+                    "createdAt": "2024-04-12T11:05:00Z",
+                    "description": "A tranquil lakeside retreat, with cozy cabins nestled among towering trees and serene waters."
+                },
+                {
+                    "id": "1129",
+                    "imageUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/4.jpg",
+                    "createdAt": "2024-04-11T15:20:00Z",
+                    "description": "A majestic waterfall cascading down rocky cliffs, surrounded by lush greenery and misty clouds."
+                }
+            ]
+        }
+    ]

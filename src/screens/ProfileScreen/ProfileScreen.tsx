@@ -1,10 +1,27 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+    Image,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 import {size} from '../../theme/fonts';
-import user from '../../assets/data/user.json';
+import users from '../../assets/data/users.json';
 import FeedGridView from '../../components/FeedGridView';
 import {IProfileUser} from '../../types/models';
+import {useRoute} from '@react-navigation/native';
 
 const ProfileScreen = () => {
+    // get username from the route params
+    const route = useRoute();
+    // NOTE: We never send full objects through the route params.
+    // Only identifiers to fetch the object from the server or local storage.
+    const {username} = route.params as {username: string};
+
+    // get the user from the users array
+    const user = users.find(user => user.username == username);
+
     const {
         name,
         bio,
@@ -12,63 +29,73 @@ const ProfileScreen = () => {
         posts,
         numberOfFollowers,
         numberOfFollowing,
-    }: IProfileUser = user;
+    }: IProfileUser = user as IProfileUser;
 
     return (
-        <View style={styles.container}>
-            <View style={styles.profileInfo}>
-                <Image
-                    source={{
-                        uri: avatarUrl,
-                    }}
-                    style={styles.profilePhoto}
-                />
-                <View style={styles.stats}>
-                    <View style={styles.stat}>
-                        <Text style={styles.statNumber}>{posts.length}</Text>
-                        <Text style={styles.statLabel}>Posts</Text>
-                    </View>
-                    <View style={styles.stat}>
-                        <Text style={styles.statNumber}>
-                            {numberOfFollowers}
-                        </Text>
-                        <Text style={styles.statLabel}>Followers</Text>
-                    </View>
-                    <View style={styles.stat}>
-                        <Text style={styles.statNumber}>
-                            {numberOfFollowing}
-                        </Text>
-                        <Text style={styles.statLabel}>Following</Text>
+        <SafeAreaView style={styles.safeAreaViewContainer}>
+            <View style={styles.container}>
+                <View style={styles.profileInfo}>
+                    <Image
+                        source={{
+                            uri: avatarUrl,
+                        }}
+                        style={styles.profilePhoto}
+                    />
+                    <View style={styles.stats}>
+                        <View style={styles.stat}>
+                            <Text style={styles.statNumber}>
+                                {posts.length}
+                            </Text>
+                            <Text style={styles.statLabel}>Posts</Text>
+                        </View>
+                        <View style={styles.stat}>
+                            <Text style={styles.statNumber}>
+                                {numberOfFollowers}
+                            </Text>
+                            <Text style={styles.statLabel}>Followers</Text>
+                        </View>
+                        <View style={styles.stat}>
+                            <Text style={styles.statNumber}>
+                                {numberOfFollowing}
+                            </Text>
+                            <Text style={styles.statLabel}>Following</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
-            {/* Name & Bio */}
-            <View style={styles.nameBioContainer}>
-                <Text style={styles.name}>{name}</Text>
-                <Text style={styles.bio}>{bio}</Text>
-            </View>
+                {/* Name & Bio */}
+                <View style={styles.nameBioContainer}>
+                    <Text style={styles.name}>{name}</Text>
+                    <Text style={styles.bio}>{bio}</Text>
+                </View>
 
-            {/* Two Buttons - Edit Profile and Share Profile */}
-            <View style={styles.buttonsContainer}>
-                <TouchableOpacity
-                    onPress={() => {}}
-                    style={styles.buttonContainer}>
-                    <Text style={styles.buttonText}>Edit Profile</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => {}}
-                    style={styles.buttonContainer}>
-                    <Text style={styles.buttonText}>Share Profile</Text>
-                </TouchableOpacity>
-            </View>
+                {/* Two Buttons - Edit Profile and Share Profile */}
+                <View style={styles.buttonsContainer}>
+                    <TouchableOpacity
+                        onPress={() => {}}
+                        style={styles.buttonContainer}>
+                        <Text style={styles.buttonText}>Edit Profile</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {}}
+                        style={styles.buttonContainer}>
+                        <Text style={styles.buttonText}>Share Profile</Text>
+                    </TouchableOpacity>
+                </View>
 
-            {/* Posts */}
-            <FeedGridView posts={posts} />
-        </View>
+                {/* Posts */}
+                <FeedGridView posts={posts} />
+            </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
+    safeAreaViewContainer: {
+        flex: 1,
+        alignItems: 'center',
+        overflow: 'hidden',
+        // backgroundColor: 'green',
+    },
     container: {
         flex: 1,
         width: '100%',

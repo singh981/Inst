@@ -2,6 +2,7 @@ import {
     FlatList,
     KeyboardAvoidingView,
     Platform,
+    SafeAreaView,
     StyleSheet,
     Text,
     View,
@@ -37,27 +38,32 @@ const CommentsScreen = () => {
     };
 
     return (
-        <View>
-            <FlatList
-                data={comments}
-                renderItem={({item}) => (
-                    <Comment comment={item} showDetailComment />
-                )}
-                contentContainerStyle={{padding: 5, gap: 15}}
-                showsVerticalScrollIndicator={false}
-            />
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={styles.commentInput}>
-                <CommentInput onPost={handlePost} />
-            </KeyboardAvoidingView>
-        </View>
+        <SafeAreaView style={styles.safeAreaViewContainer}>
+            <View>
+                <FlatList
+                    data={comments}
+                    renderItem={({item}) => (
+                        <Comment comment={item} showDetailComment />
+                    )}
+                    contentContainerStyle={{padding: 5, gap: 15}}
+                    showsVerticalScrollIndicator={false}
+                />
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    style={styles.commentInput}>
+                    <CommentInput onPost={handlePost} />
+                </KeyboardAvoidingView>
+            </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    safeAreaViewContainer: {
         flex: 1,
+        alignItems: 'center',
+        overflow: 'hidden',
+        // backgroundColor: 'green',
     },
     commentInput: {
         width: '100%',

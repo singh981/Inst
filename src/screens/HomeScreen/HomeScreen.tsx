@@ -1,13 +1,11 @@
 import React, {useRef, useState} from 'react';
-import {FlatList, FlatListProps} from 'react-native';
+import {FlatList, FlatListProps, SafeAreaView, StyleSheet} from 'react-native';
 import FeedPost from '../../components/FeedPost';
 import {IFeedPost} from '../../types/models';
+import posts from '../../assets/data/posts.json';
 
-interface HomeScreenProps {
-    posts: IFeedPost[];
-}
 
-const HomeScreen = ({posts}: HomeScreenProps) => {
+const HomeScreen = () => {
     const [activePostId, setActivePostId] = useState<string | null>(null);
 
     const onViewableItemsChangedRef = useRef<
@@ -19,26 +17,37 @@ const HomeScreen = ({posts}: HomeScreenProps) => {
     });
 
     return (
-        <FlatList
-            data={posts}
-            keyExtractor={post => post.id.toString()}
-            renderItem={({item}) => (
-                <FeedPost
-                    post={item}
-                    activePostId={activePostId}
-                    isVisible={activePostId === item.id}
-                />
-            )}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-                gap: 20,
-            }}
-            viewabilityConfig={{
-                viewAreaCoveragePercentThreshold: 50,
-            }}
-            onViewableItemsChanged={onViewableItemsChangedRef.current}
-        />
+        <SafeAreaView style={styles.safeAreaViewContainer}>
+            <FlatList
+                data={posts}
+                keyExtractor={post => post.id.toString()}
+                renderItem={({item: post}) => (
+                    <FeedPost
+                        post={post}
+                        activePostId={activePostId}
+                        isVisible={activePostId === post.id}
+                    />
+                )}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                    gap: 20,
+                }}
+                viewabilityConfig={{
+                    viewAreaCoveragePercentThreshold: 50,
+                }}
+                onViewableItemsChanged={onViewableItemsChangedRef.current}
+            />
+        </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    safeAreaViewContainer: {
+        flex: 1,
+        alignItems: 'center',
+        overflow: 'hidden',
+        // backgroundColor: 'green',
+    },
+});
 
 export default HomeScreen;
