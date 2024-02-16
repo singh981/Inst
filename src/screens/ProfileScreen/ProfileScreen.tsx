@@ -17,10 +17,11 @@ const ProfileScreen = () => {
     const route = useRoute();
     // NOTE: We never send full objects through the route params.
     // Only identifiers to fetch the object from the server or local storage.
-    const {username} = route.params as {username: string};
+    const {username = 'DefaultUsername'}: {username?: string} =
+        route.params ?? {};
 
     // get the user from the users array
-    const user = users.find(user => user.username == username);
+    const user = users.find(user => user.username == username) || users[0];
 
     const {
         name,
