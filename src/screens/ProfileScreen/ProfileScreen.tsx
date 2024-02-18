@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
 
-import {size} from '../../theme/fonts';
+import {size, weight} from '../../theme/fonts';
 import users from '../../assets/data/users.json';
 import FeedGridView from '../../components/FeedGridView';
 import {IProfileUser} from '../../types/models';
@@ -17,6 +17,7 @@ import {
     UserProfileScreenRouteProp,
     MyProfileScreenRouteProp,
 } from '../../navigation/types';
+import {useEffect, useState} from 'react';
 
 const ProfileScreen = () => {
     // TBD: Once we have 'Follow' and 'Message' functionality, we will need to update ProfileScreenNavigationProp
@@ -26,105 +27,136 @@ const ProfileScreen = () => {
         UserProfileScreenRouteProp | MyProfileScreenRouteProp
     >();
 
+    const [user, setUser] = useState<IProfileUser | undefined>(undefined);
+
     // NOTE: We never send full objects through the route params.
     // Only identifiers to fetch the object from the server or local storage.
     const username = route.params?.username;
 
-    // get the user from the users array, if not found, use the first user
-    const user = users.find(user => user.username == username) || users[0];
+    useEffect(() => {
+        if (username) {
+            // get the user from the users array, if not found, use the first user
+            const user = users.find(user => user.username === username);
+            user && setUser(user);
+        } else {
+            // get app user info from AWS Cognito
+            setUser(users[0]);
+        }
+    }, []);
 
-    const {
-        name,
-        bio,
-        avatarUrl,
-        posts,
-        numberOfFollowers,
-        numberOfFollowing,
-    }: IProfileUser = user as IProfileUser;
+    const {name, bio, avatarUrl, posts, numberOfFollowers, numberOfFollowing} =
+        user || {}; // Add a default empty object if user is undefined
 
     return (
         <SafeAreaView style={styles.safeAreaViewContainer}>
             <View style={styles.container}>
-                <View style={styles.profileInfo}>
-                    <Image
-                        source={{
-                            uri: avatarUrl,
-                        }}
-                        style={styles.profilePhoto}
-                    />
-                    <View style={styles.stats}>
-                        <View style={styles.stat}>
-                            <Text style={styles.statNumber}>
-                                {posts.length}
-                            </Text>
-                            <Text style={styles.statLabel}>Posts</Text>
+                {user ? (
+                    <>
+                        <View style={styles.profileInfo}>
+                            <Image
+                                source={{
+                                    uri: avatarUrl,
+                                }}
+                                style={styles.profilePhoto}
+                            />
+                            <View style={styles.stats}>
+                                <View style={styles.stat}>
+                                    <Text style={styles.statNumber}>
+                                        {posts.length}
+                                    </Text>
+                                    <Text style={styles.statLabel}>Posts</Text>
+                                </View>
+                                <View style={styles.stat}>
+                                    <Text style={styles.statNumber}>
+                                        {numberOfFollowers}
+                                    </Text>
+                                    <Text style={styles.statLabel}>
+                                        Followers
+                                    </Text>
+                                </View>
+                                <View style={styles.stat}>
+                                    <Text style={styles.statNumber}>
+                                        {numberOfFollowing}
+                                    </Text>
+                                    <Text style={styles.statLabel}>
+                                        Following
+                                    </Text>
+                                </View>
+                            </View>
                         </View>
-                        <View style={styles.stat}>
-                            <Text style={styles.statNumber}>
-                                {numberOfFollowers}
-                            </Text>
-                            <Text style={styles.statLabel}>Followers</Text>
+                        {/* Name & Bio */}
+                        <View style={styles.nameBioContainer}>
+                            <Text style={styles.name}>{name}</Text>
+                            <Text style={styles.bio}>{bio}</Text>
                         </View>
-                        <View style={styles.stat}>
-                            <Text style={styles.statNumber}>
-                                {numberOfFollowing}
-                            </Text>
-                            <Text style={styles.statLabel}>Following</Text>
+
+                        {/* Two Buttons - Edit Profile and Share Profile */}
+                        <View style={styles.buttonsContainer}>
+                            {/* If im on My profile i would like "edit profile" and "share profile" buttons else "follow" and "message" */}
+                            {username ? (
+                                <>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            /* TBD */
+                                        }}
+                                        style={styles.buttonContainer}>
+                                        <Text style={styles.buttonText}>
+                                            Follow
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            /* TBD */
+                                        }}
+                                        style={styles.buttonContainer}>
+                                        <Text style={styles.buttonText}>
+                                            Message
+                                        </Text>
+                                    </TouchableOpacity>
+                                </>
+                            ) : (
+                                <>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            navigation.navigate('EditProfile');
+                                        }}
+                                        style={styles.buttonContainer}>
+                                        <Text style={styles.buttonText}>
+                                            Edit Profile
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            /* TBD */
+                                        }}
+                                        style={styles.buttonContainer}>
+                                        <Text style={styles.buttonText}>
+                                            Share Profile
+                                        </Text>
+                                    </TouchableOpacity>
+                                </>
+                            )}
                         </View>
+
+                        {/* Posts */}
+                        <FeedGridView posts={posts} />
+                    </>
+                ) : (
+                    <View
+                        style={{
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}>
+                        <Text
+                            style={{
+                                fontSize: size.lg,
+                                fontWeight: weight.bold,
+                            }}>
+                            User not found
+                        </Text>
                     </View>
-                </View>
-                {/* Name & Bio */}
-                <View style={styles.nameBioContainer}>
-                    <Text style={styles.name}>{name}</Text>
-                    <Text style={styles.bio}>{bio}</Text>
-                </View>
-
-                {/* Two Buttons - Edit Profile and Share Profile */}
-                <View style={styles.buttonsContainer}>
-                    {/* If im on My profile i would like "edit profile" and "share profile" buttons else "follow" and "message" */}
-                    {username ? (
-                        <>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    /* TBD */
-                                }}
-                                style={styles.buttonContainer}>
-                                <Text style={styles.buttonText}>Follow</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    /* TBD */
-                                }}
-                                style={styles.buttonContainer}>
-                                <Text style={styles.buttonText}>Message</Text>
-                            </TouchableOpacity>
-                        </>
-                    ) : (
-                        <>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    navigation.navigate('EditProfile');
-                                }}
-                                style={styles.buttonContainer}>
-                                <Text style={styles.buttonText}>
-                                    Edit Profile
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    /* TBD */
-                                }}
-                                style={styles.buttonContainer}>
-                                <Text style={styles.buttonText}>
-                                    Share Profile
-                                </Text>
-                            </TouchableOpacity>
-                        </>
-                    )}
-                </View>
-
-                {/* Posts */}
-                <FeedGridView posts={posts} />
+                )}
             </View>
         </SafeAreaView>
     );
