@@ -6,32 +6,31 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import {useRoute, useNavigation} from '@react-navigation/native';
+
 import {size} from '../../theme/fonts';
 import users from '../../assets/data/users.json';
 import FeedGridView from '../../components/FeedGridView';
 import {IProfileUser} from '../../types/models';
-import {useRoute, useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-
-type RootStackParamList = {
-    Profile: {username: string} | undefined;
-    Comments: {postId: number} | undefined;
-    EditProfile: {username: string} | undefined;
-};
+import {
+    EditProfileScreenNavigationProp,
+    UserProfileScreenRouteProp,
+    MyProfileScreenRouteProp,
+} from '../../navigation/types';
 
 const ProfileScreen = () => {
-    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+    // TBD: Once we have 'Follow' and 'Message' functionality, we will need to update ProfileScreenNavigationProp
+    const navigation = useNavigation<EditProfileScreenNavigationProp>();
 
-    const route = useRoute();
+    const route = useRoute<
+        UserProfileScreenRouteProp | MyProfileScreenRouteProp
+    >();
 
     // NOTE: We never send full objects through the route params.
     // Only identifiers to fetch the object from the server or local storage.
-    const {
-        username = 'DefaultUsername',
-        fromMyProfileTab = false,
-    }: {username?: string; fromMyProfileTab?: boolean} = route.params ?? {};
+    const username = route.params?.username;
 
-    // get the user from the users array
+    // get the user from the users array, if not found, use the first user
     const user = users.find(user => user.username == username) || users[0];
 
     const {
@@ -83,7 +82,7 @@ const ProfileScreen = () => {
                 {/* Two Buttons - Edit Profile and Share Profile */}
                 <View style={styles.buttonsContainer}>
                     {/* If im on My profile i would like "edit profile" and "share profile" buttons else "follow" and "message" */}
-                    {!fromMyProfileTab ? (
+                    {username ? (
                         <>
                             <TouchableOpacity
                                 onPress={() => {

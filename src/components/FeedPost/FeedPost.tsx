@@ -13,19 +13,17 @@ import {size, weight} from '../../theme/fonts';
 import {IFeedPost} from '../../types/models';
 import ImageCarousel from '../ImageCarousel';
 import VideoPlayer from '../VideoPlayer';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
+import {
+    UserProfileScreenNavigationProp,
+    CommentScreenNavigationProp,
+} from '../../navigation/types';
 
 interface IFeedPostProps {
     post: IFeedPost;
     isVisible: boolean;
     activePostId: number | null;
 }
-
-export type RootStackParamList = {
-    Profile: {username: string} | undefined;
-    Comments: {postId: number} | undefined;
-};
 
 const convertDate = (date: string) => {
     const dateObj = new Date(date);
@@ -57,7 +55,9 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
 
     const numberOfComments = comments.length;
 
-    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+    const navigation = useNavigation<
+        UserProfileScreenNavigationProp | CommentScreenNavigationProp
+    >();
 
     const [numberOfLinesToDisplay, setNumberOfLinesToDisplay] =
         useState<number>(3);
@@ -76,7 +76,7 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                     // activeOpacity={0.8}
                     onPress={() =>
                         // NOTE: We send the username as a route param to the ProfileScreen
-                        navigation.navigate('Profile', {
+                        navigation.navigate('UserProfile', {
                             username: user.username,
                         })
                     }>

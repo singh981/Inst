@@ -8,8 +8,9 @@ import EditProfileScreen from '../../screens/EditProfileScreen';
 import PostUploadScreen from '../../screens/PostUploadScreen';
 import HomeStackNavigator from '../HomeStackNavigator';
 import ProfileStackNavigator from '../ProfileStackNavigator';
+import {BottomTabNavigatorParamList} from '../types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 
 const BottomTabNavigator = () => {
     return (
@@ -69,6 +70,10 @@ const BottomTabNavigator = () => {
                 tabBarInactiveTintColor: colors.grey,
                 // tabBarShowLabel: false,
             })}>
+            {/* 
+                    NOTE: Below we define(register) the screens that we want to navigate to within this (tab) navigator. 
+                    We are not moving to any screen here, just registering them.
+            */}
             <Tab.Screen
                 name="Feed"
                 component={HomeStackNavigator}

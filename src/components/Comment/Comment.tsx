@@ -11,7 +11,7 @@ import {size, weight} from '../../theme/fonts';
 import {IComment} from '../../types/models';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {UserProfileScreenNavigationProp} from '../../navigation/types';
 
 const getDaysOld = (createdAt: string) => {
     const currentDate = new Date();
@@ -28,15 +28,11 @@ interface ICommentProps {
     showDetailComment?: boolean;
 }
 
-type RootStackParamList = {
-    Profile: {username: string};
-};
-
 const Comment = ({comment, showDetailComment = false}: ICommentProps) => {
     const [isLiked, setIsLiked] = useState<boolean>(false);
 
     // get the navigation object
-    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+    const navigation = useNavigation<UserProfileScreenNavigationProp>();
 
     const {id, user, comment: commentText, createdAt, numberOfLikes} = comment;
     return (
@@ -44,7 +40,7 @@ const Comment = ({comment, showDetailComment = false}: ICommentProps) => {
             {showDetailComment && (
                 <TouchableOpacity
                     onPress={() =>
-                        navigation.navigate('Profile', {
+                        navigation.navigate('UserProfile', {
                             username: user.username,
                         })
                     }>
@@ -70,7 +66,7 @@ const Comment = ({comment, showDetailComment = false}: ICommentProps) => {
                     <Text
                         style={styles.commentText}
                         onPress={() =>
-                            navigation.navigate('Profile', {
+                            navigation.navigate('UserProfile', {
                                 username: user.username,
                             })
                         }>

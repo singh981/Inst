@@ -6,12 +6,18 @@ import BottomTabNavigator from './BottomTabNavigator';
 import CommentsScreen from '../screens/CommentsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
-const Stack = createNativeStackNavigator();
+import {RootNavigatorParamList} from './types';
+
+const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
 const Navigation = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
+                {/* 
+                    NOTE: Below we define(register) the screens that we want to navigate to within this (stack) navigator. 
+                    We are not moving to any screen here, just registering them.
+                */}
                 <Stack.Screen
                     name="Home"
                     component={BottomTabNavigator}
@@ -23,7 +29,7 @@ const Navigation = () => {
                     options={{title: 'Comments'}}
                 />
                 <Stack.Screen
-                    name="Profile"
+                    name="UserProfile"
                     component={ProfileScreen}
                     options={{title: 'Profile'}}
                 />

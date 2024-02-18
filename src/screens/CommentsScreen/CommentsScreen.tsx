@@ -4,7 +4,6 @@ import {
     Platform,
     SafeAreaView,
     StyleSheet,
-    Text,
     View,
 } from 'react-native';
 import posts from '../../assets/data/posts.json';
@@ -16,19 +15,21 @@ import {IComment, IFeedPost} from '../../types/models';
 
 import {useRoute} from '@react-navigation/native';
 
-const getAllCommentsForParticularPost: any = (postId: number) => {
+import {CommentsScreenRouteProp} from '../../navigation/types';
+
+const getAllCommentsForParticularPost = (postId: number): IComment[] => {
     return posts.find((post: IFeedPost) => post.id === postId)?.comments || [];
 };
 
 const CommentsScreen = () => {
-    const route = useRoute();
-    const postId = (route.params as {postId?: string})?.postId;
+    const route = useRoute<CommentsScreenRouteProp>();
+    const {postId} = route.params;
 
     const [comments, setComments] = useState<IComment[] | []>([]);
 
     useEffect(() => {
         if (postId) {
-            setComments(getAllCommentsForParticularPost(parseInt(postId)));
+            setComments(getAllCommentsForParticularPost(postId));
         }
     }, []);
 
@@ -52,7 +53,7 @@ const CommentsScreen = () => {
 
     return (
         <SafeAreaView style={styles.safeAreaViewContainer}>
-            {comments.length && (
+            {comments.length != 0 && (
                 <View>
                     <FlatList
                         data={comments}

@@ -2,7 +2,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../../screens/HomeScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
 
-const Stack = createNativeStackNavigator();
+import {HomeStackNavigatorParamList} from '../types';
+
+const Stack = createNativeStackNavigator<HomeStackNavigatorParamList>();
 
 const HomeStackNavigator = () => {
     return (
@@ -14,7 +16,7 @@ const HomeStackNavigator = () => {
             />
 
             <Stack.Screen
-                name="Profile"
+                name="UserProfile"
                 component={ProfileScreen}
                 options={{title: 'Profile'}}
             />
