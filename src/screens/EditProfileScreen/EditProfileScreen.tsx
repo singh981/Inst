@@ -9,87 +9,29 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import {useForm, Controller, Control} from 'react-hook-form';
 import {
     launchImageLibrary,
     ImageLibraryOptions,
     ImagePickerResponse,
-    Asset,
 } from 'react-native-image-picker';
+import {useForm} from 'react-hook-form';
 
+import CustomInputForm from './CustomInputForm';
 import {IProfileUser} from '../../types/models';
+
 import {size, weight} from '../../theme/fonts';
 import colors from '../../theme/color';
 
 import users from '../../assets/data/users.json';
 import {useEffect, useState} from 'react';
 
-const WEBSITE_REGEX =
-    /^(https?:\/\/)?(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)$/i;
-
-// NOTE: Remember 'Pick' is a utility type that constructs a type by picking the set of properties K from T
 type IEditableUser = Pick<
     IProfileUser,
     'name' | 'username' | 'website' | 'bio'
 >;
 
-interface ICustomInputProps {
-    name: 'name' | 'username' | 'website' | 'bio';
-    control: Control<IEditableUser, object>;
-    placeholder: string;
-    label: string;
-    rules?: object;
-    multiline?: boolean;
-}
-
-const CustomInput = ({
-    name,
-    control,
-    placeholder,
-    label,
-    rules,
-    multiline = false,
-}: ICustomInputProps) => {
-    return (
-        <Controller
-            name={name}
-            control={control}
-            rules={rules}
-            render={({
-                field: {onChange, onBlur, value},
-                fieldState: {error},
-            }) => {
-                // console.log('error', error);
-                return (
-                    <View style={styles.customInputParentContainer}>
-                        <Text style={styles.customInputLabel}>{label}</Text>
-                        <View style={styles.customTextInputContainer}>
-                            <TextInput
-                                placeholder={placeholder}
-                                value={value}
-                                style={[
-                                    styles.customTextInput,
-                                    error && {
-                                        color: colors.error,
-                                        borderBottomColor: colors.error,
-                                    },
-                                ]}
-                                multiline={multiline}
-                                onBlur={onBlur}
-                                onChangeText={onChange}
-                            />
-                            {error && (
-                                <Text style={styles.customInputError}>
-                                    {error && error.message}
-                                </Text>
-                            )}
-                        </View>
-                    </View>
-                );
-            }}
-        />
-    );
-};
+const WEBSITE_REGEX =
+    /^(https?:\/\/)?(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)$/i;
 
 const EditProfileScreen = () => {
     const {name, username, bio, avatarUrl}: IProfileUser =
@@ -171,7 +113,7 @@ const EditProfileScreen = () => {
                 {/* Form */}
                 <View style={styles.formContainer}>
                     {/* Name */}
-                    <CustomInput
+                    <CustomInputForm
                         name="name"
                         control={control}
                         placeholder="name"
@@ -186,14 +128,13 @@ const EditProfileScreen = () => {
                                 message: 'Atleast 3 characters long',
                             },
                         }}
-                        // value={value}
                     />
 
                     {/* Username */}
-                    <CustomInput
+                    <CustomInputForm
                         name="username"
-                        label="Username"
                         control={control}
+                        label="Username"
                         placeholder="username"
                         rules={{
                             required: {
@@ -208,10 +149,10 @@ const EditProfileScreen = () => {
                     />
 
                     {/* Website  */}
-                    <CustomInput
+                    <CustomInputForm
                         name="website"
-                        label="Website"
                         control={control}
+                        label="Website"
                         rules={{
                             pattern: {
                                 value: WEBSITE_REGEX,
@@ -222,10 +163,10 @@ const EditProfileScreen = () => {
                     />
 
                     {/* Bio */}
-                    <CustomInput
+                    <CustomInputForm
                         name="bio"
-                        label="Bio"
                         control={control}
+                        label="Bio"
                         placeholder="bio"
                         rules={{
                             required: {
@@ -261,7 +202,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         overflow: 'hidden',
-        // backgroundColor: 'green',
+        top: 10,
     },
     container: {
         flex: 1,
@@ -292,36 +233,6 @@ const styles = StyleSheet.create({
         gap: 30,
         padding: 20,
         width: '100%',
-    },
-    customInputParentContainer: {
-        flexDirection: 'row',
-        width: '100%',
-        alignItems: 'center',
-        // backgroundColor: 'yellow',
-        justifyContent: 'space-between',
-    },
-    customInputLabel: {
-        fontSize: size.xmd,
-        fontWeight: weight.medium,
-        color: colors.lightGrey,
-        width: '30%',
-    },
-    customTextInputContainer: {
-        flexDirection: 'column',
-        width: '100%',
-        alignItems: 'flex-start',
-        // backgroundColor: 'green',
-        justifyContent: 'space-between',
-    },
-    customTextInput: {
-        borderBottomColor: colors.lightGrey,
-        borderBottomWidth: 1,
-        width: '60%',
-        fontSize: size.xmd,
-        paddingBottom: 2,
-    },
-    customInputError: {
-        color: colors.error,
     },
 });
 
