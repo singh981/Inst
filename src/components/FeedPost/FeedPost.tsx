@@ -11,7 +11,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import {size, weight} from '../../theme/fonts';
 import {IFeedPost} from '../../types/models';
-import Comment from '../Comment';
 import ImageCarousel from '../ImageCarousel';
 import VideoPlayer from '../VideoPlayer';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -20,11 +19,12 @@ import {useNavigation} from '@react-navigation/native';
 interface IFeedPostProps {
     post: IFeedPost;
     isVisible: boolean;
-    activePostId: string | null;
+    activePostId: number | null;
 }
 
 export type RootStackParamList = {
     Profile: {username: string} | undefined;
+    Comments: {postId: number} | undefined;
 };
 
 const convertDate = (date: string) => {
@@ -51,10 +51,11 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
         videoUrl,
         description,
         user,
-        numberOfComments,
         numberOfLikes,
         comments,
     } = post;
+
+    const numberOfComments = comments.length;
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -75,7 +76,9 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                     // activeOpacity={0.8}
                     onPress={() =>
                         // NOTE: We send the username as a route param to the ProfileScreen
-                        navigation.navigate('Profile', {username: user.username})
+                        navigation.navigate('Profile', {
+                            username: user.username,
+                        })
                     }>
                     <Image
                         source={{
@@ -156,16 +159,15 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                 </Pressable>
 
                 {/* Text - View x comments */}
-                <Text style={styles.viewAllCommentsText}>
+                <Text
+                    style={styles.viewAllCommentsText}
+                    onPress={() =>
+                        navigation.navigate('Comments', {
+                            postId: id,
+                        })
+                    }>
                     View {numberOfComments} comments
                 </Text>
-
-                {/* Comments list  */}
-                <View style={styles.commentsContainer}>
-                    {comments.map(comment => (
-                        <Comment key={comment.id} comment={comment} />
-                    ))}
-                </View>
 
                 {/* Post date */}
                 <Text style={styles.postedDateText}>

@@ -4,9 +4,8 @@ import FeedPost from '../../components/FeedPost';
 import {IFeedPost} from '../../types/models';
 import posts from '../../assets/data/posts.json';
 
-
 const HomeScreen = () => {
-    const [activePostId, setActivePostId] = useState<string | null>(null);
+    const [activePostId, setActivePostId] = useState<number | null>(null);
 
     const onViewableItemsChangedRef = useRef<
         FlatListProps<IFeedPost>['onViewableItemsChanged']

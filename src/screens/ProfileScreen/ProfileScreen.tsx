@@ -10,15 +10,26 @@ import {size} from '../../theme/fonts';
 import users from '../../assets/data/users.json';
 import FeedGridView from '../../components/FeedGridView';
 import {IProfileUser} from '../../types/models';
-import {useRoute} from '@react-navigation/native';
+import {useRoute, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type RootStackParamList = {
+    Profile: {username: string} | undefined;
+    Comments: {postId: number} | undefined;
+    EditProfile: {username: string} | undefined;
+};
 
 const ProfileScreen = () => {
-    // get username from the route params
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
     const route = useRoute();
+
     // NOTE: We never send full objects through the route params.
     // Only identifiers to fetch the object from the server or local storage.
-    const {username = 'DefaultUsername'}: {username?: string} =
-        route.params ?? {};
+    const {
+        username = 'DefaultUsername',
+        fromMyProfileTab = false,
+    }: {username?: string; fromMyProfileTab?: boolean} = route.params ?? {};
 
     // get the user from the users array
     const user = users.find(user => user.username == username) || users[0];
@@ -71,16 +82,46 @@ const ProfileScreen = () => {
 
                 {/* Two Buttons - Edit Profile and Share Profile */}
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity
-                        onPress={() => {}}
-                        style={styles.buttonContainer}>
-                        <Text style={styles.buttonText}>Edit Profile</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => {}}
-                        style={styles.buttonContainer}>
-                        <Text style={styles.buttonText}>Share Profile</Text>
-                    </TouchableOpacity>
+                    {/* If im on My profile i would like "edit profile" and "share profile" buttons else "follow" and "message" */}
+                    {!fromMyProfileTab ? (
+                        <>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    /* TBD */
+                                }}
+                                style={styles.buttonContainer}>
+                                <Text style={styles.buttonText}>Follow</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    /* TBD */
+                                }}
+                                style={styles.buttonContainer}>
+                                <Text style={styles.buttonText}>Message</Text>
+                            </TouchableOpacity>
+                        </>
+                    ) : (
+                        <>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    navigation.navigate('EditProfile');
+                                }}
+                                style={styles.buttonContainer}>
+                                <Text style={styles.buttonText}>
+                                    Edit Profile
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    /* TBD */
+                                }}
+                                style={styles.buttonContainer}>
+                                <Text style={styles.buttonText}>
+                                    Share Profile
+                                </Text>
+                            </TouchableOpacity>
+                        </>
+                    )}
                 </View>
 
                 {/* Posts */}
@@ -100,6 +141,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
+        top: 10,
     },
     profileInfo: {
         flexDirection: 'row',

@@ -10,6 +10,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {size, weight} from '../../theme/fonts';
 import {IComment} from '../../types/models';
 import {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const getDaysOld = (createdAt: string) => {
     const currentDate = new Date();
@@ -26,19 +28,38 @@ interface ICommentProps {
     showDetailComment?: boolean;
 }
 
+type RootStackParamList = {
+    Profile: {username: string};
+};
+
 const Comment = ({comment, showDetailComment = false}: ICommentProps) => {
     const [isLiked, setIsLiked] = useState<boolean>(false);
+
+    // get the navigation object
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
     const {id, user, comment: commentText, createdAt, numberOfLikes} = comment;
     return (
         <View style={styles.commentContainer}>
             {showDetailComment && (
-                <Image
-                    source={{
-                        uri: user.avatarUrl,
-                    }}
-                    style={{width: 40, aspectRatio: 1, borderRadius: 25}}
-                />
+                <TouchableOpacity
+                    onPress={() =>
+                        navigation.navigate('Profile', {
+                            username: user.username,
+                        })
+                    }>
+                    <Image
+                        source={{
+                            uri: user.avatarUrl,
+                        }}
+                        style={{
+                            width: 40,
+                            aspectRatio: 1,
+                            borderRadius: 25,
+                            top: 0,
+                        }}
+                    />
+                </TouchableOpacity>
             )}
             <View
                 style={[
@@ -46,7 +67,15 @@ const Comment = ({comment, showDetailComment = false}: ICommentProps) => {
                     {maxWidth: showDetailComment ? '75%' : '90%'},
                 ]}>
                 <Text>
-                    <Text style={styles.commentText}>{user.username}</Text>{' '}
+                    <Text
+                        style={styles.commentText}
+                        onPress={() =>
+                            navigation.navigate('Profile', {
+                                username: user.username,
+                            })
+                        }>
+                        {user.username}
+                    </Text>{' '}
                     <Text
                         style={[
                             styles.commentText,
@@ -92,7 +121,7 @@ const styles = {
     commentContainer: {
         flexDirection: 'row' as ViewStyle['flexDirection'],
         justifyContent: 'space-between' as ViewStyle['justifyContent'],
-        alignItems: 'center' as ViewStyle['alignItems'],
+        // alignItems: 'center' as ViewStyle['alignItems'],
         gap: 5,
     },
     commentTextContainer: {

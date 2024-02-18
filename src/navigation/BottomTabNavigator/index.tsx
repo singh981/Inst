@@ -6,8 +6,8 @@ import colors from '../../theme/color';
 import ProfileScreen from '../../screens/ProfileScreen';
 import EditProfileScreen from '../../screens/EditProfileScreen';
 import PostUploadScreen from '../../screens/PostUploadScreen';
-import CommentsScreen from '../../screens/CommentsScreen';
 import HomeStackNavigator from '../HomeStackNavigator';
+import ProfileStackNavigator from '../ProfileStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -82,8 +82,10 @@ const BottomTabNavigator = () => {
             <Tab.Screen name="Notifications" component={ProfileScreen} />
             <Tab.Screen
                 name="MyProfile"
-                component={ProfileScreen}
-                options={{title: 'My Profile'}}
+                component={ProfileStackNavigator}
+                options={{
+                    headerShown: false,
+                }}
             />
         </Tab.Navigator>
     );

@@ -1,16 +1,16 @@
 export interface IComment {
-    id: string;
+    id: number;
     comment: string;
     createdAt?: string;
     numberOfLikes?: number;
     user: {
-        id?: string;
+        id?: number;
         avatarUrl?: string;
         username: string;
     };
 }
 export interface IFeedPost {
-    id: string;
+    id: number;
     createdAt: string;
     imageUrls?: string[];
     videoUrl?: string;
@@ -20,7 +20,6 @@ export interface IFeedPost {
         username: string;
     };
     isLiked: boolean;
-    numberOfComments: number;
     numberOfLikes: number;
     comments: IComment[];
 }
