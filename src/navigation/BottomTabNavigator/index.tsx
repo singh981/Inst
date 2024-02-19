@@ -9,6 +9,7 @@ import PostUploadScreen from '../../screens/PostUploadScreen';
 import HomeStackNavigator from '../HomeStackNavigator';
 import ProfileStackNavigator from '../ProfileStackNavigator';
 import {BottomTabNavigatorParamList} from '../types';
+import SearchTabNavigator from '../SearchTabNavigator';
 
 const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 
@@ -82,7 +83,7 @@ const BottomTabNavigator = () => {
                     headerShown: false,
                 }}
             />
-            <Tab.Screen name="Search" component={ProfileScreen} />
+            <Tab.Screen name="Search" component={SearchTabNavigator} />
             <Tab.Screen name="Upload" component={PostUploadScreen} />
             <Tab.Screen name="Notifications" component={ProfileScreen} />
             <Tab.Screen

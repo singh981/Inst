@@ -26,6 +26,11 @@ export type ProfileStackNavigatorParamList = {
     EditProfile: undefined;
 };
 
+export type SearchStackNavigatorParamList = {
+    UserSearch: undefined;
+    PostSearch: undefined;
+};
+
 // Defining types for the 'screens' that use navigation
 export type UserProfileScreenNavigationProp = NativeStackNavigationProp<
     RootNavigatorParamList,
