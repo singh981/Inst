@@ -34,11 +34,11 @@
 		<key>NSCameraUsageDescription</key>
 		<string>$(PRODUCT_NAME) needs access to your Camera...</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string></string>
+		<string/>
 		<key>NSMicrophoneUsageDescription</key>
 		<string>$(PRODUCT_NAME) needs access to your Microphone...</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Need to access photo gallery</string>
+		<string>Save Camera pictures to gallery</string>
 		<key>UIAppFonts</key>
 		<array>
 			<string>AntDesign.ttf</string>
@@ -73,9 +73,16 @@
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
-		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Save Camera pictures to gallery</string>
 		<key>NSPhotoLibraryAddUsageDescription</key>
 		<string>Save Camera pictures to gallery</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>kinsta</string>
+				</array>
+			</dict>
+		</array>
 	</dict>
 </plist>
