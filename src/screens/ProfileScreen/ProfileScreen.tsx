@@ -18,6 +18,7 @@ import {
     MyProfileScreenRouteProp,
 } from '../../navigation/types';
 import {useEffect, useState} from 'react';
+import {useAuthenticator} from '@aws-amplify/ui-react-native';
 
 const ProfileScreen = () => {
     // TBD: Once we have 'Follow' and 'Message' functionality, we will need to update ProfileScreenNavigationProp
@@ -28,6 +29,10 @@ const ProfileScreen = () => {
     >();
 
     const [user, setUser] = useState<IProfileUser | undefined>(undefined);
+
+    const {user: usr, signOut} = useAuthenticator(context => [context.user]);
+
+    console.log('usr', usr);
 
     // NOTE: We never send full objects through the route params.
     // Only identifiers to fetch the object from the server or local storage.
@@ -62,7 +67,7 @@ const ProfileScreen = () => {
                             <View style={styles.stats}>
                                 <View style={styles.stat}>
                                     <Text style={styles.statNumber}>
-                                        {posts.length}
+                                        {posts?.length ?? 0}
                                     </Text>
                                     <Text style={styles.statLabel}>Posts</Text>
                                 </View>
@@ -126,12 +131,10 @@ const ProfileScreen = () => {
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        onPress={() => {
-                                            /* TBD */
-                                        }}
+                                        onPress={() => signOut()}
                                         style={styles.buttonContainer}>
                                         <Text style={styles.buttonText}>
-                                            Share Profile
+                                            Logout
                                         </Text>
                                     </TouchableOpacity>
                                 </>
@@ -139,7 +142,7 @@ const ProfileScreen = () => {
                         </View>
 
                         {/* Posts */}
-                        <FeedGridView posts={posts} />
+                        <FeedGridView posts={posts ?? []} />
                     </>
                 ) : (
                     <View
