@@ -13,16 +13,17 @@ import users from '../../assets/data/users.json';
 import FeedGridView from '../../components/FeedGridView';
 import {IProfileUser} from '../../types/models';
 import {
-    EditProfileScreenNavigationProp,
     UserProfileScreenRouteProp,
     MyProfileScreenRouteProp,
+    ProfileScreenNavigationProp,
 } from '../../navigation/types';
 import {useEffect, useState} from 'react';
 import {useAuthenticator} from '@aws-amplify/ui-react-native';
+import {signOut} from 'aws-amplify/auth';
 
 const ProfileScreen = () => {
     // TBD: Once we have 'Follow' and 'Message' functionality, we will need to update ProfileScreenNavigationProp
-    const navigation = useNavigation<EditProfileScreenNavigationProp>();
+    const navigation = useNavigation<ProfileScreenNavigationProp>();
 
     const route = useRoute<
         UserProfileScreenRouteProp | MyProfileScreenRouteProp
@@ -30,9 +31,7 @@ const ProfileScreen = () => {
 
     const [user, setUser] = useState<IProfileUser | undefined>(undefined);
 
-    const {user: usr, signOut} = useAuthenticator(context => [context.user]);
-
-    console.log('usr', usr);
+    // const {user: usr, signOut} = useAuthenticator(context => [context.user]);
 
     // NOTE: We never send full objects through the route params.
     // Only identifiers to fetch the object from the server or local storage.
