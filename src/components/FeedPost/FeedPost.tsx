@@ -14,10 +14,7 @@ import {IFeedPost} from '../../types/models';
 import ImageCarousel from '../ImageCarousel';
 import VideoPlayer from '../VideoPlayer';
 import {useNavigation} from '@react-navigation/native';
-import {
-    UserProfileScreenNavigationProp,
-    CommentScreenNavigationProp,
-} from '../../navigation/types';
+import {HomeScreenNavigationProp} from '../../navigation/types';
 
 interface IFeedPostProps {
     post: IFeedPost;
@@ -55,9 +52,7 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
 
     const numberOfComments = comments.length;
 
-    const navigation = useNavigation<
-        UserProfileScreenNavigationProp | CommentScreenNavigationProp
-    >();
+    const navigation = useNavigation<HomeScreenNavigationProp>();
 
     const [numberOfLinesToDisplay, setNumberOfLinesToDisplay] =
         useState<number>(3);

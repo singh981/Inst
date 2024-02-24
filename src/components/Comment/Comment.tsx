@@ -11,7 +11,7 @@ import {size, weight} from '../../theme/fonts';
 import {IComment} from '../../types/models';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {UserProfileScreenNavigationProp} from '../../navigation/types';
+import {CommentScreenNavigationProp} from '../../navigation/types';
 
 const getDaysOld = (createdAt: string) => {
     const currentDate = new Date();
@@ -32,7 +32,7 @@ const Comment = ({comment, showDetailComment = false}: ICommentProps) => {
     const [isLiked, setIsLiked] = useState<boolean>(false);
 
     // get the navigation object
-    const navigation = useNavigation<UserProfileScreenNavigationProp>();
+    const navigation = useNavigation<CommentScreenNavigationProp>();
 
     const {id, user, comment: commentText, createdAt, numberOfLikes} = comment;
     return (
