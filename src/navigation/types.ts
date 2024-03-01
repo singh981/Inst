@@ -35,7 +35,7 @@ export type SearchStackNavigatorParamList = {
 export type AuthStackNavigatorParamList = {
     SignIn: undefined;
     SignUp: undefined;
-    ConfirmEmail: {username: string};
+    ConfirmSignUp: {username: string};
     ForgotPassword: undefined;
     NewPassword: undefined;
     Home: undefined;
@@ -51,9 +51,9 @@ export type SignUpScreenNavigationProp = NativeStackNavigationProp<
     'SignUp'
 >;
 
-export type ConfirmEmailScreenNavigationProp = NativeStackNavigationProp<
+export type ConfirmSignUpScreenNavigationProp = NativeStackNavigationProp<
     AuthStackNavigatorParamList,
-    'ConfirmEmail'
+    'ConfirmSignUp'
 >;
 
 // export type ForgotPasswordScreenNavigationProp = NativeStackNavigationProp<
@@ -113,7 +113,7 @@ export type CommentsScreenRouteProp = RouteProp<
     HomeStackNavigatorParamList,
     'Comments'
 >;
-export type ConfirmEmailScreenRouteProp = RouteProp<
+export type ConfirmSignUpScreenRouteProp = RouteProp<
     AuthStackNavigatorParamList,
-    'ConfirmEmail'
+    'ConfirmSignUp'
 >;

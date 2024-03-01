@@ -1,7 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignInScreen from '../../screens/Auth/SignInScreen';
 import SignUpScreen from '../../screens/Auth/SignUpScreen';
-import ConfirmEmailScreen from '../../screens/Auth/ConfirmEmailScreen';
+import ConfirmEmailScreen from '../../screens/Auth/ConfirmSignUpScreen';
 import ForgotPasswordScreen from '../../screens/Auth/ForgotPasswordScreen';
 import NewPasswordScreen from '../../screens/Auth/NewPasswordScreen';
 
@@ -23,7 +23,10 @@ const AuthStackNavigator = () => {
                 options={{headerShown: false}}
             />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
-            <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
+            <Stack.Screen
+                name="ConfirmSignUp"
+                component={ConfirmEmailScreen}
+            />
             <Stack.Screen
                 name="ForgotPassword"
                 component={ForgotPasswordScreen}

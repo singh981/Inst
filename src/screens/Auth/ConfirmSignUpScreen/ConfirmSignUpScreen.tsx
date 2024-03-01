@@ -1,26 +1,25 @@
 import {Alert, Text, View} from 'react-native';
 
 import {useRoute} from '@react-navigation/native';
-import {ConfirmEmailScreenRouteProp} from '../../../navigation/types';
+import {ConfirmSignUpScreenRouteProp} from '../../../navigation/types';
 import FormInput from '../components/FormInput';
 import {Control, useForm} from 'react-hook-form';
 import CustomButton from '../components/CustomButton';
 import {confirmSignUp, resendSignUpCode} from 'aws-amplify/auth';
 import {useNavigation} from '@react-navigation/native';
-import {ConfirmEmailScreenNavigationProp} from '../../../navigation/types';
+import {ConfirmSignUpScreenNavigationProp} from '../../../navigation/types';
 
-type ConfirmEmailParameters = {
+type ConfirmSignUpParameters = {
     username: string;
     code: string;
 };
 
-const ConfirmEmailScreen = () => {
-
-    const route = useRoute<ConfirmEmailScreenRouteProp>();
-    const navigation = useNavigation<ConfirmEmailScreenNavigationProp>();
+const ConfirmSignUpScreen = () => {
+    const route = useRoute<ConfirmSignUpScreenRouteProp>();
+    const navigation = useNavigation<ConfirmSignUpScreenNavigationProp>();
 
     const {control, handleSubmit, getValues, setError, watch} =
-        useForm<ConfirmEmailParameters>({
+        useForm<ConfirmSignUpParameters>({
             defaultValues: {
                 username: route.params?.username,
                 code: '',
@@ -29,7 +28,7 @@ const ConfirmEmailScreen = () => {
 
     const allFieldsFilled = watch(['code']);
 
-    const onCodeSubmit = async ({username, code}: ConfirmEmailParameters) => {
+    const onCodeSubmit = async ({username, code}: ConfirmSignUpParameters) => {
         try {
             const {isSignUpComplete} = await confirmSignUp({
                 username,
@@ -44,7 +43,7 @@ const ConfirmEmailScreen = () => {
         }
     };
 
-    const onResendCode = async ({username}: ConfirmEmailParameters) => {
+    const onResendCode = async ({username}: ConfirmSignUpParameters) => {
         const resendSignUpCodeResponse = await resendSignUpCode({username});
         Alert.alert('Code resent', 'Please check your email for the code');
         console.log('resendSignUpCodeResponse', resendSignUpCodeResponse);
@@ -61,13 +60,17 @@ const ConfirmEmailScreen = () => {
                 <FormInput
                     name="username"
                     placeholder="Username"
-                    control={control as Control<ConfirmEmailParameters, object>}
+                    control={
+                        control as Control<ConfirmSignUpParameters, object>
+                    }
                     disabled={true}
                 />
                 <FormInput
                     name="code"
                     placeholder="Enter code"
-                    control={control as Control<ConfirmEmailParameters, object>}
+                    control={
+                        control as Control<ConfirmSignUpParameters, object>
+                    }
                 />
 
                 <CustomButton
@@ -89,4 +92,4 @@ const ConfirmEmailScreen = () => {
     );
 };
 
-export default ConfirmEmailScreen;
+export default ConfirmSignUpScreen;
