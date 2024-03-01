@@ -47,7 +47,7 @@ const SignUpScreen = () => {
         if (loading) return;
         try {
             setLoading(true);
-            await signUp({
+            const {isSignUpComplete} = await signUp({
                 username,
                 password,
                 options: {
@@ -59,16 +59,13 @@ const SignUpScreen = () => {
                     // optional
                     autoSignIn: true, // or SignInOptions e.g { authFlowType: "USER_SRP_AUTH" }
                 },
-            });
-            console.log('Sign up successful');
-            navigation.navigate('ConfirmEmail', {username});
+            })
+            console.log('Sign up successful', isSignUpComplete);
+            navigation.navigate('ConfirmSignUp', {username});
         } catch (error: any) {
             console.log('error signing up:', error);
-            Alert.alert('Error', error.message);
-            // setError('username', {
-            //     type: 'manual',
-            //     message: error.message,
-            // });
+            Alert.alert('Error Signing Up', error.message);
+
         } finally {
             setLoading(false);
         }

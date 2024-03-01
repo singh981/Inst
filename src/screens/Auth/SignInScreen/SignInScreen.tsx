@@ -1,5 +1,5 @@
 import {useForm} from 'react-hook-form';
-import {Image, Text, View, SafeAreaView} from 'react-native';
+import {Image, Text, View, SafeAreaView, Alert} from 'react-native';
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
 import {
@@ -33,22 +33,18 @@ const SignInScreen = () => {
     const onSubmit = async ({username, password}: SignInData) => {
         setLoading(true);
         try {
-            // const {accessToken, idToken} =
-            //     (await fetchAuthSession()).tokens ?? {};
-
-            // console.log('accessToken', accessToken);
-            // console.log('idToken', idToken);
-
-            const user: AuthUser = await getCurrentUser();
-            console.log('User already logged in');
-            // console.log('isSignedIn', isSignedIn);
-            // await signOut();
-            user && navigation.navigate('Home');
-        } catch (error) {
-            console.error('error signing in', error);
-            const {isSignedIn} = await signIn({username, password});
-            console.log('isSignedIn', isSignedIn);
-            isSignedIn && navigation.navigate('Home');
+            const {
+                isSignedIn,
+                nextStep: {signInStep},
+            } = await signIn({username, password});
+            console.log('User Signed In Success', isSignedIn, signInStep);
+            if (!isSignedIn && signInStep === 'CONFIRM_SIGN_UP') {
+                navigation.navigate('ConfirmSignUp', {username});
+            } else if (isSignedIn && signInStep === 'DONE') {
+                navigation.navigate('Home');
+            }
+        } catch (error: any) {
+            Alert.alert('Error Signing In', error.message);
         } finally {
             setLoading(false);
         }
