@@ -1,15 +1,18 @@
 import {Controller, Control} from 'react-hook-form';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 
-interface SignInData {
+interface FormInputData {
+    fullname?: string;
     username: string;
+    email?: string;
     password: string;
+    repeatPassword?: string;
 }
 
 interface IFormInputProps {
-    name: keyof SignInData;
+    name: keyof FormInputData;
     placeholder: string;
-    control: Control<SignInData, object>;
+    control: Control<T, object>;
     rules: object;
     secureTextEntry?: boolean;
 }

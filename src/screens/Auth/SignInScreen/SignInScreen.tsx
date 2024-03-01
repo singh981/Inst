@@ -40,13 +40,14 @@ const SignInScreen = () => {
             // console.log('idToken', idToken);
 
             const user: AuthUser = await getCurrentUser();
-            // console.log('user', user);
+            console.log('User already logged in');
             // console.log('isSignedIn', isSignedIn);
             // await signOut();
             user && navigation.navigate('Home');
         } catch (error) {
             console.error('error signing in', error);
             const {isSignedIn} = await signIn({username, password});
+            console.log('isSignedIn', isSignedIn);
             isSignedIn && navigation.navigate('Home');
         } finally {
             setLoading(false);
@@ -56,6 +57,7 @@ const SignInScreen = () => {
     const ForgotPasswordHandler = () => navigation.navigate('ForgotPassword');
 
     const signUpHandler = () => {
+        navigation.navigate('SignUp');
         console.log('Sign Up');
     };
 
@@ -93,8 +95,8 @@ const SignInScreen = () => {
                             message: 'Username is required',
                         },
                         minLength: {
-                            value: 8,
-                            message: 'Username must have at least 8 characters',
+                            value: 6,
+                            message: 'Username must have at least 6 characters',
                         },
                     }}
                 />

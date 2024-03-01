@@ -4,12 +4,26 @@ interface CustomButtonProps {
     title: string;
     onPress: () => void;
     type: 'primary' | 'secondary' | 'tertiary';
+    disabled?: boolean;
 }
 
-const CustomButton = ({title, onPress, type}: CustomButtonProps) => {
+const CustomButton = ({
+    title,
+    onPress,
+    type,
+    disabled = false,
+}: CustomButtonProps) => {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.container}>
-            <Text style={styles[`${type}Title`]}>{title}</Text>
+        <TouchableOpacity
+            onPress={onPress}
+            style={styles.container}
+            disabled={disabled}>
+            <Text
+                style={
+                    disabled ? styles.disabledTitle : styles[`${type}Title`]
+                }>
+                {title}
+            </Text>
         </TouchableOpacity>
     );
 };
@@ -48,6 +62,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'black',
         // backgroundColor: 'yellow',
+        padding: 10,
+        width: '100%',
+        textAlign: 'center',
+    },
+    disabledTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'gray',
         padding: 10,
         width: '100%',
         textAlign: 'center',
