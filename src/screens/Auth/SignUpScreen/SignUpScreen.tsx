@@ -61,7 +61,7 @@ const SignUpScreen = () => {
                 },
             });
             console.log('Sign up successful');
-            navigation.navigate('ConfirmEmail');
+            navigation.navigate('ConfirmEmail', {username});
         } catch (error: any) {
             console.log('error signing up:', error);
             Alert.alert('Error', error.message);

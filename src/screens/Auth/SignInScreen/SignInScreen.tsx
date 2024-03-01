@@ -58,7 +58,6 @@ const SignInScreen = () => {
 
     const signUpHandler = () => {
         navigation.navigate('SignUp');
-        console.log('Sign Up');
     };
 
     return (

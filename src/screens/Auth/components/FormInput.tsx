@@ -1,33 +1,43 @@
-import {Controller, Control} from 'react-hook-form';
+import {
+    Controller,
+    Control,
+    RegisterOptions,
+    FieldValues,
+} from 'react-hook-form';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 
 interface FormInputData {
     fullname?: string;
-    username: string;
+    username?: string;
     email?: string;
-    password: string;
+    password?: string;
     repeatPassword?: string;
+    code?: string;
 }
 
-interface IFormInputProps {
-    name: keyof FormInputData;
+interface IFormInputProps<T extends FormInputData> {
+    name: keyof T;
     placeholder: string;
-    control: Control<T, object>;
-    rules: object;
+    control: Control<T>;
+    rules?: RegisterOptions;
     secureTextEntry?: boolean;
+    defaultValue?: string;
+    disabled?: boolean;
 }
 
-const FormInput = ({
+const FormInput = <T extends FieldValues>({
     name,
     placeholder,
     control,
     rules,
+
+    disabled,
     secureTextEntry = false,
-}: IFormInputProps) => {
+}: IFormInputProps<T>) => {
     return (
         <Controller
-            name={name}
-            control={control}
+            name={name as string}
+            control={control as Control<FieldValues>}
             rules={rules}
             render={({
                 field: {onChange, onBlur, value},
@@ -46,6 +56,7 @@ const FormInput = ({
                                 onChangeText={onChange}
                                 value={value}
                                 style={{width: '100%'}}
+                                editable={!disabled}
                                 secureTextEntry={secureTextEntry}
                             />
                         </View>

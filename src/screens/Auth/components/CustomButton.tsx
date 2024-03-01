@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 interface CustomButtonProps {
     title: string;
     onPress: () => void;
-    type: 'primary' | 'secondary' | 'tertiary';
+    type: 'primary' | 'secondary' | 'tertiary' | 'outline';
     disabled?: boolean;
 }
 
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
 
     primaryTitle: {
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'blue',
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     secondaryTitle: {
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'green',
@@ -67,13 +67,25 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     disabledTitle: {
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'gray',
         padding: 10,
         width: '100%',
         textAlign: 'center',
+    },
+    outlineTitle: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: 'blue',
+        backgroundColor: 'white',
+        padding: 10,
+        width: '100%',
+        textAlign: 'center',
+        borderWidth: 1,
+        borderColor: 'blue',
+        borderRadius: 10,
     },
 });
 
