@@ -2,13 +2,7 @@ import {useForm} from 'react-hook-form';
 import {Image, Text, View, SafeAreaView, Alert} from 'react-native';
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
-import {
-    signIn,
-    signOut,
-    getCurrentUser,
-    AuthUser,
-    fetchAuthSession,
-} from 'aws-amplify/auth';
+import {signIn, AuthError} from 'aws-amplify/auth';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {SignInScreenNavigationProp} from '../../../navigation/types';
@@ -37,14 +31,33 @@ const SignInScreen = () => {
                 isSignedIn,
                 nextStep: {signInStep},
             } = await signIn({username, password});
-            console.log('User Signed In Success', isSignedIn, signInStep);
-            if (!isSignedIn && signInStep === 'CONFIRM_SIGN_UP') {
+            console.log(
+                'User Signed In Successfully',
+                ' | ',
+                `isSignedIn: ${isSignedIn}`,
+                ' | ',
+                `signInStep: ${signInStep}`,
+            );
+
+            // navigating user to confirm sign up screen if signInStep is CONFIRM_SIGN_UP
+            !isSignedIn &&
+                signInStep === 'CONFIRM_SIGN_UP' &&
                 navigation.navigate('ConfirmSignUp', {username});
-            } else if (isSignedIn && signInStep === 'DONE') {
-                navigation.navigate('Home');
-            }
-        } catch (error: any) {
-            Alert.alert('Error Signing In', error.message);
+
+            // navigating user to home screen if signInStep is DONE
+            isSignedIn && signInStep === 'DONE' && navigation.navigate('Home');
+        } catch (error: AuthError | any) {
+            console.log(
+                'Error signing in',
+                error.name,
+                error.message,
+                error.recoverySuggestion,
+            );
+            
+            // handling user already authenticated error
+            error.name === 'UserAlreadyAuthenticatedException'
+                ? navigation.navigate('Home')
+                : Alert.alert('Error Signing In', error.message);
         } finally {
             setLoading(false);
         }
@@ -92,6 +105,10 @@ const SignInScreen = () => {
                         minLength: {
                             value: 6,
                             message: 'Username must have at least 6 characters',
+                        },
+                        pattern: {
+                            value: /^\S*$/,
+                            message: 'Username cannot contain spaces',
                         },
                     }}
                 />
