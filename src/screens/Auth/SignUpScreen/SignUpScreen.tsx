@@ -26,6 +26,7 @@ const SignUpScreen = () => {
                 repeatPassword: '',
             },
         });
+
     const [loading, setLoading] = useState<boolean>(false);
 
     const navigation = useNavigation<SignUpScreenNavigationProp>();
@@ -59,13 +60,12 @@ const SignUpScreen = () => {
                     // optional
                     autoSignIn: true, // or SignInOptions e.g { authFlowType: "USER_SRP_AUTH" }
                 },
-            })
+            });
             console.log('Sign up successful', isSignUpComplete);
             navigation.navigate('ConfirmSignUp', {username});
         } catch (error: any) {
             console.log('error signing up:', error);
             Alert.alert('Error Signing Up', error.message);
-
         } finally {
             setLoading(false);
         }
@@ -82,6 +82,14 @@ const SignUpScreen = () => {
                     padding: 20,
                     width: '100%',
                 }}>
+                <Text
+                    style={{
+                        fontSize: 24,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                    }}>
+                    Sign Up
+                </Text>
                 <FormInput
                     name="fullname"
                     placeholder="Full Name"

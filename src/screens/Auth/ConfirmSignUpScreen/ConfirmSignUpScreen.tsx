@@ -57,6 +57,9 @@ const ConfirmSignUpScreen = () => {
                     padding: 20,
                     width: '100%',
                 }}>
+                <Text style={{fontSize: 24, fontWeight: 'bold', textAlign: 'center'}}>
+                    Confirm Sign Up
+                </Text>
                 <FormInput
                     name="username"
                     placeholder="Username"
@@ -71,6 +74,16 @@ const ConfirmSignUpScreen = () => {
                     control={
                         control as Control<ConfirmSignUpParameters, object>
                     }
+                    rules={{
+                        required: {
+                            value: true,
+                            message: 'Code is required',
+                        },
+                        pattern: {
+                            value: /^\S*$/,
+                            message: 'Cannot contain spaces',
+                        },
+                    }}
                 />
 
                 <CustomButton

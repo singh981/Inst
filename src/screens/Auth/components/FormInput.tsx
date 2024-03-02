@@ -53,7 +53,16 @@ const FormInput = <T extends FieldValues>({
                             <TextInput
                                 placeholder={placeholder}
                                 onBlur={onBlur}
-                                onChangeText={onChange}
+                                onChangeText={e =>
+                                    onChange(
+                                        // remove blank spaces from value before setting it
+                                        name === 'username' ||
+                                            name === 'email' ||
+                                            name === 'code'
+                                            ? e.replace(/\s/g, '')
+                                            : e,
+                                    )
+                                }
                                 value={value}
                                 style={{width: '100%'}}
                                 editable={!disabled}

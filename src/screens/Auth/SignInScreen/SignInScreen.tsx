@@ -7,13 +7,13 @@ import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {SignInScreenNavigationProp} from '../../../navigation/types';
 
-type SignInData = {
+type SignInParameters = {
     username: string;
     password: string;
 };
 
 const SignInScreen = () => {
-    const {control, handleSubmit} = useForm<SignInData>({
+    const {control, handleSubmit} = useForm<SignInParameters>({
         defaultValues: {
             username: '',
             password: '',
@@ -24,7 +24,7 @@ const SignInScreen = () => {
 
     const navigation = useNavigation<SignInScreenNavigationProp>();
 
-    const onSubmit = async ({username, password}: SignInData) => {
+    const onSubmit = async ({username, password}: SignInParameters) => {
         setLoading(true);
         try {
             const {
@@ -40,12 +40,16 @@ const SignInScreen = () => {
             );
 
             // navigating user to confirm sign up screen if signInStep is CONFIRM_SIGN_UP
-            !isSignedIn &&
-                signInStep === 'CONFIRM_SIGN_UP' &&
-                navigation.navigate('ConfirmSignUp', {username});
-
-            // navigating user to home screen if signInStep is DONE
-            isSignedIn && signInStep === 'DONE' && navigation.navigate('Home');
+            switch (signInStep) {
+                case 'CONFIRM_SIGN_UP':
+                    navigation.navigate('ConfirmSignUp', {username});
+                    break;
+                case 'DONE':
+                    navigation.navigate('Home');
+                    break;
+                default:
+                    break;
+            }
         } catch (error: AuthError | any) {
             console.log(
                 'Error signing in',
@@ -53,7 +57,7 @@ const SignInScreen = () => {
                 error.message,
                 error.recoverySuggestion,
             );
-            
+
             // handling user already authenticated error
             error.name === 'UserAlreadyAuthenticatedException'
                 ? navigation.navigate('Home')
@@ -76,16 +80,6 @@ const SignInScreen = () => {
                 backgroundColor: 'lightgray',
                 flex: 1,
             }}>
-            <Image
-                source={{
-                    uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
-                }}
-                style={{
-                    width: '100%',
-                    height: 200,
-                }}
-            />
-
             {/* Form */}
             <View
                 style={{
@@ -93,6 +87,14 @@ const SignInScreen = () => {
                     padding: 20,
                     width: '100%',
                 }}>
+                <Text
+                    style={{
+                        fontSize: 24,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                    }}>
+                    Sign In
+                </Text>
                 <FormInput
                     name="username"
                     placeholder="Username"

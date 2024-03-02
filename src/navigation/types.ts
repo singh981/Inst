@@ -37,7 +37,7 @@ export type AuthStackNavigatorParamList = {
     SignUp: undefined;
     ConfirmSignUp: {username: string};
     ForgotPassword: undefined;
-    NewPassword: undefined;
+    NewPassword: {username: string};
     Home: undefined;
 };
 
@@ -56,10 +56,15 @@ export type ConfirmSignUpScreenNavigationProp = NativeStackNavigationProp<
     'ConfirmSignUp'
 >;
 
-// export type ForgotPasswordScreenNavigationProp = NativeStackNavigationProp<
-//     AuthStackNavigatorParamList,
-//     'ForgotPassword'
-// >;
+export type ForgotPasswordScreenNavigationProp = NativeStackNavigationProp<
+    AuthStackNavigatorParamList,
+    'ForgotPassword'
+>;
+
+export type NewPasswordScreenNavigationProp = NativeStackNavigationProp<
+    AuthStackNavigatorParamList,
+    'NewPassword'
+>;
 
 /*
 EXPLANATION for "NativeStackNavigationProp"
@@ -116,4 +121,8 @@ export type CommentsScreenRouteProp = RouteProp<
 export type ConfirmSignUpScreenRouteProp = RouteProp<
     AuthStackNavigatorParamList,
     'ConfirmSignUp'
+>;
+export type NewPasswordScreenRouteProp = RouteProp<
+    AuthStackNavigatorParamList,
+    'NewPassword'
 >;
