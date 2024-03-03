@@ -1,11 +1,13 @@
+import {useContext, useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
-import {Image, Text, View, SafeAreaView, Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {Text, View, SafeAreaView, Alert} from 'react-native';
+import {signIn, AuthError, getCurrentUser} from 'aws-amplify/auth';
+
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
-import {signIn, AuthError} from 'aws-amplify/auth';
-import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
 import {SignInScreenNavigationProp} from '../../../navigation/types';
+import {AuthContext} from '../../../context/AuthContext';
 
 type SignInParameters = {
     username: string;
@@ -13,16 +15,18 @@ type SignInParameters = {
 };
 
 const SignInScreen = () => {
-    const {control, handleSubmit} = useForm<SignInParameters>({
+    const {logIn} = useContext(AuthContext) || {};
+
+    const {control, handleSubmit, reset} = useForm<SignInParameters>({
         defaultValues: {
             username: '',
             password: '',
         },
     });
 
-    const [loading, setLoading] = useState<boolean>(false);
-
     const navigation = useNavigation<SignInScreenNavigationProp>();
+
+    const [loading, setLoading] = useState<boolean>(false);
 
     const onSubmit = async ({username, password}: SignInParameters) => {
         setLoading(true);
@@ -31,6 +35,7 @@ const SignInScreen = () => {
                 isSignedIn,
                 nextStep: {signInStep},
             } = await signIn({username, password});
+
             console.log(
                 'User Signed In Successfully',
                 ' | ',
@@ -45,7 +50,7 @@ const SignInScreen = () => {
                     navigation.navigate('ConfirmSignUp', {username});
                     break;
                 case 'DONE':
-                    navigation.navigate('Home');
+                    logIn && logIn(await getCurrentUser());
                     break;
                 default:
                     break;
@@ -60,18 +65,15 @@ const SignInScreen = () => {
 
             // handling user already authenticated error
             error.name === 'UserAlreadyAuthenticatedException'
-                ? navigation.navigate('Home')
+                ? logIn && logIn(await getCurrentUser())
                 : Alert.alert('Error Signing In', error.message);
         } finally {
             setLoading(false);
+            reset();
         }
     };
 
     const ForgotPasswordHandler = () => navigation.navigate('ForgotPassword');
-
-    const signUpHandler = () => {
-        navigation.navigate('SignUp');
-    };
 
     return (
         // <ScrollView>
@@ -152,7 +154,7 @@ const SignInScreen = () => {
                     />
                     <CustomButton
                         title="Sign Up"
-                        onPress={() => signUpHandler()}
+                        onPress={() => navigation.navigate('SignUp')}
                         type="tertiary"
                     />
                 </View>

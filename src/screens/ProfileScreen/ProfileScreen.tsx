@@ -1,3 +1,4 @@
+import {useContext, useEffect, useState} from 'react';
 import {
     Image,
     SafeAreaView,
@@ -7,6 +8,7 @@ import {
     View,
 } from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
+import {signOut} from 'aws-amplify/auth';
 
 import {size, weight} from '../../theme/fonts';
 import users from '../../assets/data/users.json';
@@ -17,9 +19,7 @@ import {
     MyProfileScreenRouteProp,
     ProfileScreenNavigationProp,
 } from '../../navigation/types';
-import {useEffect, useState} from 'react';
-import {useAuthenticator} from '@aws-amplify/ui-react-native';
-import {signOut} from 'aws-amplify/auth';
+import {AuthContext} from '../../context/AuthContext';
 
 const ProfileScreen = () => {
     // TBD: Once we have 'Follow' and 'Message' functionality, we will need to update ProfileScreenNavigationProp
@@ -30,6 +30,8 @@ const ProfileScreen = () => {
     >();
 
     const [user, setUser] = useState<IProfileUser | undefined>(undefined);
+
+    const {logOut} = useContext(AuthContext) || {};
 
     // const {user: usr, signOut} = useAuthenticator(context => [context.user]);
 
@@ -50,6 +52,11 @@ const ProfileScreen = () => {
 
     const {name, bio, avatarUrl, posts, numberOfFollowers, numberOfFollowing} =
         user || {}; // Add a default empty object if user is undefined
+
+    const handleSignOut = async () => {
+        await signOut();
+        logOut && logOut();
+    };
 
     return (
         <SafeAreaView style={styles.safeAreaViewContainer}>
@@ -130,7 +137,7 @@ const ProfileScreen = () => {
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        onPress={() => signOut()}
+                                        onPress={() => handleSignOut()}
                                         style={styles.buttonContainer}>
                                         <Text style={styles.buttonText}>
                                             Logout
