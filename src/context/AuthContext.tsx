@@ -6,6 +6,7 @@ import React, {
     useState,
 } from 'react';
 import {AuthUser, getCurrentUser} from 'aws-amplify/auth';
+import {Hub} from 'aws-amplify/utils';
 
 type AuthContextProps = {
     user: AuthUser | null;
@@ -38,11 +39,22 @@ export const AuthProvider: FunctionComponent<{children: ReactNode}> = ({
             try {
                 logIn(await getCurrentUser());
             } catch (e) {
-                console.log('Error getting current user', e);
+                // console.log('Error getting current user', e);
             } finally {
                 setWaitingtoGetCurrentUser(false);
             }
         })();
+
+        const hubListenerCancelCallback = Hub.listen(
+            'auth',
+            ({payload: {event}}) => {
+                console.log('A new auth event has happened: ', event);
+                event === 'signedOut' && logOut();
+            },
+        );
+
+        // Clean up the listener when the component is unmounted
+        return () => hubListenerCancelCallback();
     }, []);
 
     return (

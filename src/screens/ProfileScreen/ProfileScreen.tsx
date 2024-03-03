@@ -53,11 +53,6 @@ const ProfileScreen = () => {
     const {name, bio, avatarUrl, posts, numberOfFollowers, numberOfFollowing} =
         user || {}; // Add a default empty object if user is undefined
 
-    const handleSignOut = async () => {
-        await signOut();
-        logOut && logOut();
-    };
-
     return (
         <SafeAreaView style={styles.safeAreaViewContainer}>
             <View style={styles.container}>
@@ -137,7 +132,7 @@ const ProfileScreen = () => {
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        onPress={() => handleSignOut()}
+                                        onPress={async () => await signOut()}
                                         style={styles.buttonContainer}>
                                         <Text style={styles.buttonText}>
                                             Logout
