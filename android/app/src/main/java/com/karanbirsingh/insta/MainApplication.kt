@@ -1,4 +1,4 @@
-package com.instagram
+package com.karanbirsingh.insta
 
 import android.app.Application
 import com.facebook.react.PackageList

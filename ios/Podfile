@@ -25,7 +25,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'Instagram' do
+target 'KSInsta' do
   config = use_native_modules!
 
   use_react_native!(
@@ -39,7 +39,7 @@ target 'Instagram' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'InstagramTests' do
+  target 'KSInstaTests' do
     inherit! :complete
     # Pods for testing
   end
