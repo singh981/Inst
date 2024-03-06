@@ -14,7 +14,32 @@ export const createLike = /* GraphQL */ `mutation CreateLike(
 ) {
   createLike(input: $input, condition: $condition) {
     id
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     createdAt
     updatedAt
@@ -31,7 +56,32 @@ export const updateLike = /* GraphQL */ `mutation UpdateLike(
 ) {
   updateLike(input: $input, condition: $condition) {
     id
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     createdAt
     updatedAt
@@ -48,7 +98,32 @@ export const deleteLike = /* GraphQL */ `mutation DeleteLike(
 ) {
   deleteLike(input: $input, condition: $condition) {
     id
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     createdAt
     updatedAt
@@ -67,7 +142,32 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
     id
     createdAt
     comment
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     numberOfLikes
     updatedAt
@@ -86,7 +186,32 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
     id
     createdAt
     comment
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     numberOfLikes
     updatedAt
@@ -105,7 +230,32 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
     id
     createdAt
     comment
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     numberOfLikes
     updatedAt
@@ -127,6 +277,21 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
     videoUrl
     description
     userID
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     PostComments {
       nextToken
       __typename
@@ -154,6 +319,21 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
     videoUrl
     description
     userID
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     PostComments {
       nextToken
       __typename
@@ -181,6 +361,21 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
     videoUrl
     description
     userID
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     PostComments {
       nextToken
       __typename
@@ -205,17 +400,17 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
     id
     name
     username
+    avatarUrl
+    email
     bio
+    website
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    avatarUrl
-    email
     UserPosts {
       nextToken
       __typename
     }
-    website
     UserComments {
       nextToken
       __typename
@@ -241,17 +436,17 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
     id
     name
     username
+    avatarUrl
+    email
     bio
+    website
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    avatarUrl
-    email
     UserPosts {
       nextToken
       __typename
     }
-    website
     UserComments {
       nextToken
       __typename
@@ -277,17 +472,17 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
     id
     name
     username
+    avatarUrl
+    email
     bio
+    website
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    avatarUrl
-    email
     UserPosts {
       nextToken
       __typename
     }
-    website
     UserComments {
       nextToken
       __typename

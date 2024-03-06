@@ -21,6 +21,9 @@
           "deploymentBucketName": "amplify-instagramnotjustdev-staging-135822-deployment",
           "s3Key": "amplify-builds/InstagramNotJustDevPostConfirmation-2f5261753955474c6356-build.zip"
         }
+      },
+      "api": {
+        "InstagramNotJustDev": {}
       }
     }
   }

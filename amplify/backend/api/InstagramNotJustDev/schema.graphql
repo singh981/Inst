@@ -1,41 +1,67 @@
 type Like @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  userID: ID! @index(name: "byUser")
-  postID: ID! @index(name: "byPost")
+    id: ID!
+    # This field establishes a relationship between the Post and User types.
+    # The @belongsTo directive indicates that each Post is associated with one User.
+    # The 'fields' argument specifies which field on the Post type is used to store the ID of the associated User.
+    user: User! @belongsTo(fields: ["userID"])
+    userID: ID! @index(name: "byUser")
+    # This field establishes a relationship between the Like and Post types.
+    # The @belongsTo directive indicates that each Like is associated with one Post.
+    # The 'fields' argument specifies which field on the Like type is used to store the ID of the associated Post.
+    post: Post! @belongsTo(fields: ["postID"])
+    postID: ID! @index(name: "byPost")
 }
 
 type Comment @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  createdAt: AWSDateTime!
-  comment: String!
-  userID: ID! @index(name: "byUser")
-  postID: ID! @index(name: "byPost")
-  numberOfLikes: Int!
+    id: ID!
+    createdAt: AWSDateTime!
+    comment: String!
+
+    user: User! @belongsTo(fields: ["userID"])
+    userID: ID! @index(name: "byUser")
+
+    post: Post! @belongsTo(fields: ["postID"])
+    postID: ID! @index(name: "byPost")
+
+    numberOfLikes: Int!
 }
 
 type Post @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  createdAt: AWSDateTime!
-  imageUrls: [String!]
-  videoUrl: String
-  description: String!
-  userID: ID! @index(name: "byUser")
-  PostComments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
-  PostLikes: [Like] @hasMany(indexName: "byPost", fields: ["id"])
+    id: ID!
+    createdAt: AWSDateTime!
+    imageUrls: [String!]
+    videoUrl: String
+    description: String!
+
+    # This field stores the ID of the User associated with this Post.
+    # The @index directive creates a secondary index on this field, which allows for efficient querying of Posts by User.
+    # The 'name' argument specifies the name of the secondary index.
+    userID: ID! @index(name: "byUser")
+    # This field establishes a relationship between the Post and User types.
+    # The @belongsTo directive indicates that each Post is associated with one User.
+    # The 'fields' argument specifies which field on the Post type is used to store the ID of the associated User.
+    user: User! @belongsTo(fields: ["userID"])
+
+    PostComments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
+    PostLikes: [Like] @hasMany(indexName: "byPost", fields: ["id"])
 }
 
 type User @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String!
-  username: String!
-  bio: String!
-  numberOfFollowers: Int!
-  numberOfFollowing: Int!
-  numberOfPosts: Int!
-  avatarUrl: String
-  email: String!
-  UserPosts: [Post] @hasMany(indexName: "byUser", fields: ["id"])
-  website: AWSURL
-  UserComments: [Comment] @hasMany(indexName: "byUser", fields: ["id"])
-  UserLikes: [Like] @hasMany(indexName: "byUser", fields: ["id"])
+    id: ID!
+    name: String!
+    username: String!
+    avatarUrl: String
+    email: String!
+    bio: String!
+    website: AWSURL
+    numberOfFollowers: Int!
+    numberOfFollowing: Int!
+    numberOfPosts: Int!
+    # This field establishes a one-to-many relationship between the User and Post types.
+    # The @hasMany directive indicates that each User can have multiple Posts.
+    # The 'indexName' argument specifies the name of the secondary index to use for the relationship.
+    # The 'fields' argument specifies which field on the User type is used to store the ID of the associated Posts.
+    UserPosts: [Post] @hasMany(indexName: "byUser", fields: ["id"])
+    UserComments: [Comment] @hasMany(indexName: "byUser", fields: ["id"])
+    UserLikes: [Like] @hasMany(indexName: "byUser", fields: ["id"])
 }

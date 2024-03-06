@@ -11,7 +11,32 @@ type GeneratedSubscription<InputType, OutputType> = string & {
 export const onCreateLike = /* GraphQL */ `subscription OnCreateLike($filter: ModelSubscriptionLikeFilterInput) {
   onCreateLike(filter: $filter) {
     id
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     createdAt
     updatedAt
@@ -25,7 +50,32 @@ export const onCreateLike = /* GraphQL */ `subscription OnCreateLike($filter: Mo
 export const onUpdateLike = /* GraphQL */ `subscription OnUpdateLike($filter: ModelSubscriptionLikeFilterInput) {
   onUpdateLike(filter: $filter) {
     id
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     createdAt
     updatedAt
@@ -39,7 +89,32 @@ export const onUpdateLike = /* GraphQL */ `subscription OnUpdateLike($filter: Mo
 export const onDeleteLike = /* GraphQL */ `subscription OnDeleteLike($filter: ModelSubscriptionLikeFilterInput) {
   onDeleteLike(filter: $filter) {
     id
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     createdAt
     updatedAt
@@ -55,7 +130,32 @@ export const onCreateComment = /* GraphQL */ `subscription OnCreateComment($filt
     id
     createdAt
     comment
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     numberOfLikes
     updatedAt
@@ -71,7 +171,32 @@ export const onUpdateComment = /* GraphQL */ `subscription OnUpdateComment($filt
     id
     createdAt
     comment
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     numberOfLikes
     updatedAt
@@ -87,7 +212,32 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment($filt
     id
     createdAt
     comment
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     numberOfLikes
     updatedAt
@@ -106,6 +256,21 @@ export const onCreatePost = /* GraphQL */ `subscription OnCreatePost($filter: Mo
     videoUrl
     description
     userID
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     PostComments {
       nextToken
       __typename
@@ -130,6 +295,21 @@ export const onUpdatePost = /* GraphQL */ `subscription OnUpdatePost($filter: Mo
     videoUrl
     description
     userID
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     PostComments {
       nextToken
       __typename
@@ -154,6 +334,21 @@ export const onDeletePost = /* GraphQL */ `subscription OnDeletePost($filter: Mo
     videoUrl
     description
     userID
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     PostComments {
       nextToken
       __typename
@@ -175,17 +370,17 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: Mo
     id
     name
     username
+    avatarUrl
+    email
     bio
+    website
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    avatarUrl
-    email
     UserPosts {
       nextToken
       __typename
     }
-    website
     UserComments {
       nextToken
       __typename
@@ -208,17 +403,17 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($filter: Mo
     id
     name
     username
+    avatarUrl
+    email
     bio
+    website
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    avatarUrl
-    email
     UserPosts {
       nextToken
       __typename
     }
-    website
     UserComments {
       nextToken
       __typename
@@ -241,17 +436,17 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($filter: Mo
     id
     name
     username
+    avatarUrl
+    email
     bio
+    website
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    avatarUrl
-    email
     UserPosts {
       nextToken
       __typename
     }
-    website
     UserComments {
       nextToken
       __typename

@@ -11,7 +11,32 @@ type GeneratedQuery<InputType, OutputType> = string & {
 export const getLike = /* GraphQL */ `query GetLike($id: ID!) {
   getLike(id: $id) {
     id
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     createdAt
     updatedAt
@@ -103,7 +128,32 @@ export const getComment = /* GraphQL */ `query GetComment($id: ID!) {
     id
     createdAt
     comment
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     userID
+    post {
+      id
+      createdAt
+      imageUrls
+      videoUrl
+      description
+      userID
+      updatedAt
+      __typename
+    }
     postID
     numberOfLikes
     updatedAt
@@ -210,6 +260,21 @@ export const getPost = /* GraphQL */ `query GetPost($id: ID!) {
     videoUrl
     description
     userID
+    user {
+      id
+      name
+      username
+      avatarUrl
+      email
+      bio
+      website
+      numberOfFollowers
+      numberOfFollowing
+      numberOfPosts
+      createdAt
+      updatedAt
+      __typename
+    }
     PostComments {
       nextToken
       __typename
@@ -281,17 +346,17 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
     id
     name
     username
+    avatarUrl
+    email
     bio
+    website
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    avatarUrl
-    email
     UserPosts {
       nextToken
       __typename
     }
-    website
     UserComments {
       nextToken
       __typename
@@ -316,13 +381,13 @@ export const listUsers = /* GraphQL */ `query ListUsers(
       id
       name
       username
+      avatarUrl
+      email
       bio
+      website
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
-      avatarUrl
-      email
-      website
       createdAt
       updatedAt
       __typename

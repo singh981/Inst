@@ -145,6 +145,8 @@
             {
                 "id": 1,
                 "comment": "Oh my goodness, this is the cutest thing I've ever seen! 😍",
+                "createdAt": "2024-02-25T09:30:00Z",
+                "numberOfLikes": 35,
                 "user": {
                     "id": 2,
                     "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/2.jpg",
@@ -154,6 +156,8 @@
             {
                 "id": 2,
                 "comment": "I can't handle the level of cuteness in this picture! It's too much!",
+                "createdAt": "2024-01-25T09:30:00Z",
+                "numberOfLikes": 15,
                 "user": {
                     "id": 3,
                     "avatarUrl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/3.jpg",
