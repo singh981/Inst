@@ -275,11 +275,11 @@ export const getPost = /* GraphQL */ `query GetPost($id: ID!) {
       updatedAt
       __typename
     }
-    PostComments {
+    comments {
       nextToken
       __typename
     }
-    PostLikes {
+    likes {
       nextToken
       __typename
     }
@@ -353,15 +353,15 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    UserPosts {
+    posts {
       nextToken
       __typename
     }
-    UserComments {
+    comments {
       nextToken
       __typename
     }
-    UserLikes {
+    likes {
       nextToken
       __typename
     }

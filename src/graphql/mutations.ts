@@ -292,11 +292,11 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
       updatedAt
       __typename
     }
-    PostComments {
+    comments {
       nextToken
       __typename
     }
-    PostLikes {
+    likes {
       nextToken
       __typename
     }
@@ -334,11 +334,11 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
       updatedAt
       __typename
     }
-    PostComments {
+    comments {
       nextToken
       __typename
     }
-    PostLikes {
+    likes {
       nextToken
       __typename
     }
@@ -376,11 +376,11 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
       updatedAt
       __typename
     }
-    PostComments {
+    comments {
       nextToken
       __typename
     }
-    PostLikes {
+    likes {
       nextToken
       __typename
     }
@@ -407,15 +407,15 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    UserPosts {
+    posts {
       nextToken
       __typename
     }
-    UserComments {
+    comments {
       nextToken
       __typename
     }
-    UserLikes {
+    likes {
       nextToken
       __typename
     }
@@ -443,15 +443,15 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    UserPosts {
+    posts {
       nextToken
       __typename
     }
-    UserComments {
+    comments {
       nextToken
       __typename
     }
-    UserLikes {
+    likes {
       nextToken
       __typename
     }
@@ -479,15 +479,15 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    UserPosts {
+    posts {
       nextToken
       __typename
     }
-    UserComments {
+    comments {
       nextToken
       __typename
     }
-    UserLikes {
+    likes {
       nextToken
       __typename
     }

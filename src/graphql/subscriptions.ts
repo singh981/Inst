@@ -271,11 +271,11 @@ export const onCreatePost = /* GraphQL */ `subscription OnCreatePost($filter: Mo
       updatedAt
       __typename
     }
-    PostComments {
+    comments {
       nextToken
       __typename
     }
-    PostLikes {
+    likes {
       nextToken
       __typename
     }
@@ -310,11 +310,11 @@ export const onUpdatePost = /* GraphQL */ `subscription OnUpdatePost($filter: Mo
       updatedAt
       __typename
     }
-    PostComments {
+    comments {
       nextToken
       __typename
     }
-    PostLikes {
+    likes {
       nextToken
       __typename
     }
@@ -349,11 +349,11 @@ export const onDeletePost = /* GraphQL */ `subscription OnDeletePost($filter: Mo
       updatedAt
       __typename
     }
-    PostComments {
+    comments {
       nextToken
       __typename
     }
-    PostLikes {
+    likes {
       nextToken
       __typename
     }
@@ -377,15 +377,15 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: Mo
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    UserPosts {
+    posts {
       nextToken
       __typename
     }
-    UserComments {
+    comments {
       nextToken
       __typename
     }
-    UserLikes {
+    likes {
       nextToken
       __typename
     }
@@ -410,15 +410,15 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($filter: Mo
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    UserPosts {
+    posts {
       nextToken
       __typename
     }
-    UserComments {
+    comments {
       nextToken
       __typename
     }
-    UserLikes {
+    likes {
       nextToken
       __typename
     }
@@ -443,15 +443,15 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($filter: Mo
     numberOfFollowers
     numberOfFollowing
     numberOfPosts
-    UserPosts {
+    posts {
       nextToken
       __typename
     }
-    UserComments {
+    comments {
       nextToken
       __typename
     }
-    UserLikes {
+    likes {
       nextToken
       __typename
     }

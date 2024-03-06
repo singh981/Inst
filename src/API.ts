@@ -79,9 +79,9 @@ export type User = {
   numberOfFollowers: number,
   numberOfFollowing: number,
   numberOfPosts: number,
-  UserPosts?: ModelPostConnection | null,
-  UserComments?: ModelCommentConnection | null,
-  UserLikes?: ModelLikeConnection | null,
+  posts?: ModelPostConnection | null,
+  comments?: ModelCommentConnection | null,
+  likes?: ModelLikeConnection | null,
   createdAt: string,
   updatedAt: string,
 };
@@ -101,8 +101,8 @@ export type Post = {
   description: string,
   userID: string,
   user: User,
-  PostComments?: ModelCommentConnection | null,
-  PostLikes?: ModelLikeConnection | null,
+  comments?: ModelCommentConnection | null,
+  likes?: ModelLikeConnection | null,
   updatedAt: string,
 };
 
@@ -709,11 +709,11 @@ export type CreatePostMutation = {
       createdAt: string,
       updatedAt: string,
     },
-    PostComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    PostLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -750,11 +750,11 @@ export type UpdatePostMutation = {
       createdAt: string,
       updatedAt: string,
     },
-    PostComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    PostLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -791,11 +791,11 @@ export type DeletePostMutation = {
       createdAt: string,
       updatedAt: string,
     },
-    PostComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    PostLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -821,15 +821,15 @@ export type CreateUserMutation = {
     numberOfFollowers: number,
     numberOfFollowing: number,
     numberOfPosts: number,
-    UserPosts?:  {
+    posts?:  {
       __typename: "ModelPostConnection",
       nextToken?: string | null,
     } | null,
-    UserComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    UserLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -856,15 +856,15 @@ export type UpdateUserMutation = {
     numberOfFollowers: number,
     numberOfFollowing: number,
     numberOfPosts: number,
-    UserPosts?:  {
+    posts?:  {
       __typename: "ModelPostConnection",
       nextToken?: string | null,
     } | null,
-    UserComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    UserLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -891,15 +891,15 @@ export type DeleteUserMutation = {
     numberOfFollowers: number,
     numberOfFollowing: number,
     numberOfPosts: number,
-    UserPosts?:  {
+    posts?:  {
       __typename: "ModelPostConnection",
       nextToken?: string | null,
     } | null,
-    UserComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    UserLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -1158,11 +1158,11 @@ export type GetPostQuery = {
       createdAt: string,
       updatedAt: string,
     },
-    PostComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    PostLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -1235,15 +1235,15 @@ export type GetUserQuery = {
     numberOfFollowers: number,
     numberOfFollowing: number,
     numberOfPosts: number,
-    UserPosts?:  {
+    posts?:  {
       __typename: "ModelPostConnection",
       nextToken?: string | null,
     } | null,
-    UserComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    UserLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -1554,11 +1554,11 @@ export type OnCreatePostSubscription = {
       createdAt: string,
       updatedAt: string,
     },
-    PostComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    PostLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -1594,11 +1594,11 @@ export type OnUpdatePostSubscription = {
       createdAt: string,
       updatedAt: string,
     },
-    PostComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    PostLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -1634,11 +1634,11 @@ export type OnDeletePostSubscription = {
       createdAt: string,
       updatedAt: string,
     },
-    PostComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    PostLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -1663,15 +1663,15 @@ export type OnCreateUserSubscription = {
     numberOfFollowers: number,
     numberOfFollowing: number,
     numberOfPosts: number,
-    UserPosts?:  {
+    posts?:  {
       __typename: "ModelPostConnection",
       nextToken?: string | null,
     } | null,
-    UserComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    UserLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -1697,15 +1697,15 @@ export type OnUpdateUserSubscription = {
     numberOfFollowers: number,
     numberOfFollowing: number,
     numberOfPosts: number,
-    UserPosts?:  {
+    posts?:  {
       __typename: "ModelPostConnection",
       nextToken?: string | null,
     } | null,
-    UserComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    UserLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,
@@ -1731,15 +1731,15 @@ export type OnDeleteUserSubscription = {
     numberOfFollowers: number,
     numberOfFollowing: number,
     numberOfPosts: number,
-    UserPosts?:  {
+    posts?:  {
       __typename: "ModelPostConnection",
       nextToken?: string | null,
     } | null,
-    UserComments?:  {
+    comments?:  {
       __typename: "ModelCommentConnection",
       nextToken?: string | null,
     } | null,
-    UserLikes?:  {
+    likes?:  {
       __typename: "ModelLikeConnection",
       nextToken?: string | null,
     } | null,

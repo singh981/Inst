@@ -42,8 +42,8 @@ type Post @model @auth(rules: [{allow: public}]) {
     # The 'fields' argument specifies which field on the Post type is used to store the ID of the associated User.
     user: User! @belongsTo(fields: ["userID"])
 
-    PostComments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
-    PostLikes: [Like] @hasMany(indexName: "byPost", fields: ["id"])
+    comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
+    likes: [Like] @hasMany(indexName: "byPost", fields: ["id"])
 }
 
 type User @model @auth(rules: [{allow: public}]) {
@@ -61,7 +61,7 @@ type User @model @auth(rules: [{allow: public}]) {
     # The @hasMany directive indicates that each User can have multiple Posts.
     # The 'indexName' argument specifies the name of the secondary index to use for the relationship.
     # The 'fields' argument specifies which field on the User type is used to store the ID of the associated Posts.
-    UserPosts: [Post] @hasMany(indexName: "byUser", fields: ["id"])
-    UserComments: [Comment] @hasMany(indexName: "byUser", fields: ["id"])
-    UserLikes: [Like] @hasMany(indexName: "byUser", fields: ["id"])
+    posts: [Post] @hasMany(indexName: "byUser", fields: ["id"])
+    comments: [Comment] @hasMany(indexName: "byUser", fields: ["id"])
+    likes: [Like] @hasMany(indexName: "byUser", fields: ["id"])
 }
