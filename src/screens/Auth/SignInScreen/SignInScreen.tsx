@@ -9,6 +9,8 @@ import CustomButton from '../components/CustomButton';
 import {SignInScreenNavigationProp} from '../../../navigation/types';
 import {AuthContext} from '../../../context/AuthContext';
 
+import {fetchUserFromDynamoDb} from '../../../utils/FetchUserfromDynamoDb';
+
 type SignInParameters = {
     username: string;
     password: string;
@@ -50,7 +52,14 @@ const SignInScreen = () => {
                     navigation.navigate('ConfirmSignUp', {username});
                     break;
                 case 'DONE':
-                    logIn && logIn(await getCurrentUser());
+                    logIn &&
+                        logIn(
+                            await fetchUserFromDynamoDb(
+                                (
+                                    await getCurrentUser()
+                                ).userId,
+                            ),
+                        );
                     break;
                 default:
                     break;
@@ -65,7 +74,14 @@ const SignInScreen = () => {
 
             // handling user already authenticated error
             error.name === 'UserAlreadyAuthenticatedException'
-                ? logIn && logIn(await getCurrentUser())
+                ? logIn &&
+                  logIn(
+                      await fetchUserFromDynamoDb(
+                          (
+                              await getCurrentUser()
+                          ).userId,
+                      ),
+                  )
                 : Alert.alert('Error Signing In', error.message);
         } finally {
             setLoading(false);

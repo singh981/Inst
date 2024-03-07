@@ -66,6 +66,17 @@
   "function": {
     "InstagramNotJustDevPostConfirmation": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "InstagramNotJustDev"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }

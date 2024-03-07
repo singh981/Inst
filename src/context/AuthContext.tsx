@@ -5,12 +5,14 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import {AuthUser, getCurrentUser, fetchUserAttributes} from 'aws-amplify/auth';
+import {getCurrentUser} from 'aws-amplify/auth';
 import {Hub} from 'aws-amplify/utils';
+import {GetUserQuery} from '../API';
+import {fetchUserFromDynamoDb} from '../utils/FetchUserfromDynamoDb';
 
 type AuthContextProps = {
-    user: AuthUser | null;
-    logIn: (newUser: AuthUser) => void;
+    user: GetUserQuery['getUser'] | null;
+    logIn: (newUser: GetUserQuery['getUser']) => void;
     logOut: () => void;
     waitingtoGetCurrentUser: boolean;
 };
@@ -20,11 +22,11 @@ export const AuthContext = createContext<AuthContextProps | null>(null);
 export const AuthProvider: FunctionComponent<{children: ReactNode}> = ({
     children,
 }) => {
-    const [user, setUser] = useState<AuthUser | null>(null);
+    const [user, setUser] = useState<GetUserQuery['getUser'] | null>(null);
     const [waitingtoGetCurrentUser, setWaitingtoGetCurrentUser] =
         useState<boolean>(true);
 
-    const logIn = (newUser: AuthUser) => {
+    const logIn = (newUser: GetUserQuery['getUser']) => {
         setUser(newUser);
     };
 
@@ -37,10 +39,13 @@ export const AuthProvider: FunctionComponent<{children: ReactNode}> = ({
     useEffect(() => {
         (async () => {
             try {
-                logIn({
-                    ...(await getCurrentUser()),
-                    ...(await fetchUserAttributes()),
-                });
+                logIn(
+                    await fetchUserFromDynamoDb(
+                        (
+                            await getCurrentUser()
+                        ).userId,
+                    ),
+                );
             } catch (e) {
                 // console.log('Error getting current user', e);
             } finally {

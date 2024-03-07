@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {
     Alert,
     FlatList,
@@ -29,6 +29,8 @@ import {onCreateComment} from '../../graphql/subscriptions';
 const CommentsScreen = () => {
     const route = useRoute<CommentsScreenRouteProp>();
     const {postId, comments: commentsFromDynamoDb} = route.params;
+
+    const {user} = useContext(AuthContext) || {};
 
     const [comments, setComments] = useState<CommentType[] | []>(
         commentsFromDynamoDb.sort((a, b) => {
@@ -74,9 +76,7 @@ const CommentsScreen = () => {
                 variables: {
                     input: {
                         postID: postId,
-                        // userID: loggedInUser?.userId as string,
-                        // TODO: replace the hardcoded userID with the actual userID
-                        userID: '22a8ba49-f55e-4225-8c4b-2cac9eb7490f',
+                        userID: user?.id as string,
                         numberOfLikes: 0,
                         comment: commentText,
                     },

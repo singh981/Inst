@@ -43,6 +43,18 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "apiInstagramNotJustDevGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Default": "apiInstagramNotJustDevGraphQLAPIIdOutput"
+    },
+    "apiInstagramNotJustDevGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Default": "apiInstagramNotJustDevGraphQLAPIEndpointOutput"
+    },
+    "apiInstagramNotJustDevGraphQLAPIKeyOutput": {
+      "Type": "String",
+      "Default": "apiInstagramNotJustDevGraphQLAPIKeyOutput"
     }
   },
   "Conditions": {
@@ -95,6 +107,15 @@
             },
             "GROUP": {
               "Ref": "GROUP"
+            },
+            "API_INSTAGRAMNOTJUSTDEV_GRAPHQLAPIIDOUTPUT": {
+              "Ref": "apiInstagramNotJustDevGraphQLAPIIdOutput"
+            },
+            "API_INSTAGRAMNOTJUSTDEV_GRAPHQLAPIENDPOINTOUTPUT": {
+              "Ref": "apiInstagramNotJustDevGraphQLAPIEndpointOutput"
+            },
+            "API_INSTAGRAMNOTJUSTDEV_GRAPHQLAPIKEYOUTPUT": {
+              "Ref": "apiInstagramNotJustDevGraphQLAPIKeyOutput"
             }
           }
         },
@@ -193,6 +214,99 @@
                   }
                 ]
               }
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:GetItem",
+                "dynamodb:PutItem"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:dynamodb:${region}:${account}:table/User-${amplifyIdentifier}-${env}",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "amplifyIdentifier": {
+                      "Ref": "apiInstagramNotJustDevGraphQLAPIIdOutput"
+                    },
+                    "env": {
+                      "Ref": "env"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "appsync:GraphQL"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apiInstagramNotJustDevGraphQLAPIIdOutput"
+                      },
+                      "/types/Query/*"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apiInstagramNotJustDevGraphQLAPIIdOutput"
+                      },
+                      "/types/Mutation/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ]
         }
