@@ -33,6 +33,8 @@ export const getLike = /* GraphQL */ `query GetLike($id: ID!) {
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -150,6 +152,8 @@ export const getComment = /* GraphQL */ `query GetComment($id: ID!) {
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -259,6 +263,8 @@ export const getPost = /* GraphQL */ `query GetPost($id: ID!) {
     imageUrls
     videoUrl
     description
+    numberOfLikes
+    isLiked
     userID
     user {
       id
@@ -300,6 +306,8 @@ export const listPosts = /* GraphQL */ `query ListPosts(
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -329,6 +337,8 @@ export const postsByUserID = /* GraphQL */ `query PostsByUserID(
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename

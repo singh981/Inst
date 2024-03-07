@@ -2,10 +2,10 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from "../API";
+import * as APITypes from '../API';
 type GeneratedMutation<InputType, OutputType> = string & {
-  __generatedMutationInput: InputType;
-  __generatedMutationOutput: OutputType;
+    __generatedMutationInput: InputType;
+    __generatedMutationOutput: OutputType;
 };
 
 export const createLike = /* GraphQL */ `mutation CreateLike(
@@ -36,6 +36,8 @@ export const createLike = /* GraphQL */ `mutation CreateLike(
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -47,8 +49,8 @@ export const createLike = /* GraphQL */ `mutation CreateLike(
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateLikeMutationVariables,
-  APITypes.CreateLikeMutation
+    APITypes.CreateLikeMutationVariables,
+    APITypes.CreateLikeMutation
 >;
 export const updateLike = /* GraphQL */ `mutation UpdateLike(
   $input: UpdateLikeInput!
@@ -78,6 +80,8 @@ export const updateLike = /* GraphQL */ `mutation UpdateLike(
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -89,8 +93,8 @@ export const updateLike = /* GraphQL */ `mutation UpdateLike(
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateLikeMutationVariables,
-  APITypes.UpdateLikeMutation
+    APITypes.UpdateLikeMutationVariables,
+    APITypes.UpdateLikeMutation
 >;
 export const deleteLike = /* GraphQL */ `mutation DeleteLike(
   $input: DeleteLikeInput!
@@ -120,6 +124,8 @@ export const deleteLike = /* GraphQL */ `mutation DeleteLike(
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -131,8 +137,8 @@ export const deleteLike = /* GraphQL */ `mutation DeleteLike(
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteLikeMutationVariables,
-  APITypes.DeleteLikeMutation
+    APITypes.DeleteLikeMutationVariables,
+    APITypes.DeleteLikeMutation
 >;
 export const createComment = /* GraphQL */ `mutation CreateComment(
   $input: CreateCommentInput!
@@ -164,6 +170,8 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -175,8 +183,8 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateCommentMutationVariables,
-  APITypes.CreateCommentMutation
+    APITypes.CreateCommentMutationVariables,
+    APITypes.CreateCommentMutation
 >;
 export const updateComment = /* GraphQL */ `mutation UpdateComment(
   $input: UpdateCommentInput!
@@ -208,6 +216,8 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -219,8 +229,8 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateCommentMutationVariables,
-  APITypes.UpdateCommentMutation
+    APITypes.UpdateCommentMutationVariables,
+    APITypes.UpdateCommentMutation
 >;
 export const deleteComment = /* GraphQL */ `mutation DeleteComment(
   $input: DeleteCommentInput!
@@ -252,6 +262,8 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -263,8 +275,8 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteCommentMutationVariables,
-  APITypes.DeleteCommentMutation
+    APITypes.DeleteCommentMutationVariables,
+    APITypes.DeleteCommentMutation
 >;
 export const createPost = /* GraphQL */ `mutation CreatePost(
   $input: CreatePostInput!
@@ -276,6 +288,8 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
     imageUrls
     videoUrl
     description
+    numberOfLikes
+    isLiked
     userID
     user {
       id
@@ -305,8 +319,8 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreatePostMutationVariables,
-  APITypes.CreatePostMutation
+    APITypes.CreatePostMutationVariables,
+    APITypes.CreatePostMutation
 >;
 export const updatePost = /* GraphQL */ `mutation UpdatePost(
   $input: UpdatePostInput!
@@ -318,6 +332,8 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
     imageUrls
     videoUrl
     description
+    numberOfLikes
+    isLiked
     userID
     user {
       id
@@ -347,8 +363,8 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdatePostMutationVariables,
-  APITypes.UpdatePostMutation
+    APITypes.UpdatePostMutationVariables,
+    APITypes.UpdatePostMutation
 >;
 export const deletePost = /* GraphQL */ `mutation DeletePost(
   $input: DeletePostInput!
@@ -360,6 +376,8 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
     imageUrls
     videoUrl
     description
+    numberOfLikes
+    isLiked
     userID
     user {
       id
@@ -389,8 +407,8 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeletePostMutationVariables,
-  APITypes.DeletePostMutation
+    APITypes.DeletePostMutationVariables,
+    APITypes.DeletePostMutation
 >;
 export const createUser = /* GraphQL */ `mutation CreateUser(
   $input: CreateUserInput!
@@ -425,8 +443,8 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateUserMutationVariables,
-  APITypes.CreateUserMutation
+    APITypes.CreateUserMutationVariables,
+    APITypes.CreateUserMutation
 >;
 export const updateUser = /* GraphQL */ `mutation UpdateUser(
   $input: UpdateUserInput!
@@ -461,8 +479,8 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateUserMutationVariables,
-  APITypes.UpdateUserMutation
+    APITypes.UpdateUserMutationVariables,
+    APITypes.UpdateUserMutation
 >;
 export const deleteUser = /* GraphQL */ `mutation DeleteUser(
   $input: DeleteUserInput!
@@ -497,6 +515,6 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteUserMutationVariables,
-  APITypes.DeleteUserMutation
+    APITypes.DeleteUserMutationVariables,
+    APITypes.DeleteUserMutation
 >;

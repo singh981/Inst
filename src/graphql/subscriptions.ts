@@ -33,6 +33,8 @@ export const onCreateLike = /* GraphQL */ `subscription OnCreateLike($filter: Mo
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -72,6 +74,8 @@ export const onUpdateLike = /* GraphQL */ `subscription OnUpdateLike($filter: Mo
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -111,6 +115,8 @@ export const onDeleteLike = /* GraphQL */ `subscription OnDeleteLike($filter: Mo
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -152,6 +158,8 @@ export const onCreateComment = /* GraphQL */ `subscription OnCreateComment($filt
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -193,6 +201,8 @@ export const onUpdateComment = /* GraphQL */ `subscription OnUpdateComment($filt
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -234,6 +244,8 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment($filt
       imageUrls
       videoUrl
       description
+      numberOfLikes
+      isLiked
       userID
       updatedAt
       __typename
@@ -255,6 +267,8 @@ export const onCreatePost = /* GraphQL */ `subscription OnCreatePost($filter: Mo
     imageUrls
     videoUrl
     description
+    numberOfLikes
+    isLiked
     userID
     user {
       id
@@ -294,6 +308,8 @@ export const onUpdatePost = /* GraphQL */ `subscription OnUpdatePost($filter: Mo
     imageUrls
     videoUrl
     description
+    numberOfLikes
+    isLiked
     userID
     user {
       id
@@ -333,6 +349,8 @@ export const onDeletePost = /* GraphQL */ `subscription OnDeletePost($filter: Mo
     imageUrls
     videoUrl
     description
+    numberOfLikes
+    isLiked
     userID
     user {
       id

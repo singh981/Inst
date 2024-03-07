@@ -32,6 +32,8 @@ type Post @model @auth(rules: [{allow: public}]) {
     imageUrls: [String!]
     videoUrl: String
     description: String!
+    numberOfLikes: Int!
+    isLiked: Boolean!
 
     # This field stores the ID of the User associated with this Post.
     # The @index directive creates a secondary index on this field, which allows for efficient querying of Posts by User.

@@ -1,5 +1,6 @@
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {Comment} from '../API';
 
 // Defining types for all the 'main' navigation stack
 export type RootNavigatorParamList = {
@@ -18,7 +19,8 @@ export type BottomTabNavigatorParamList = {
 export type HomeStackNavigatorParamList = {
     Home: undefined;
     UserProfile: {username: string};
-    Comments: {postId: number};
+    // TODO: Remove comments from here. Add comments to context
+    Comments: {postId: string; comments: Comment[]};
 };
 
 export type ProfileStackNavigatorParamList = {

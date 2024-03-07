@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {size, weight} from '../../theme/fonts';
-import {IComment} from '../../types/models';
+import {Comment as CommentType} from '../../API';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {CommentScreenNavigationProp} from '../../navigation/types';
@@ -24,7 +24,7 @@ const getDaysOld = (createdAt: string) => {
 };
 
 interface ICommentProps {
-    comment: IComment;
+    comment: CommentType;
     showDetailComment?: boolean;
 }
 
@@ -34,7 +34,8 @@ const Comment = ({comment, showDetailComment = false}: ICommentProps) => {
     // get the navigation object
     const navigation = useNavigation<CommentScreenNavigationProp>();
 
-    const {id, user, comment: commentText, createdAt, numberOfLikes} = comment;
+    const {user, comment: commentText, createdAt, numberOfLikes} = comment;
+
     return (
         <View style={styles.commentContainer}>
             {showDetailComment && (
@@ -46,7 +47,7 @@ const Comment = ({comment, showDetailComment = false}: ICommentProps) => {
                     }>
                     <Image
                         source={{
-                            uri: user.avatarUrl,
+                            uri: user.avatarUrl as string,
                         }}
                         style={{
                             width: 40,

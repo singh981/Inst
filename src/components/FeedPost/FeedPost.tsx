@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
     View,
     Text,
@@ -7,19 +7,27 @@ import {
     Pressable,
     TouchableOpacity,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+
+// Theme
 import {size, weight} from '../../theme/fonts';
-import {IFeedPost} from '../../types/models';
+
+// Components
 import ImageCarousel from '../ImageCarousel';
 import VideoPlayer from '../VideoPlayer';
-import {useNavigation} from '@react-navigation/native';
+
+// Types
 import {HomeScreenNavigationProp} from '../../navigation/types';
 
+// API
+import {Comment, Post} from '../../API';
+
 interface IFeedPostProps {
-    post: IFeedPost;
+    post: Post;
     isVisible: boolean;
-    activePostId: number | null;
+    activePostId: string | null;
 }
 
 const convertDate = (date: string) => {
@@ -39,6 +47,7 @@ const convertDate = (date: string) => {
 
 const FeedPost = ({post, isVisible}: IFeedPostProps) => {
     // extract each field from the Post object
+    // console.log('FeedPost - post', post);
     const {
         id,
         createdAt,
@@ -50,7 +59,9 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
         comments,
     } = post;
 
-    const numberOfComments = comments.length;
+    // console.log('FeedPost - user', user);
+
+    const numberOfComments = comments?.items.length || 0;
 
     const navigation = useNavigation<HomeScreenNavigationProp>();
 
@@ -77,7 +88,7 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                     }>
                     <Image
                         source={{
-                            uri: user.avatarUrl,
+                            uri: user.avatarUrl as string,
                         }}
                         style={styles.avatar}
                     />
@@ -131,7 +142,7 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                     </Text>{' '}
                     and{' '}
                     <Text style={{fontWeight: weight.bold}}>
-                        {numberOfLikes} others
+                        {numberOfLikes ? numberOfLikes : 0} others
                     </Text>
                 </Text>
 
@@ -159,9 +170,11 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                     onPress={() =>
                         navigation.navigate('Comments', {
                             postId: id,
+                            comments: comments?.items as Comment[],
                         })
                     }>
-                    View {numberOfComments} comments
+                    {numberOfComments > 0 &&
+                        `View ${numberOfComments} comments`}
                 </Text>
 
                 {/* Post date */}

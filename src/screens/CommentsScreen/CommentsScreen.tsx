@@ -1,4 +1,6 @@
+import {useEffect, useState} from 'react';
 import {
+    Alert,
     FlatList,
     KeyboardAvoidingView,
     Platform,
@@ -6,49 +8,84 @@ import {
     StyleSheet,
     View,
 } from 'react-native';
-import posts from '../../assets/data/posts.json';
-import Comment from '../../components/Comment';
-
-import CommentInput from './CommentInput'; // import the new component
-import {useEffect, useState} from 'react';
-import {IComment, IFeedPost} from '../../types/models';
-
 import {useRoute} from '@react-navigation/native';
+import {generateClient} from 'aws-amplify/api';
 
+// Context
+import {AuthContext} from '../../context/AuthContext';
+
+// Types
 import {CommentsScreenRouteProp} from '../../navigation/types';
 
-const getAllCommentsForParticularPost = (postId: number): IComment[] => {
-    return posts.find((post: IFeedPost) => post.id === postId)?.comments || [];
-};
+// Components
+import CommentInput from './CommentInput'; // import the new component
+import Comment from '../../components/Comment';
+
+// GraphQL API
+import {Comment as CommentType} from '../../API';
+import {createComment} from '../../graphql/mutations';
+import {onCreateComment} from '../../graphql/subscriptions';
 
 const CommentsScreen = () => {
     const route = useRoute<CommentsScreenRouteProp>();
-    const {postId} = route.params;
+    const {postId, comments: commentsFromDynamoDb} = route.params;
 
-    const [comments, setComments] = useState<IComment[] | []>([]);
+    const [comments, setComments] = useState<CommentType[] | []>(
+        commentsFromDynamoDb.sort((a, b) => {
+            const dateA = new Date(a.createdAt);
+            const dateB = new Date(b.createdAt);
+
+            // Sort in descending order
+            return dateB.getTime() - dateA.getTime();
+        }),
+    );
+
+    const client = generateClient();
 
     useEffect(() => {
-        if (postId) {
-            setComments(getAllCommentsForParticularPost(postId));
-        }
+        // subscribe to new comments and update the state
+        const createSub = client.graphql({query: onCreateComment}).subscribe({
+            next: ({data}) => {
+                const newComment: CommentType = {
+                    ...data.onCreateComment,
+                    post: {
+                        ...data.onCreateComment.post,
+                        user: data.onCreateComment.user,
+                    },
+                };
+                setComments((prevComments: CommentType[] | []) => [
+                    newComment,
+                    ...prevComments,
+                ]);
+            },
+            error: error => console.warn(error),
+        });
+
+        return () => {
+            createSub.unsubscribe();
+        };
     }, []);
 
-    const handlePost = (comment: string) => {
-        // Create a new comment object
-        const newComment: IComment = {
-            id: Math.random(),
-            comment,
-            createdAt: new Date().toISOString(),
-            numberOfLikes: 0,
-            user: {
-                id: Math.random(),
-                username: 'Vadim_Savin',
-                avatarUrl:
-                    'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/4.jpg',
-            },
-        };
-
-        setComments([newComment, ...comments]);
+    const handlePost = async (commentText: string) => {
+        // post new comment to the database
+        try {
+            await client.graphql({
+                query: createComment,
+                variables: {
+                    input: {
+                        postID: postId,
+                        // userID: loggedInUser?.userId as string,
+                        // TODO: replace the hardcoded userID with the actual userID
+                        userID: '22a8ba49-f55e-4225-8c4b-2cac9eb7490f',
+                        numberOfLikes: 0,
+                        comment: commentText,
+                    },
+                },
+            });
+        } catch (e) {
+            console.error('CommentsScreen - PostError', e);
+            Alert.alert('Error', 'Failed to add new comment');
+        }
     };
 
     return (
