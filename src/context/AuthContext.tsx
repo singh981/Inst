@@ -5,7 +5,7 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import {AuthUser, getCurrentUser} from 'aws-amplify/auth';
+import {AuthUser, getCurrentUser, fetchUserAttributes} from 'aws-amplify/auth';
 import {Hub} from 'aws-amplify/utils';
 
 type AuthContextProps = {
@@ -37,7 +37,10 @@ export const AuthProvider: FunctionComponent<{children: ReactNode}> = ({
     useEffect(() => {
         (async () => {
             try {
-                logIn(await getCurrentUser());
+                logIn({
+                    ...(await getCurrentUser()),
+                    ...(await fetchUserAttributes()),
+                });
             } catch (e) {
                 // console.log('Error getting current user', e);
             } finally {
