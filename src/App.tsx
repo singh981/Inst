@@ -1,9 +1,12 @@
 import Navigation from './navigation';
 import {AuthProvider} from './context/AuthContext';
+import {ApolloClientProvider} from './apollo/ApolloClientProvider';
 
 const App: React.FC = () => (
     <AuthProvider>
-        <Navigation />
+        <ApolloClientProvider>
+            <Navigation />
+        </ApolloClientProvider>
     </AuthProvider>
 );
 

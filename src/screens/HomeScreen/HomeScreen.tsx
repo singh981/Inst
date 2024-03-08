@@ -1,63 +1,22 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {FlatList, FlatListProps, SafeAreaView, StyleSheet} from 'react-native';
+import {
+    ActivityIndicator,
+    FlatList,
+    FlatListProps,
+    SafeAreaView,
+    StyleSheet,
+} from 'react-native';
 import FeedPost from '../../components/FeedPost';
-import {Post} from '../../API';
-import {GraphQLResult, generateClient} from 'aws-amplify/api';
-
-const listPosts = /* GraphQL */ `
-    query ListPosts {
-        listPosts {
-            items {
-                id
-                createdAt
-                imageUrls
-                videoUrl
-                description
-                numberOfLikes
-                isLiked
-                userID
-                user {
-                    username
-                    avatarUrl
-                }
-                comments {
-                    items {
-                        comment
-                        createdAt
-                        numberOfLikes
-                        user {
-                            username
-                            avatarUrl
-                        }
-                    }
-                }
-            }
-            nextToken
-            __typename
-        }
-    }
-`;
+import {ListPostsQuery, Post} from '../../API';
+import {useQuery} from '@apollo/client';
+import {LIST_POSTS} from './queries';
 
 const HomeScreen = () => {
     const [activePostId, setActivePostId] = useState<string | null>(null);
-    const [posts, setPosts] = useState<Post[] | []>([]);
 
-    const client = generateClient();
+    const {loading, error, data} = useQuery<ListPostsQuery>(LIST_POSTS, {});
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const posts = (await client.graphql({
-                    query: listPosts,
-                })) as GraphQLResult<any>;
-                // console.log(posts.data.listPosts.items[0]);
-                setPosts(posts.data.listPosts.items);
-            } catch (e) {
-                console.error(e);
-            }
-        };
-        fetchPosts();
-    }, []);
+    const posts = data?.listPosts?.items || [];
 
     const onViewableItemsChangedRef = useRef<
         FlatListProps<Post>['onViewableItemsChanged']
@@ -69,25 +28,29 @@ const HomeScreen = () => {
 
     return (
         <SafeAreaView style={styles.safeAreaViewContainer}>
-            <FlatList
-                data={posts}
-                keyExtractor={post => post.id}
-                renderItem={({item: post}) => (
-                    <FeedPost
-                        post={post}
-                        activePostId={activePostId}
-                        isVisible={activePostId === post.id}
-                    />
-                )}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{
-                    gap: 20,
-                }}
-                viewabilityConfig={{
-                    viewAreaCoveragePercentThreshold: 50,
-                }}
-                onViewableItemsChanged={onViewableItemsChangedRef.current}
-            />
+            {loading ? (
+                <ActivityIndicator size="large" color="black" />
+            ) : (
+                <FlatList
+                    data={posts}
+                    keyExtractor={post => post?.id as string}
+                    renderItem={({item: post}) => (
+                        <FeedPost
+                            post={post as Post}
+                            activePostId={activePostId}
+                            isVisible={activePostId === post?.id}
+                        />
+                    )}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{
+                        gap: 20,
+                    }}
+                    viewabilityConfig={{
+                        viewAreaCoveragePercentThreshold: 50,
+                    }}
+                    onViewableItemsChanged={onViewableItemsChangedRef.current}
+                />
+            )}
         </SafeAreaView>
     );
 };
@@ -96,6 +59,7 @@ const styles = StyleSheet.create({
     safeAreaViewContainer: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         overflow: 'hidden',
         // backgroundColor: 'green',
     },
