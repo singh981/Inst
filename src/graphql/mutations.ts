@@ -2,10 +2,10 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from '../API';
+import * as APITypes from "../API";
 type GeneratedMutation<InputType, OutputType> = string & {
-    __generatedMutationInput: InputType;
-    __generatedMutationOutput: OutputType;
+  __generatedMutationInput: InputType;
+  __generatedMutationOutput: OutputType;
 };
 
 export const createLike = /* GraphQL */ `mutation CreateLike(
@@ -25,6 +25,18 @@ export const createLike = /* GraphQL */ `mutation CreateLike(
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -39,6 +51,29 @@ export const createLike = /* GraphQL */ `mutation CreateLike(
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -49,8 +84,8 @@ export const createLike = /* GraphQL */ `mutation CreateLike(
   }
 }
 ` as GeneratedMutation<
-    APITypes.CreateLikeMutationVariables,
-    APITypes.CreateLikeMutation
+  APITypes.CreateLikeMutationVariables,
+  APITypes.CreateLikeMutation
 >;
 export const updateLike = /* GraphQL */ `mutation UpdateLike(
   $input: UpdateLikeInput!
@@ -69,6 +104,18 @@ export const updateLike = /* GraphQL */ `mutation UpdateLike(
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -83,6 +130,29 @@ export const updateLike = /* GraphQL */ `mutation UpdateLike(
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -93,8 +163,8 @@ export const updateLike = /* GraphQL */ `mutation UpdateLike(
   }
 }
 ` as GeneratedMutation<
-    APITypes.UpdateLikeMutationVariables,
-    APITypes.UpdateLikeMutation
+  APITypes.UpdateLikeMutationVariables,
+  APITypes.UpdateLikeMutation
 >;
 export const deleteLike = /* GraphQL */ `mutation DeleteLike(
   $input: DeleteLikeInput!
@@ -113,6 +183,18 @@ export const deleteLike = /* GraphQL */ `mutation DeleteLike(
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -127,6 +209,29 @@ export const deleteLike = /* GraphQL */ `mutation DeleteLike(
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -137,8 +242,8 @@ export const deleteLike = /* GraphQL */ `mutation DeleteLike(
   }
 }
 ` as GeneratedMutation<
-    APITypes.DeleteLikeMutationVariables,
-    APITypes.DeleteLikeMutation
+  APITypes.DeleteLikeMutationVariables,
+  APITypes.DeleteLikeMutation
 >;
 export const createComment = /* GraphQL */ `mutation CreateComment(
   $input: CreateCommentInput!
@@ -159,6 +264,18 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -173,6 +290,29 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -183,8 +323,8 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
   }
 }
 ` as GeneratedMutation<
-    APITypes.CreateCommentMutationVariables,
-    APITypes.CreateCommentMutation
+  APITypes.CreateCommentMutationVariables,
+  APITypes.CreateCommentMutation
 >;
 export const updateComment = /* GraphQL */ `mutation UpdateComment(
   $input: UpdateCommentInput!
@@ -205,6 +345,18 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -219,6 +371,29 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -229,8 +404,8 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
   }
 }
 ` as GeneratedMutation<
-    APITypes.UpdateCommentMutationVariables,
-    APITypes.UpdateCommentMutation
+  APITypes.UpdateCommentMutationVariables,
+  APITypes.UpdateCommentMutation
 >;
 export const deleteComment = /* GraphQL */ `mutation DeleteComment(
   $input: DeleteCommentInput!
@@ -251,6 +426,18 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -265,6 +452,29 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -275,8 +485,8 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
   }
 }
 ` as GeneratedMutation<
-    APITypes.DeleteCommentMutationVariables,
-    APITypes.DeleteCommentMutation
+  APITypes.DeleteCommentMutationVariables,
+  APITypes.DeleteCommentMutation
 >;
 export const createPost = /* GraphQL */ `mutation CreatePost(
   $input: CreatePostInput!
@@ -302,15 +512,45 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -319,8 +559,8 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
   }
 }
 ` as GeneratedMutation<
-    APITypes.CreatePostMutationVariables,
-    APITypes.CreatePostMutation
+  APITypes.CreatePostMutationVariables,
+  APITypes.CreatePostMutation
 >;
 export const updatePost = /* GraphQL */ `mutation UpdatePost(
   $input: UpdatePostInput!
@@ -346,15 +586,45 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -363,8 +633,8 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
   }
 }
 ` as GeneratedMutation<
-    APITypes.UpdatePostMutationVariables,
-    APITypes.UpdatePostMutation
+  APITypes.UpdatePostMutationVariables,
+  APITypes.UpdatePostMutation
 >;
 export const deletePost = /* GraphQL */ `mutation DeletePost(
   $input: DeletePostInput!
@@ -390,15 +660,45 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -407,8 +707,8 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
   }
 }
 ` as GeneratedMutation<
-    APITypes.DeletePostMutationVariables,
-    APITypes.DeletePostMutation
+  APITypes.DeletePostMutationVariables,
+  APITypes.DeletePostMutation
 >;
 export const createUser = /* GraphQL */ `mutation CreateUser(
   $input: CreateUserInput!
@@ -426,14 +726,44 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
     numberOfFollowing
     numberOfPosts
     posts {
+      items {
+        id
+        createdAt
+        imageUrls
+        videoUrl
+        description
+        numberOfLikes
+        isLiked
+        userID
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -443,8 +773,8 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
   }
 }
 ` as GeneratedMutation<
-    APITypes.CreateUserMutationVariables,
-    APITypes.CreateUserMutation
+  APITypes.CreateUserMutationVariables,
+  APITypes.CreateUserMutation
 >;
 export const updateUser = /* GraphQL */ `mutation UpdateUser(
   $input: UpdateUserInput!
@@ -462,14 +792,44 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
     numberOfFollowing
     numberOfPosts
     posts {
+      items {
+        id
+        createdAt
+        imageUrls
+        videoUrl
+        description
+        numberOfLikes
+        isLiked
+        userID
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -479,8 +839,8 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
   }
 }
 ` as GeneratedMutation<
-    APITypes.UpdateUserMutationVariables,
-    APITypes.UpdateUserMutation
+  APITypes.UpdateUserMutationVariables,
+  APITypes.UpdateUserMutation
 >;
 export const deleteUser = /* GraphQL */ `mutation DeleteUser(
   $input: DeleteUserInput!
@@ -498,14 +858,44 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
     numberOfFollowing
     numberOfPosts
     posts {
+      items {
+        id
+        createdAt
+        imageUrls
+        videoUrl
+        description
+        numberOfLikes
+        isLiked
+        userID
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -515,6 +905,6 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
   }
 }
 ` as GeneratedMutation<
-    APITypes.DeleteUserMutationVariables,
-    APITypes.DeleteUserMutation
+  APITypes.DeleteUserMutationVariables,
+  APITypes.DeleteUserMutation
 >;

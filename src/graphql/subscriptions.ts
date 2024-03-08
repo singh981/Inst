@@ -22,6 +22,18 @@ export const onCreateLike = /* GraphQL */ `subscription OnCreateLike($filter: Mo
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -36,6 +48,29 @@ export const onCreateLike = /* GraphQL */ `subscription OnCreateLike($filter: Mo
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -63,6 +98,18 @@ export const onUpdateLike = /* GraphQL */ `subscription OnUpdateLike($filter: Mo
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -77,6 +124,29 @@ export const onUpdateLike = /* GraphQL */ `subscription OnUpdateLike($filter: Mo
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -104,6 +174,18 @@ export const onDeleteLike = /* GraphQL */ `subscription OnDeleteLike($filter: Mo
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -118,6 +200,29 @@ export const onDeleteLike = /* GraphQL */ `subscription OnDeleteLike($filter: Mo
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -147,6 +252,18 @@ export const onCreateComment = /* GraphQL */ `subscription OnCreateComment($filt
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -161,6 +278,29 @@ export const onCreateComment = /* GraphQL */ `subscription OnCreateComment($filt
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -190,6 +330,18 @@ export const onUpdateComment = /* GraphQL */ `subscription OnUpdateComment($filt
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -204,6 +356,29 @@ export const onUpdateComment = /* GraphQL */ `subscription OnUpdateComment($filt
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -233,6 +408,18 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment($filt
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -247,6 +434,29 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment($filt
       numberOfLikes
       isLiked
       userID
+      user {
+        id
+        name
+        username
+        avatarUrl
+        email
+        bio
+        website
+        numberOfFollowers
+        numberOfFollowing
+        numberOfPosts
+        createdAt
+        updatedAt
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       updatedAt
       __typename
     }
@@ -281,15 +491,45 @@ export const onCreatePost = /* GraphQL */ `subscription OnCreatePost($filter: Mo
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -322,15 +562,45 @@ export const onUpdatePost = /* GraphQL */ `subscription OnUpdatePost($filter: Mo
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -363,15 +633,45 @@ export const onDeletePost = /* GraphQL */ `subscription OnDeletePost($filter: Mo
       numberOfFollowers
       numberOfFollowing
       numberOfPosts
+      posts {
+        nextToken
+        __typename
+      }
+      comments {
+        nextToken
+        __typename
+      }
+      likes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -396,14 +696,44 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: Mo
     numberOfFollowing
     numberOfPosts
     posts {
+      items {
+        id
+        createdAt
+        imageUrls
+        videoUrl
+        description
+        numberOfLikes
+        isLiked
+        userID
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -429,14 +759,44 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($filter: Mo
     numberOfFollowing
     numberOfPosts
     posts {
+      items {
+        id
+        createdAt
+        imageUrls
+        videoUrl
+        description
+        numberOfLikes
+        isLiked
+        userID
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -462,14 +822,44 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($filter: Mo
     numberOfFollowing
     numberOfPosts
     posts {
+      items {
+        id
+        createdAt
+        imageUrls
+        videoUrl
+        description
+        numberOfLikes
+        isLiked
+        userID
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     comments {
+      items {
+        id
+        createdAt
+        comment
+        userID
+        postID
+        numberOfLikes
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     likes {
+      items {
+        id
+        userID
+        postID
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
