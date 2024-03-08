@@ -10,6 +10,7 @@ import FeedPost from '../../components/FeedPost';
 import {ListPostsQuery, Post} from '../../API';
 import {useQuery} from '@apollo/client';
 import {LIST_POSTS} from './queries';
+import ApiErrorMessage from '../../components/ApiErrorMessage';
 
 const HomeScreen = () => {
     const [activePostId, setActivePostId] = useState<string | null>(null);
@@ -28,7 +29,9 @@ const HomeScreen = () => {
 
     return (
         <SafeAreaView style={styles.safeAreaViewContainer}>
-            {loading ? (
+            {error ? (
+                <ApiErrorMessage error={error} />
+            ) : loading ? (
                 <ActivityIndicator size="large" color="black" />
             ) : (
                 <FlatList
