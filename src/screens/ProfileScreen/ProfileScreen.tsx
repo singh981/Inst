@@ -27,6 +27,7 @@ import {
 // Context
 import { AuthContext } from '../../context/AuthContext';
 import { GET_USER_QUERY } from './queries';
+import { GetUserQuery, GetUserQueryVariables } from '../../API';
 import { useQuery } from '@apollo/client';
 
 const ProfileScreen = () => {
@@ -45,8 +46,8 @@ const ProfileScreen = () => {
     const isLoggedInUserProfile = route.name === 'Profile';
 
     const { data, loading, error } = isLoggedInUserProfile
-        ? useQuery(GET_USER_QUERY, { variables: { id: currentCognitoUser?.userId } })
-        : useQuery(GET_USER_QUERY, { variables: { id: route?.params?.userId } });
+        ? useQuery<GetUserQuery, GetUserQueryVariables>(GET_USER_QUERY, { variables: { id: currentCognitoUser?.userId as string } })
+        : useQuery<GetUserQuery, GetUserQueryVariables>(GET_USER_QUERY, { variables: { id: route?.params?.userId } });
 
     const user = data?.getUser;
 
@@ -74,14 +75,14 @@ const ProfileScreen = () => {
                     <View style={styles.profileInfo}>
                         <Image
                             source={{
-                                uri: avatarUrl,
+                                uri: avatarUrl as string,
                             }}
                             style={styles.profilePhoto}
                         />
                         <View style={styles.stats}>
                             <View style={styles.stat}>
                                 <Text style={styles.statNumber}>
-                                    {posts?.length ?? 0}
+                                    {posts?.items.length ?? 0}
                                 </Text>
                                 <Text style={styles.statLabel}>Posts</Text>
                             </View>
@@ -155,7 +156,7 @@ const ProfileScreen = () => {
                     </View>
 
                     {/* Posts */}
-                    <FeedGridView posts={posts.items ?? []} />
+                    <FeedGridView posts={posts?.items ?? []} />
                 </View>
             }
         </SafeAreaView>

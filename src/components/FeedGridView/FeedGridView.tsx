@@ -7,29 +7,20 @@ import {
     View,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {
-    IProfileUserPost,
-    IProfileUserPostMultipleImages,
-    IProfileUserPostSingleImage,
-} from '../../types/models';
 import { size, weight } from '../../theme/fonts';
+import { Post } from '../../API';
 
-interface IFeedGridViewProps {
-    posts: IProfileUserPost[];
-}
 
-const FeedGridView = ({ posts }: IFeedGridViewProps) => (
+const FeedGridView = ({ posts }: { posts: Post[] | any }) => (
     <View style={styles.postsContainer}>
-        {posts.length > 0 ? (
+        {posts && posts.length > 0 ? (
             <FlatList
                 data={posts}
                 renderItem={({
                     item,
                     index,
                 }: {
-                    item:
-                    | IProfileUserPostSingleImage
-                    | IProfileUserPostMultipleImages;
+                    item: Post;
                     index: number;
                 }) => {
                     let style;
@@ -53,10 +44,7 @@ const FeedGridView = ({ posts }: IFeedGridViewProps) => (
                             ]}>
                             <Image
                                 source={{
-                                    uri:
-                                        'imageUrls' in item
-                                            ? item.imageUrls[0]
-                                            : item.imageUrl,
+                                    uri: item.imageUrls && item.imageUrls.length > 0 ? item.imageUrls[0] : undefined,
                                 }}
                                 style={{ flex: 1, aspectRatio: 1 }}
                             />
