@@ -1,16 +1,21 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import errorPNG from '../../assets/images/error.png';
-import {size, weight} from '../../theme/fonts';
+import { size, weight } from '../../theme/fonts';
 
-const ApiErrorMessage = ({error}: {error: Error}) => {
+interface Error {
+    title: string;
+    message: string;
+}
+
+const ApiErrorMessage = ({ error }: { error: Error }) => {
     return (
         <View style={styles.container}>
             <Image
                 source={errorPNG}
-                style={{width: 200, height: 200}}
+                style={{ width: 200, height: 200 }}
                 resizeMode="contain"
             />
-            <Text style={styles.title}>Error fetching Posts</Text>
+            <Text style={styles.title}>{error && error.title}</Text>
             <Text style={styles.description}>{error && error.message}</Text>
         </View>
     );
@@ -22,6 +27,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 20,
+        // backgroundColor: 'green',
     },
     title: {
         fontSize: size.lg,
@@ -30,6 +36,7 @@ const styles = StyleSheet.create({
     description: {
         fontSize: size.md,
         fontWeight: weight.thin,
+        textAlign: 'center',
     },
 });
 

@@ -1,6 +1,6 @@
 import {gql} from '@apollo/client';
 
-export const LIST_POSTS = /* GraphQL */ gql`
+export const LIST_POSTS_QUERY = /* GraphQL */ gql`
     query ListPosts(
         $filter: ModelPostFilterInput
         $limit: Int

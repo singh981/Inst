@@ -1,15 +1,14 @@
-import {useContext, useEffect, useState} from 'react';
-import {useForm} from 'react-hook-form';
-import {useNavigation} from '@react-navigation/native';
-import {Text, View, SafeAreaView, Alert} from 'react-native';
-import {signIn, AuthError, getCurrentUser} from 'aws-amplify/auth';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigation } from '@react-navigation/native';
+import { Text, View, SafeAreaView, Alert } from 'react-native';
+import { signIn, AuthError } from 'aws-amplify/auth';
 
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
-import {SignInScreenNavigationProp} from '../../../navigation/types';
-import {AuthContext} from '../../../context/AuthContext';
+import { SignInScreenNavigationProp } from '../../../navigation/types';
+import { Hub } from 'aws-amplify/utils';
 
-import {fetchUserFromDynamoDb} from '../../../utils/FetchUserfromDynamoDb';
 
 type SignInParameters = {
     username: string;
@@ -17,9 +16,8 @@ type SignInParameters = {
 };
 
 const SignInScreen = () => {
-    const {logIn} = useContext(AuthContext) || {};
 
-    const {control, handleSubmit, reset} = useForm<SignInParameters>({
+    const { control, handleSubmit, reset } = useForm<SignInParameters>({
         defaultValues: {
             username: '',
             password: '',
@@ -30,13 +28,13 @@ const SignInScreen = () => {
 
     const [loading, setLoading] = useState<boolean>(false);
 
-    const onSubmit = async ({username, password}: SignInParameters) => {
+    const onSubmit = async ({ username, password }: SignInParameters) => {
         setLoading(true);
         try {
             const {
                 isSignedIn,
-                nextStep: {signInStep},
-            } = await signIn({username, password});
+                nextStep: { signInStep },
+            } = await signIn({ username, password });
 
             console.log(
                 'User Signed In Successfully',
@@ -49,17 +47,10 @@ const SignInScreen = () => {
             // navigating user to confirm sign up screen if signInStep is CONFIRM_SIGN_UP
             switch (signInStep) {
                 case 'CONFIRM_SIGN_UP':
-                    navigation.navigate('ConfirmSignUp', {username});
+                    navigation.navigate('ConfirmSignUp', { username });
                     break;
                 case 'DONE':
-                    logIn &&
-                        logIn(
-                            await fetchUserFromDynamoDb(
-                                (
-                                    await getCurrentUser()
-                                ).userId,
-                            ),
-                        );
+                    // an event is automatically being dispatched to the Hub to notify the app that the user has signed in
                     break;
                 default:
                     break;
@@ -74,14 +65,9 @@ const SignInScreen = () => {
 
             // handling user already authenticated error
             error.name === 'UserAlreadyAuthenticatedException'
-                ? logIn &&
-                  logIn(
-                      await fetchUserFromDynamoDb(
-                          (
-                              await getCurrentUser()
-                          ).userId,
-                      ),
-                  )
+                ? Hub.dispatch('UserAlreadyAuthenticated', {
+                    event: 'UserAlreadyAuthenticated',
+                })
                 : Alert.alert('Error Signing In', error.message);
         } finally {
             setLoading(false);

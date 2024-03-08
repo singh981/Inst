@@ -5,28 +5,25 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import {getCurrentUser} from 'aws-amplify/auth';
-import {Hub} from 'aws-amplify/utils';
-import {GetUserQuery} from '../API';
-import {fetchUserFromDynamoDb} from '../utils/FetchUserfromDynamoDb';
-
+import { AuthUser, getCurrentUser } from 'aws-amplify/auth';
+import { Hub } from 'aws-amplify/utils';
 type AuthContextProps = {
-    user: GetUserQuery['getUser'] | null;
-    logIn: (newUser: GetUserQuery['getUser']) => void;
+    user: AuthUser | null;
+    logIn: (newUser: AuthUser) => void;
     logOut: () => void;
     waitingtoGetCurrentUser: boolean;
 };
 
 export const AuthContext = createContext<AuthContextProps | null>(null);
 
-export const AuthProvider: FunctionComponent<{children: ReactNode}> = ({
+export const AuthProvider: FunctionComponent<{ children: ReactNode }> = ({
     children,
 }) => {
-    const [user, setUser] = useState<GetUserQuery['getUser'] | null>(null);
+    const [user, setUser] = useState<AuthUser | null>(null);
     const [waitingtoGetCurrentUser, setWaitingtoGetCurrentUser] =
         useState<boolean>(true);
 
-    const logIn = (newUser: GetUserQuery['getUser']) => {
+    const logIn = (newUser: AuthUser) => {
         setUser(newUser);
     };
 
@@ -36,16 +33,10 @@ export const AuthProvider: FunctionComponent<{children: ReactNode}> = ({
 
     // Here we are using the useEffect hook to get the current user when the app starts.
     // We are also using the setWaitingtoGetCurrentUser to control the loading spinner.
-    useEffect(() => {
+    useEffect((): any => {
         (async () => {
             try {
-                logIn(
-                    await fetchUserFromDynamoDb(
-                        (
-                            await getCurrentUser()
-                        ).userId,
-                    ),
-                );
+                logIn(await getCurrentUser());
             } catch (e) {
                 // console.log('Error getting current user', e);
             } finally {
@@ -53,21 +44,47 @@ export const AuthProvider: FunctionComponent<{children: ReactNode}> = ({
             }
         })();
 
-        const hubListenerCancelCallback = Hub.listen(
+        const hubListenerSignOutCallback = Hub.listen(
             'auth',
-            ({payload: {event}}) => {
-                console.log('A new auth event has happened: ', event);
-                event === 'signedOut' && logOut();
+            async ({ payload: { event } }) => {
+                console.log('Auth event happened: ', event);
+                switch (event) {
+                    case 'signedIn':
+                        logIn(await getCurrentUser());
+                        break;
+                    case 'signedOut':
+                        logOut();
+                        break;
+                    default:
+                        break;
+                }
+            },
+        );
+
+        const hubListenerUserAlreadyAuthenticatedCallback = Hub.listen(
+            'UserAlreadyAuthenticatedEvent',
+            async ({ payload: { event } }) => {
+                console.log('Event happened: ', event);
+                switch (event) {
+                    case 'UserAlreadyAuthenticated':
+                        logIn(await getCurrentUser());
+                        break;
+                    default:
+                        break;
+                }
             },
         );
 
         // Clean up the listener when the component is unmounted
-        return () => hubListenerCancelCallback();
+        return () => {
+            hubListenerSignOutCallback();
+            hubListenerUserAlreadyAuthenticatedCallback();
+        };
     }, []);
 
     return (
         <AuthContext.Provider
-            value={{user, logIn, logOut, waitingtoGetCurrentUser}}>
+            value={{ user, logIn, logOut, waitingtoGetCurrentUser }}>
             {children}
         </AuthContext.Provider>
     );
