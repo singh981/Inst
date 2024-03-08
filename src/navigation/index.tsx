@@ -1,21 +1,19 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, { useContext } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import AuthStackNavigator from './AuthStackNavigator';
 import BottomTabNavigator from './BottomTabNavigator';
-import CommentsScreen from '../screens/CommentsScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 
-import {RootNavigatorParamList} from './types';
+import { RootNavigatorParamList } from './types';
 
-import {AuthContext} from '../context/AuthContext';
-import {ActivityIndicator, View} from 'react-native';
+import { AuthContext } from '../context/AuthContext';
+import { ActivityIndicator, View } from 'react-native';
 
 const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
 const Navigation = () => {
-    const {user, waitingtoGetCurrentUser} = React.useContext(AuthContext) || {};
+    const { user, waitingtoGetCurrentUser } = useContext(AuthContext) || {};
 
     // NOTE: We are using the user object from the AuthContext to determine which screen to show.
     return waitingtoGetCurrentUser ? (
@@ -46,13 +44,13 @@ const Navigation = () => {
                         <Stack.Screen
                             name="Auth"
                             component={AuthStackNavigator}
-                            options={{headerShown: false}}
+                            options={{ headerShown: false }}
                         />
                     ) : (
                         <Stack.Screen
                             name="Home"
                             component={BottomTabNavigator}
-                            options={{headerShown: false}}
+                            options={{ headerShown: false }}
                         />
                     )
                 }

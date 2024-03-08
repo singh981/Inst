@@ -1,14 +1,17 @@
-import {Alert, Text, View} from 'react-native';
+import { Alert, Text, View } from 'react-native';
+import { Control, useForm } from 'react-hook-form';
+import { AuthError, confirmResetPassword } from 'aws-amplify/auth';
+import { useRoute, useNavigation } from '@react-navigation/native';
+
+// Components
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
-import {Control, useForm} from 'react-hook-form';
-import {AuthError, confirmResetPassword} from 'aws-amplify/auth';
-import {useRoute} from '@react-navigation/native';
+
+// Navigation
 import {
     NewPasswordScreenNavigationProp,
     NewPasswordScreenRouteProp,
 } from '../../../navigation/types';
-import {useNavigation} from '@react-navigation/native';
 
 interface NewPasswordParameters {
     username: string;
@@ -21,7 +24,7 @@ const NewPasswordScreen = () => {
 
     const navigation = useNavigation<NewPasswordScreenNavigationProp>();
 
-    const {control, handleSubmit, getValues, setError, watch} =
+    const { control, handleSubmit, getValues, setError, watch } =
         useForm<NewPasswordParameters>({
             defaultValues: {
                 username: route.params?.username,
@@ -43,7 +46,6 @@ const NewPasswordScreen = () => {
                 confirmationCode,
                 newPassword,
             });
-
             console.log('Password reset successfully');
             navigation.navigate('SignIn');
         } catch (error: AuthError | any) {

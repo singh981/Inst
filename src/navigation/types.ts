@@ -18,7 +18,7 @@ export type BottomTabNavigatorParamList = {
 
 export type HomeStackNavigatorParamList = {
     Home: undefined;
-    UserProfile: {username: string};
+    UserProfile: {userId: string};
     // TODO: Remove comments from here. Add comments to context
     Comments: {postId: string; comments: Comment[]};
 };

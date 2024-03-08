@@ -1,5 +1,6 @@
-import {useContext, useEffect, useState} from 'react';
+import { useContext } from 'react';
 import {
+    ActivityIndicator,
     Image,
     SafeAreaView,
     StyleSheet,
@@ -7,161 +8,156 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import {useRoute, useNavigation} from '@react-navigation/native';
-import {signOut} from 'aws-amplify/auth';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import { signOut } from 'aws-amplify/auth';
 
-import {size, weight} from '../../theme/fonts';
-import users from '../../assets/data/users.json';
+// Theme
+import { size } from '../../theme/fonts';
+
+// Components
 import FeedGridView from '../../components/FeedGridView';
-import {IProfileUser} from '../../types/models';
+import ApiErrorMessage from '../../components/ApiErrorMessage';
+
+// Navigation
 import {
-    UserProfileScreenRouteProp,
     MyProfileScreenRouteProp,
-    ProfileScreenNavigationProp,
+    ProfileScreenNavigationProp, UserProfileScreenRouteProp,
 } from '../../navigation/types';
-import {AuthContext} from '../../context/AuthContext';
+
+// Context
+import { AuthContext } from '../../context/AuthContext';
+import { GET_USER_QUERY } from './queries';
+import { useQuery } from '@apollo/client';
 
 const ProfileScreen = () => {
-    // TBD: Once we have 'Follow' and 'Message' functionality, we will need to update ProfileScreenNavigationProp
+
+    // TODO: Once we have 'Follow' and 'Message' functionality, we will need to update ProfileScreenNavigationProp
     const navigation = useNavigation<ProfileScreenNavigationProp>();
 
     const route = useRoute<
         UserProfileScreenRouteProp | MyProfileScreenRouteProp
     >();
 
-    const [user, setUser] = useState<IProfileUser | undefined>(undefined);
-
-    const {logOut} = useContext(AuthContext) || {};
-
-    // const {user: usr, signOut} = useAuthenticator(context => [context.user]);
+    const { user: currentCognitoUser } = useContext(AuthContext) || {};
 
     // NOTE: We never send full objects through the route params.
     // Only identifiers to fetch the object from the server or local storage.
-    const username = route.params?.username;
+    const isLoggedInUserProfile = route.name === 'Profile';
 
-    useEffect(() => {
-        if (username) {
-            // get the user from the users array, if not found, use the first user
-            const user = users.find(user => user.username === username);
-            user && setUser(user);
-        } else {
-            // get app user info from AWS Cognito
-            setUser(users[0]);
-        }
-    }, []);
+    const { data, loading, error } = isLoggedInUserProfile
+        ? useQuery(GET_USER_QUERY, { variables: { id: currentCognitoUser?.userId } })
+        : useQuery(GET_USER_QUERY, { variables: { id: route?.params?.userId } });
 
-    const {name, bio, avatarUrl, posts, numberOfFollowers, numberOfFollowing} =
+    const user = data?.getUser;
+
+    const { name, username, bio, avatarUrl, posts, numberOfFollowers, numberOfFollowing } =
         user || {}; // Add a default empty object if user is undefined
+
+    // console.log('ProfileScreen - posts', posts);
 
     return (
         <SafeAreaView style={styles.safeAreaViewContainer}>
-            <View style={styles.container}>
-                {user ? (
-                    <>
-                        <View style={styles.profileInfo}>
-                            <Image
-                                source={{
-                                    uri: avatarUrl,
-                                }}
-                                style={styles.profilePhoto}
-                            />
-                            <View style={styles.stats}>
-                                <View style={styles.stat}>
-                                    <Text style={styles.statNumber}>
-                                        {posts?.length ?? 0}
-                                    </Text>
-                                    <Text style={styles.statLabel}>Posts</Text>
-                                </View>
-                                <View style={styles.stat}>
-                                    <Text style={styles.statNumber}>
-                                        {numberOfFollowers}
-                                    </Text>
-                                    <Text style={styles.statLabel}>
-                                        Followers
-                                    </Text>
-                                </View>
-                                <View style={styles.stat}>
-                                    <Text style={styles.statNumber}>
-                                        {numberOfFollowing}
-                                    </Text>
-                                    <Text style={styles.statLabel}>
-                                        Following
-                                    </Text>
-                                </View>
+            {error && <ApiErrorMessage error={{
+                title: 'Error fetching user profile.',
+                message: error.message,
+            }} />}
+            {loading && (
+                <View style={[
+                    styles.container,
+                    { justifyContent: 'center', alignItems: 'center' }
+                ]}>
+                    <ActivityIndicator size="large" color="black" />
+                </View>
+            )}
+            {user &&
+                <View style={styles.container}>
+                    <View style={styles.profileInfo}>
+                        <Image
+                            source={{
+                                uri: avatarUrl,
+                            }}
+                            style={styles.profilePhoto}
+                        />
+                        <View style={styles.stats}>
+                            <View style={styles.stat}>
+                                <Text style={styles.statNumber}>
+                                    {posts?.length ?? 0}
+                                </Text>
+                                <Text style={styles.statLabel}>Posts</Text>
+                            </View>
+                            <View style={styles.stat}>
+                                <Text style={styles.statNumber}>
+                                    {numberOfFollowers}
+                                </Text>
+                                <Text style={styles.statLabel}>
+                                    Followers
+                                </Text>
+                            </View>
+                            <View style={styles.stat}>
+                                <Text style={styles.statNumber}>
+                                    {numberOfFollowing}
+                                </Text>
+                                <Text style={styles.statLabel}>
+                                    Following
+                                </Text>
                             </View>
                         </View>
-                        {/* Name & Bio */}
-                        <View style={styles.nameBioContainer}>
-                            <Text style={styles.name}>{name}</Text>
-                            <Text style={styles.bio}>{bio}</Text>
-                        </View>
-
-                        {/* Two Buttons - Edit Profile and Share Profile */}
-                        <View style={styles.buttonsContainer}>
-                            {/* If im on My profile i would like "edit profile" and "share profile" buttons else "follow" and "message" */}
-                            {username ? (
-                                <>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            /* TBD */
-                                        }}
-                                        style={styles.buttonContainer}>
-                                        <Text style={styles.buttonText}>
-                                            Follow
-                                        </Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            /* TBD */
-                                        }}
-                                        style={styles.buttonContainer}>
-                                        <Text style={styles.buttonText}>
-                                            Message
-                                        </Text>
-                                    </TouchableOpacity>
-                                </>
-                            ) : (
-                                <>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            navigation.navigate('EditProfile');
-                                        }}
-                                        style={styles.buttonContainer}>
-                                        <Text style={styles.buttonText}>
-                                            Edit Profile
-                                        </Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        onPress={async () => await signOut()}
-                                        style={styles.buttonContainer}>
-                                        <Text style={styles.buttonText}>
-                                            Logout
-                                        </Text>
-                                    </TouchableOpacity>
-                                </>
-                            )}
-                        </View>
-
-                        {/* Posts */}
-                        <FeedGridView posts={posts ?? []} />
-                    </>
-                ) : (
-                    <View
-                        style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}>
-                        <Text
-                            style={{
-                                fontSize: size.lg,
-                                fontWeight: weight.bold,
-                            }}>
-                            User not found
-                        </Text>
                     </View>
-                )}
-            </View>
+                    {/* Name & Bio */}
+                    <View style={styles.nameBioContainer}>
+                        <Text style={styles.name}>{name}</Text>
+                        <Text style={styles.bio}>{bio}</Text>
+                    </View>
+
+                    {/* Two Buttons - Edit Profile and Share Profile */}
+                    <View style={styles.buttonsContainer}>
+                        {!isLoggedInUserProfile ? (
+                            <>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        /* TODO: */
+                                    }}
+                                    style={styles.buttonContainer}>
+                                    <Text style={styles.buttonText}>
+                                        Follow
+                                    </Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        /* TODO: */
+                                    }}
+                                    style={styles.buttonContainer}>
+                                    <Text style={styles.buttonText}>
+                                        Message
+                                    </Text>
+                                </TouchableOpacity>
+                            </>
+                        ) : (
+                            <>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        navigation.navigate('EditProfile');
+                                    }}
+                                    style={styles.buttonContainer}>
+                                    <Text style={styles.buttonText}>
+                                        Edit Profile
+                                    </Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={async () => await signOut()}
+                                    style={styles.buttonContainer}>
+                                    <Text style={styles.buttonText}>
+                                        Logout
+                                    </Text>
+                                </TouchableOpacity>
+                            </>
+                        )}
+                    </View>
+
+                    {/* Posts */}
+                    <FeedGridView posts={posts.items ?? []} />
+                </View>
+            }
         </SafeAreaView>
     );
 };

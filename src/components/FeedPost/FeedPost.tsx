@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
@@ -7,22 +7,26 @@ import {
     Pressable,
     TouchableOpacity,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+
+// Navigation
+import { useNavigation } from '@react-navigation/native';
+
+// Icons
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 
 // Theme
-import {size, weight} from '../../theme/fonts';
+import { size, weight } from '../../theme/fonts';
 
 // Components
 import ImageCarousel from '../ImageCarousel';
 import VideoPlayer from '../VideoPlayer';
 
 // Types
-import {HomeScreenNavigationProp} from '../../navigation/types';
+import { HomeScreenNavigationProp } from '../../navigation/types';
 
 // API
-import {Comment, Post} from '../../API';
+import { Comment, Post } from '../../API';
 
 interface IFeedPostProps {
     post: Post;
@@ -45,7 +49,7 @@ const convertDate = (date: string) => {
     });
 };
 
-const FeedPost = ({post, isVisible}: IFeedPostProps) => {
+const FeedPost = ({ post, isVisible }: IFeedPostProps) => {
     // extract each field from the Post object
     // console.log('FeedPost - post', post);
     const {
@@ -59,7 +63,7 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
         comments,
     } = post;
 
-    // console.log('FeedPost - user', user);
+    // console.log('FeedPost - post', post);
 
     const numberOfComments = comments?.items.length || 0;
 
@@ -83,7 +87,7 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                     onPress={() =>
                         // NOTE: We send the username as a route param to the ProfileScreen
                         navigation.navigate('UserProfile', {
-                            username: user.username,
+                            userId: post.userID,
                         })
                     }>
                     <Image
@@ -95,7 +99,7 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                     <Text style={styles.avatarName}>{user.username}</Text>
                 </Pressable>
                 <AntDesign
-                    style={{marginLeft: 'auto', marginHorizontal: 10}}
+                    style={{ marginLeft: 'auto', marginHorizontal: 10 }}
                     name="ellipsis1"
                     size={30}
                 />
@@ -137,11 +141,11 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                 {/* Liked by abc and 46 others */}
                 <Text style={styles.likedByText}>
                     Liked by{' '}
-                    <Text style={{fontWeight: weight.bold}}>
+                    <Text style={{ fontWeight: weight.bold }}>
                         {user.username}
                     </Text>{' '}
                     and{' '}
-                    <Text style={{fontWeight: weight.bold}}>
+                    <Text style={{ fontWeight: weight.bold }}>
                         {numberOfLikes ? numberOfLikes : 0} others
                     </Text>
                 </Text>
@@ -157,7 +161,7 @@ const FeedPost = ({post, isVisible}: IFeedPostProps) => {
                             fontSize: size.md,
                         }}
                         numberOfLines={numberOfLinesToDisplay}>
-                        <Text style={{fontWeight: weight.bold}}>
+                        <Text style={{ fontWeight: weight.bold }}>
                             {user.username}{' '}
                         </Text>
                         {description}
@@ -202,7 +206,7 @@ const styles = StyleSheet.create({
         // backgroundColor: 'yellow',
         // flex: 1,
     },
-    avatar: {width: 50, height: 50, borderRadius: 25, marginHorizontal: 5},
+    avatar: { width: 50, height: 50, borderRadius: 25, marginHorizontal: 5 },
     avatarName: {
         fontWeight: weight.semi,
         fontSize: size.xmd,

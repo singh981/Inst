@@ -1,22 +1,26 @@
-import {Alert, Text, View} from 'react-native';
-import FormInput from '../components/FormInput';
-import CustomButton from '../components/CustomButton';
-import {Control, useForm} from 'react-hook-form';
-import {useState} from 'react';
+import { useState } from 'react';
+import { Alert, Text, View } from 'react-native';
+import { Control, useForm } from 'react-hook-form';
 import {
     AuthError,
     resetPassword,
     type ResetPasswordOutput,
 } from 'aws-amplify/auth';
-import {useNavigation} from '@react-navigation/native';
-import {ForgotPasswordScreenNavigationProp} from '../../../navigation/types';
+import { useNavigation } from '@react-navigation/native';
+
+// Components
+import FormInput from '../components/FormInput';
+import CustomButton from '../components/CustomButton';
+
+// Navigation
+import { ForgotPasswordScreenNavigationProp } from '../../../navigation/types';
 
 interface ForgotPasswordParameters {
     username: string;
 }
 
 const ForgotPasswordScreen = () => {
-    const {control, handleSubmit, getValues, setError, watch} =
+    const { control, handleSubmit, getValues, setError, watch } =
         useForm<ForgotPasswordParameters>({
             defaultValues: {
                 username: '',
@@ -33,17 +37,17 @@ const ForgotPasswordScreen = () => {
         username,
     }: ForgotPasswordParameters) => {
         try {
-            const output = await resetPassword({username});
-            console.log('Reset Password Output', output);
+            const output = await resetPassword({ username });
+            // console.log('Reset Password Output', output);
             handleResetPasswordNextSteps(output);
         } catch (error: AuthError | any) {
             Alert.alert('Error Resetting Password', error.message);
-            console.log(error);
+            // console.log(error);
         }
     };
 
     const handleResetPasswordNextSteps = (output: ResetPasswordOutput) => {
-        const {nextStep} = output;
+        const { nextStep } = output;
         switch (nextStep.resetPasswordStep) {
             case 'CONFIRM_RESET_PASSWORD_WITH_CODE':
                 const codeDeliveryDetails = nextStep.codeDeliveryDetails;
